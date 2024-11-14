@@ -8,9 +8,17 @@ public class CharacterEntity : MonoBehaviour
 {
     public HealthComponent CharacterHealthComponent;
 
+    [SerializeField] protected enum CharacterState { Run, Attack, Died }
+    [SerializeField] protected CharacterState currentState;
+
     [Header("Information")] 
     [SerializeField] protected string _entityName;
     [SerializeField] protected string _entityDescription;
+
+    [Header("Component")]
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected CapsuleCollider2D characterCollider;
+    [SerializeField] protected SpriteRenderer sprRndr;
     
     [Header("Movement")]
     [SerializeField] protected float _moveSpeed = 10f;
@@ -27,6 +35,9 @@ public class CharacterEntity : MonoBehaviour
     [SerializeField] protected int _defense = 10;
     [SerializeField] protected bool _isAOE = false;
 
+    [SerializeField] protected float nextAttack;
+    [SerializeField] protected float attackCooldownDuration = 1.5f;
+
     protected virtual void Awake()
     {
         CharacterHealthComponent.SetHP(CharacterHealthComponent.MaxHP);
@@ -35,7 +46,8 @@ public class CharacterEntity : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-       
+        OnDeployed();
+        currentState = CharacterState.Run;
     }
 
     // Update is called once per frame
@@ -50,6 +62,7 @@ public class CharacterEntity : MonoBehaviour
     {
         if (CharacterHealthComponent.CurrentHP <= 0)
         {
+            currentState = CharacterState.Died;
             Die();
         }
 
@@ -63,7 +76,8 @@ public class CharacterEntity : MonoBehaviour
     {
         // Implement what happens when the character dies
         Debug.Log(gameObject.name + " died.");
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        Destroy(gameObject, 4f);
     }
 
     //Trigger when player or enemy AI deploy this unit
@@ -76,38 +90,57 @@ public class CharacterEntity : MonoBehaviour
 
     protected virtual void HandleState()
     {
-        /*/ Handle States
-         - Walk
-         - Attack
-         - Dead
-        /*/
+        switch (currentState)
+        {
+            case CharacterState.Run:
+                Walk();
+                break;
+
+            case CharacterState.Attack:
+                Attack();
+                break;
+
+            case CharacterState.Died:
+                characterCollider.enabled = false;
+                rb.velocity = Vector2.zero;
+                
+                break;
+        }
     }
 
     #region Combat Functions
 
     protected virtual void Walk()
     {
-        
+
     }
 
     protected virtual void Attack()
     {
-        if (!_isAOE)
+        rb.velocity = Vector2.zero;
+
+        if (Time.time > nextAttack)
         {
-            // Single target attack
-            if (_targetDetector.enemiesInRange.Count > 0)
+            nextAttack = Time.time + attackCooldownDuration;
+
+            if (!_isAOE)
             {
-                _targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage);
+                // Single target attack
+                if (_targetDetector.enemiesInRange.Count > 0)
+                {
+                    _targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage);
+                }
+            }
+            else
+            {
+                // AOE attack, hit all enemies in range
+                foreach (var enemy in _targetDetector.enemiesInRange)
+                {
+                    enemy.CharacterHealthComponent.TakeDamage(this._attackDamage);
+                }
             }
         }
-        else
-        {
-            // AOE attack, hit all enemies in range
-            foreach (var enemy in _targetDetector.enemiesInRange)
-            {
-                enemy.CharacterHealthComponent.TakeDamage(this._attackDamage);
-            }
-        }
+        
     }
 
 

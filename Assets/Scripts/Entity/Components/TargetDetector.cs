@@ -7,6 +7,8 @@ public class TargetDetector : MonoBehaviour
     public List<CharacterEntity> enemiesInRange = new List<CharacterEntity>();  // List to store enemies in attack range
     public float detectionRadius = 5f; // Radius for detecting enemies
 
+    [SerializeField] private GameObject parentGameObject;
+
     private CircleCollider2D detectionCollider;
     private bool isAlly;
 
@@ -18,7 +20,7 @@ public class TargetDetector : MonoBehaviour
         detectionCollider.radius = detectionRadius;
 
         // Determine if this entity is an ally or enemy based on component
-        isAlly = GetComponent<AllyEntity>() != null;
+        isAlly = (parentGameObject.GetComponent<AllyEntity>() != null);
     }
 
     void OnTriggerEnter2D(Collider2D other)
