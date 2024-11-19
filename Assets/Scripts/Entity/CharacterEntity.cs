@@ -10,6 +10,8 @@ public class CharacterEntity : MonoBehaviour
 
     [SerializeField] protected enum CharacterState { Run, Attack, Died }
     [SerializeField] protected CharacterState currentState;
+    [SerializeField] public enum CharacterSide { Ally, Enemy }
+    [SerializeField] public CharacterSide characterSide;
 
     [Header("Information")] 
     [SerializeField] protected string _entityName;
@@ -65,11 +67,6 @@ public class CharacterEntity : MonoBehaviour
             currentState = CharacterState.Died;
             Die();
         }
-
-        if (_isOnField)
-        {
-            HandleState();
-        }
     }
     
     protected virtual void Die()
@@ -83,67 +80,43 @@ public class CharacterEntity : MonoBehaviour
     //Trigger when player or enemy AI deploy this unit
     protected virtual void OnDeployed()
     {
-        _isOnField = true;
-        
-        //Decrease currency on deploy equal to _deploymentCost
-    }
-
-    protected virtual void HandleState()
-    {
-        switch (currentState)
+        if (characterSide == CharacterSide.Ally)
         {
-            case CharacterState.Run:
-                Walk();
-                break;
-
-            case CharacterState.Attack:
-                Attack();
-                break;
-
-            case CharacterState.Died:
-                characterCollider.enabled = false;
-                rb.velocity = Vector2.zero;
-                
-                break;
+            if (GameData.Instance.manaSystem.HasEnoughMana(_deploymentCost))
+            {
+                _isOnField = true;
+            }
+            else
+            {
+                Debug.Log($"Player does not have enough money to spawn {_entityName}");
+            }
         }
+        else if (characterSide == CharacterSide.Enemy)
+        {
+            _isOnField = true;
+        }
+
+        //Decrease currency on deploy equal to _deploymentCost
     }
 
     #region Combat Functions
 
     protected virtual void Walk()
     {
-
-    }
-
-    protected virtual void Attack()
-    {
-        rb.velocity = Vector2.zero;
-
-        if (Time.time > nextAttack)
+        if (characterSide == CharacterSide.Ally)
         {
-            nextAttack = Time.time + attackCooldownDuration;
-
-            if (!_isAOE)
-            {
-                // Single target attack
-                if (_targetDetector.enemiesInRange.Count > 0)
-                {
-                    _targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage);
-                }
-            }
-            else
-            {
-                // AOE attack, hit all enemies in range
-                foreach (var enemy in _targetDetector.enemiesInRange)
-                {
-                    enemy.CharacterHealthComponent.TakeDamage(this._attackDamage);
-                }
-            }
+            rb.velocity = new Vector2(MoveSpeed, rb.velocity.y);
         }
-        
+        else if (characterSide == CharacterSide.Enemy)
+        {
+            rb.velocity = new Vector2(-MoveSpeed, rb.velocity.y);
+        }
+
+        if (_targetDetector.enemiesInRange.Count > 0)
+        {
+            currentState = CharacterState.Attack;
+        }
     }
-
-
     #endregion
     
 

@@ -20,7 +20,7 @@ public class TargetDetector : MonoBehaviour
         detectionCollider.radius = detectionRadius;
 
         // Determine if this entity is an ally or enemy based on component
-        isAlly = (parentGameObject.GetComponent<AllyEntity>() != null);
+        isAlly = (parentGameObject.GetComponent<CharacterEntity>().characterSide == CharacterEntity.CharacterSide.Ally);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -29,13 +29,13 @@ public class TargetDetector : MonoBehaviour
         CharacterEntity characterEntity = other.GetComponent<CharacterEntity>();
         if (characterEntity != null)
         {
-            if (isAlly && characterEntity.GetComponent<EnemyEntity>() != null)
+            if (isAlly && characterEntity.GetComponent<CharacterEntity>().characterSide == CharacterEntity.CharacterSide.Enemy)
             {
                 // This entity is an ally, and the other is an enemy
                 enemiesInRange.Add(characterEntity);
                 Debug.Log("Enemy entered range: " + other.name);
             }
-            else if (!isAlly && characterEntity.GetComponent<AllyEntity>() != null)
+            else if (!isAlly && characterEntity.GetComponent<CharacterEntity>().characterSide == CharacterEntity.CharacterSide.Ally)
             {
                 // This entity is an enemy, and the other is an ally
                 enemiesInRange.Add(characterEntity);
