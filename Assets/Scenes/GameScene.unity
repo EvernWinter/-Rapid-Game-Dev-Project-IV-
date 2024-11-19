@@ -1812,8 +1812,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <manaSystem>k__BackingField:
     _currentMana: 0
-    _maxMana: 0
-    _manaRegenRate: 0
+    _maxMana: 1500
+    _manaRegenRate: 100
   <moneySystem>k__BackingField:
     _playerMoney: 0
 --- !u!4 &513500733
