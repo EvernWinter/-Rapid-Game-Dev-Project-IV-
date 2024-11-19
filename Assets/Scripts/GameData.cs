@@ -15,6 +15,8 @@ public class GameData : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            manaSystem = new ManaSystem(0, 1500, 100);  
+            moneySystem = new MoneySystem(100);
         }
         else
         {
@@ -24,13 +26,20 @@ public class GameData : MonoBehaviour
     
     void Start()
     {
-        manaSystem = new ManaSystem(50, 100, 5);  
-        moneySystem = new MoneySystem(100);
+
     }
 
     void Update()
     {
-        manaSystem.RegenerateMana(Time.deltaTime);
+        if (manaSystem != null)
+        {
+            manaSystem.RegenerateMana(Time.deltaTime);
+            Debug.Log("Current Mana: " + manaSystem.CurrentMana);
+        }
+        else
+        {
+            Debug.LogError("ManaSystem is null!");
+        }
     }
 }
 
@@ -66,9 +75,15 @@ public class ManaSystem
 
     public void RegenerateMana(float deltaTime)
     {
-        _currentMana += Mathf.FloorToInt(_manaRegenRate * deltaTime);
+        float manaToRegenerate = Mathf.RoundToInt(_manaRegenRate * deltaTime);
+        Debug.Log($"Regen Rate: {_manaRegenRate}, DeltaTime: {deltaTime}, Mana to Regen: {manaToRegenerate}");
+
+        _currentMana += Mathf.RoundToInt(_manaRegenRate * deltaTime);
         _currentMana = Mathf.Clamp(_currentMana, 0, _maxMana);
+
+        Debug.Log($"Current Mana after Regen: {_currentMana}");
     }
+
 
     public void SetMaxMana(int newMax)
     {
