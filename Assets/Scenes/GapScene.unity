@@ -179,7 +179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: e87af14bf172c5e4f856d633eb599fcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -214,17 +214,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 663567818737083761, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
       propertyPath: m_Name
       value: Ally Minion (Swordman) (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -265,10 +261,6 @@ PrefabInstance:
     - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5609407795182474204, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -335,13 +327,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 663567818737083761, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
       propertyPath: m_Name
       value: Ally Minion (Horseman)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3227810179278284260, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
       propertyPath: m_LocalPosition.x
@@ -383,10 +375,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5609407795182474204, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -416,13 +404,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 663567818737083761, guid: 0d6497ff597c3294bb1c1ed02b731d99, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: 0d6497ff597c3294bb1c1ed02b731d99, type: 3}
       propertyPath: m_Name
       value: Enemy Minion (Pirest)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: 0d6497ff597c3294bb1c1ed02b731d99, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3227810179278284260, guid: 0d6497ff597c3294bb1c1ed02b731d99, type: 3}
       propertyPath: m_LocalPosition.x
@@ -464,10 +452,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5609407795182474204, guid: 0d6497ff597c3294bb1c1ed02b731d99, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -481,13 +465,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 663567818737083761, guid: a521a862efe2c584dab440c4d5547200, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: a521a862efe2c584dab440c4d5547200, type: 3}
       propertyPath: m_Name
       value: Enemy Minion (Swordman) (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: a521a862efe2c584dab440c4d5547200, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3227810179278284260, guid: a521a862efe2c584dab440c4d5547200, type: 3}
       propertyPath: m_LocalPosition.x
@@ -529,10 +513,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5609407795182474204, guid: a521a862efe2c584dab440c4d5547200, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -546,13 +526,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 663567818737083761, guid: a521a862efe2c584dab440c4d5547200, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: a521a862efe2c584dab440c4d5547200, type: 3}
       propertyPath: m_Name
       value: Enemy Minion (Swordman) (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: a521a862efe2c584dab440c4d5547200, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3227810179278284260, guid: a521a862efe2c584dab440c4d5547200, type: 3}
       propertyPath: m_LocalPosition.x
@@ -594,10 +574,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5609407795182474204, guid: a521a862efe2c584dab440c4d5547200, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -611,13 +587,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 663567818737083761, guid: 40edc0ba60e82ae48ba8604ef88d1bf1, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: 40edc0ba60e82ae48ba8604ef88d1bf1, type: 3}
       propertyPath: m_Name
       value: Enemy Minion (Horseman)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: 40edc0ba60e82ae48ba8604ef88d1bf1, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3227810179278284260, guid: 40edc0ba60e82ae48ba8604ef88d1bf1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -658,10 +634,6 @@ PrefabInstance:
     - target: {fileID: 3227810179278284260, guid: 40edc0ba60e82ae48ba8604ef88d1bf1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5609407795182474204, guid: 40edc0ba60e82ae48ba8604ef88d1bf1, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -806,17 +778,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 663567818737083761, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
       propertyPath: m_Name
       value: Ally Minion (Swordman)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -858,10 +826,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5609407795182474204, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -875,17 +839,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 663567818737083761, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
       propertyPath: m_Name
       value: Ally Minion (Swordman) (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -926,10 +886,6 @@ PrefabInstance:
     - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5609407795182474204, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -997,13 +953,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 663567818737083761, guid: a521a862efe2c584dab440c4d5547200, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: a521a862efe2c584dab440c4d5547200, type: 3}
       propertyPath: m_Name
       value: Enemy Minion (Swordman)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: a521a862efe2c584dab440c4d5547200, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3227810179278284260, guid: a521a862efe2c584dab440c4d5547200, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1045,10 +1001,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5609407795182474204, guid: a521a862efe2c584dab440c4d5547200, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1062,13 +1014,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 663567818737083761, guid: afa0b7a1bee74cb4f86e877855cb74ce, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: afa0b7a1bee74cb4f86e877855cb74ce, type: 3}
       propertyPath: m_Name
       value: Ally Minion (Pirest)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599753478477571907, guid: afa0b7a1bee74cb4f86e877855cb74ce, type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3227810179278284260, guid: afa0b7a1bee74cb4f86e877855cb74ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1109,10 +1061,6 @@ PrefabInstance:
     - target: {fileID: 3227810179278284260, guid: afa0b7a1bee74cb4f86e877855cb74ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5609407795182474204, guid: afa0b7a1bee74cb4f86e877855cb74ce, type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1495,9 +1443,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3768965972458164204, guid: bd11719e4e7f40d4db9775a78fb8fd87, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1975
+      objectReference: {fileID: 0}
     - target: {fileID: 6345963827309421463, guid: bd11719e4e7f40d4db9775a78fb8fd87, type: 3}
       propertyPath: m_Name
       value: CamBlockers
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093144925007442064, guid: bd11719e4e7f40d4db9775a78fb8fd87, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1975
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -73,8 +73,8 @@ public class CharacterEntity : MonoBehaviour
     {
         // Implement what happens when the character dies
         Debug.Log(gameObject.name + " died.");
-        //Destroy(gameObject);
-        Destroy(gameObject, 4f);
+        Destroy(gameObject);
+        //Destroy(gameObject, 4f);
     }
 
     //Trigger when player or enemy AI deploy this unit
@@ -82,9 +82,10 @@ public class CharacterEntity : MonoBehaviour
     {
         if (characterSide == CharacterSide.Ally)
         {
+            _isOnField = true;
             if (GameData.Instance.manaSystem.HasEnoughMana(_deploymentCost))
             {
-                _isOnField = true;
+                //_isOnField = true;
             }
             else
             {

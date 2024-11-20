@@ -10,7 +10,7 @@ public class TargetDetector : MonoBehaviour
     [SerializeField] private GameObject parentGameObject;
 
     private CircleCollider2D detectionCollider;
-    private bool isAlly;
+    [SerializeField] private bool isAlly;
 
     void Start()
     {
