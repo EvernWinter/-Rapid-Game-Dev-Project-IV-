@@ -76,12 +76,12 @@ public class ManaSystem
     public void RegenerateMana(float deltaTime)
     {
         float manaToRegenerate = Mathf.RoundToInt(_manaRegenRate * deltaTime);
-        Debug.Log($"Regen Rate: {_manaRegenRate}, DeltaTime: {deltaTime}, Mana to Regen: {manaToRegenerate}");
+        //Debug.Log($"Regen Rate: {_manaRegenRate}, DeltaTime: {deltaTime}, Mana to Regen: {manaToRegenerate}");
 
         _currentMana += Mathf.RoundToInt(_manaRegenRate * deltaTime);
         _currentMana = Mathf.Clamp(_currentMana, 0, _maxMana);
 
-        Debug.Log($"Current Mana after Regen: {_currentMana}");
+        //Debug.Log($"Current Mana after Regen: {_currentMana}");
     }
 
 

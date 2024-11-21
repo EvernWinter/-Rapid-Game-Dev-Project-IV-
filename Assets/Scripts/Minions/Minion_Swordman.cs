@@ -71,6 +71,7 @@ public class Minion_Swordman : CharacterEntity
                 if (_targetDetector.enemiesInRange.Count > 0)
                 {
                     _targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage);
+                    _characterAnimator.OnAttack?.Invoke();
                 }
             }
             else
@@ -79,6 +80,7 @@ public class Minion_Swordman : CharacterEntity
                 foreach (var enemy in _targetDetector.enemiesInRange)
                 {
                     enemy.CharacterHealthComponent.TakeDamage(this._attackDamage);
+                    _characterAnimator.OnAttack?.Invoke();
                 }
             }
         }

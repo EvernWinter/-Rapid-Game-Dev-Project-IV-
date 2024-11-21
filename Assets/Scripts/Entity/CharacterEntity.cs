@@ -40,6 +40,27 @@ public class CharacterEntity : MonoBehaviour
     [SerializeField] protected float nextAttack;
     [SerializeField] protected float attackCooldownDuration = 1.5f;
 
+    [Header("Animation")]
+    [SerializeField] protected CharacterAnimationBase _characterAnimator;
+
+    protected virtual void OnEnable()
+    {
+        if (_characterAnimator == null && GetComponentInChildren<CharacterAnimationBase>() != null)
+        {
+            _characterAnimator = GetComponentInChildren<CharacterAnimationBase>();
+            CharacterHealthComponent.OnDamageTaken += () => _characterAnimator.OnDamaged?.Invoke();
+        }
+        else
+        {
+            Debug.LogWarning($"There is no animator for {name}");
+        }
+    }
+
+    protected virtual void OnDisable()
+    {
+        CharacterHealthComponent.OnDamageTaken = null;
+    }
+    
     protected virtual void Awake()
     {
         CharacterHealthComponent.SetHP(CharacterHealthComponent.MaxHP);
@@ -135,6 +156,8 @@ public class HealthComponent
     public bool IsInvulnerable => _isInvulnerable;
     [SerializeField] bool _isInvulnerable;
 
+    public Action OnDamageTaken;
+
     public void SetHP(float hpValue)
     {
         _currentHP = hpValue;
@@ -152,6 +175,7 @@ public class HealthComponent
             return;
         }
         
+        OnDamageTaken?.Invoke();
         _currentHP = Mathf.Clamp(_currentHP -= damageValue, 0, _maxHP);
         
     }
