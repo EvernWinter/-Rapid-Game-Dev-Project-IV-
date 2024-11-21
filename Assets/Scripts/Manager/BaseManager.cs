@@ -25,28 +25,37 @@ public class BaseManager : MonoBehaviour
 
     [Header("Game Data")]
     private GameData data;
+    
+    [Header("Enemy Base Wave Settings")]
+    [SerializeField] private List<Wave> waves; // Define waves in the inspector
+    [SerializeField] private float waveStartDelay = 5f; // Delay before starting the first wave
+    [SerializeField] private float enemySpawnInterval = 2f; // Interval between enemy spawns
+    private Queue<WaveUnit> enemyQueue = new Queue<WaveUnit>();
+    private bool isSpawningWave = false;
 
     void Start()
     {
         data = GameData.Instance;
         baseHealth = baseMaxHealth;
         cooldownTimers = new float[buttons.Length];
-        for (int i = 0; i < buttons.Length; i++)
+        if (playerBase)
         {
-            if (playerBase)
+            for (int i = 0; i < buttons.Length; i++)
             {
                 int index = i;
                 buttons[i].onClick.AddListener(() => SpawnMinion(index));
             }
-        }
 
-        for (int i = 0; i < manaText.Length; i++)
-        {
-            if (playerBase)
+            for (int i = 0; i < manaText.Length; i++)
             {
                 manaText[i].text = mana[i].ToString();
             }
         }
+        else
+        {
+            StartCoroutine(HandleEnemyWaves());
+        }
+        
     }
 
     void Update()
@@ -107,5 +116,57 @@ public class BaseManager : MonoBehaviour
     private void OnBaseDestroyed()
     {
         Debug.Log("Base destroyed! Game over!");
+    }
+    
+    private IEnumerator HandleEnemyWaves()
+    {
+        yield return new WaitForSeconds(waveStartDelay);
+
+        foreach (var wave in waves)
+        {
+            EnqueueWave(wave);
+
+            while (enemyQueue.Count > 0)
+            {
+                SpawnEnemy(enemyQueue.Dequeue());
+                yield return new WaitForSeconds(enemySpawnInterval);
+            }
+
+            yield return new WaitForSeconds(waveStartDelay); // Wait before the next wave
+        }
+
+        Debug.Log("All waves completed!");
+    }
+    
+    private void EnqueueWave(Wave wave)
+    {
+        foreach (var unit in wave.units)
+        {
+            for (int i = 0; i < unit.count; i++)
+            {
+                enemyQueue.Enqueue(unit);
+            }
+        }
+    }
+    
+    private void SpawnEnemy(WaveUnit unit)
+    {
+        if (unit.prefab != null)
+        {
+            Instantiate(unit.prefab, minionSpawn.position, Quaternion.identity);
+        }
+    }
+    
+    [System.Serializable]
+    public class Wave
+    {
+        public List<WaveUnit> units;
+    }
+
+    [System.Serializable]
+    public class WaveUnit
+    {
+        public GameObject prefab;
+        public int count;
     }
 }
