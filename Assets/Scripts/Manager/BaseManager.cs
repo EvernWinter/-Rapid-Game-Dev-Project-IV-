@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Microlight.MicroBar;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,47 +11,78 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private float baseMaxHealth = 100f;
     [SerializeField] private float baseHealth;
     [SerializeField] private MicroBar healthBar;
+    [SerializeField] private bool playerBase;
 
     [Header("Minion Settings")]
     [SerializeField] private Button[] buttons;
-    [SerializeField] private GameObject[] minionPrefabs;
+    [SerializeField] private TMP_Text[] manaText;
+    [SerializeField] private GameObject[] playerMinionPrefabs;
+    [SerializeField] private GameObject[] enemyMinionPrefabs;
     [SerializeField] private Transform minionSpawn;
     [SerializeField] private float[] spawnCooldowns;
+    [SerializeField] private int[] mana;
     private float[] cooldownTimers;
 
     [Header("Game Data")]
-    [SerializeField] private GameData gameData;
+    private GameData data;
 
     void Start()
     {
+        data = GameData.Instance;
         baseHealth = baseMaxHealth;
         cooldownTimers = new float[buttons.Length];
         for (int i = 0; i < buttons.Length; i++)
         {
-            int index = i;
-            buttons[i].onClick.AddListener(() => SpawnMinion(index));
+            if (playerBase)
+            {
+                int index = i;
+                buttons[i].onClick.AddListener(() => SpawnMinion(index));
+            }
+        }
+
+        for (int i = 0; i < manaText.Length; i++)
+        {
+            if (playerBase)
+            {
+                manaText[i].text = mana[i].ToString();
+            }
         }
     }
 
     void Update()
     {
         // Update cooldown timers and button states
-        for (int i = 0; i < cooldownTimers.Length; i++)
+        if (playerBase)
         {
-            if (cooldownTimers[i] > 0)
+            for (int i = 0; i < cooldownTimers.Length; i++)
             {
-                cooldownTimers[i] -= Time.deltaTime;
-                buttons[i].interactable = cooldownTimers[i] <= 0;
+                if (cooldownTimers[i] > 0)
+                {
+                    cooldownTimers[i] -= Time.deltaTime;
+                    buttons[i].interactable = cooldownTimers[i] <= 0;
+                }
             }
         }
     }
     
     private void SpawnMinion(int index)
     {
-        if (cooldownTimers[index] <= 0 && minionPrefabs[index] != null)
+        if (playerBase)
         {
-            Instantiate(minionPrefabs[index], minionSpawn.position, Quaternion.identity);
-            cooldownTimers[index] = spawnCooldowns[index];
+            if (cooldownTimers[index] <= 0 && playerMinionPrefabs[index] != null  && data.manaSystem.CurrentMana > mana[index])
+            {
+                Instantiate(playerMinionPrefabs[index], minionSpawn.position, Quaternion.identity);
+                data.manaSystem.SpendMana(mana[index]);
+                cooldownTimers[index] = spawnCooldowns[index];
+            } 
+        }
+        else
+        {
+            if (enemyMinionPrefabs[index] != null)
+            {
+                Instantiate(enemyMinionPrefabs[index], minionSpawn.position, Quaternion.identity);
+                cooldownTimers[index] = spawnCooldowns[index];
+            }
         }
     }
     
@@ -69,12 +101,11 @@ public class BaseManager : MonoBehaviour
     {
         if (healthBar != null)
         {
-            
+            healthBar.UpdateBar(baseHealth, UpdateAnim.Damage);
         }
     }
     private void OnBaseDestroyed()
     {
         Debug.Log("Base destroyed! Game over!");
-        // Add game over logic here, e.g., notify GameManager
     }
 }

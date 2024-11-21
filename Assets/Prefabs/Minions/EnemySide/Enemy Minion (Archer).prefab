@@ -69,7 +69,7 @@ MonoBehaviour:
   nextAttack: 0
   attackCooldownDuration: 1.5
   arrowPrefab: {fileID: 7099855677672156472, guid: feb737945fdae6042998c72740c4b1f7, type: 3}
-  shootForce: 100
+  initialSpeed: 10
 --- !u!212 &229204718126871422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -108,8 +108,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2022198179
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
   m_Color: {r: 1, g: 0.24705881, b: 0.93024904, a: 1}
@@ -164,7 +164,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

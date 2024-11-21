@@ -106,8 +106,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2022198179
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
   m_Color: {r: 0.5924812, g: 1, b: 0.059748232, a: 1}
@@ -162,7 +162,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -230,6 +230,7 @@ MonoBehaviour:
   enemiesInRange: []
   detectionRadius: 6
   parentGameObject: {fileID: 2599753478477571907}
+  isAlly: 0
 --- !u!58 &8006780179474566929
 CircleCollider2D:
   m_ObjectHideFlags: 0
