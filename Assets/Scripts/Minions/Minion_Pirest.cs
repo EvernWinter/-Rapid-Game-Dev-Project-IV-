@@ -44,6 +44,10 @@ public class Minion_Pirest : CharacterEntity
                 {
                     Attack();
                 }
+                else
+                {
+                    currentState = CharacterState.Run;
+                }
                 break;
 
             case CharacterState.Died:

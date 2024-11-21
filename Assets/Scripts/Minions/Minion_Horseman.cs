@@ -43,6 +43,10 @@ public class Minion_Horseman : CharacterEntity
                 {
                     Attack();
                 }
+                else
+                {
+                    currentState = CharacterState.Run;
+                }
                 break;
 
             case CharacterState.Died:
