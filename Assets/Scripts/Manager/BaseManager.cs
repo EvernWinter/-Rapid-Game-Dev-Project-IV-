@@ -107,7 +107,7 @@ public class BaseManager : MonoBehaviour
                     cooldownTimers[i] -= Time.deltaTime;
 
                     // Normalize the cooldown for the fillAmount
-                    float normalizedCooldown = cooldownTimers[i] / spawnCooldowns[i];
+                    float normalizedCooldown = 1 - (cooldownTimers[i] / spawnCooldowns[i]);
 
                     // Update the cooldown bar fill and button state
                     cdBar[i].fillAmount = normalizedCooldown;
