@@ -319,6 +319,7 @@ MonoBehaviour:
   _isAOE: 0
   nextAttack: 0
   attackCooldownDuration: 1.5
+  _characterAnimator: {fileID: 0}
 --- !u!1001 &298748351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -380,6 +381,75 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
+--- !u!1001 &475060370
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 663567818737083761, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599753478477571907, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_Name
+      value: Ally Minion (Archer)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599753478477571907, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.525673
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.8644805
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609407795182474204, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6922e2199c76e1844bc1dc6570c9b9d7, type: 3}
 --- !u!114 &577615097 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4324300426089391942, guid: 46a3c4b09bc81f7438ed8e6b5dd3ae54, type: 3}
@@ -945,6 +1015,7 @@ MonoBehaviour:
   _isAOE: 0
   nextAttack: 0
   attackCooldownDuration: 1.5
+  _characterAnimator: {fileID: 0}
 --- !u!1001 &1764833162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1338,6 +1409,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 663567818737083761, guid: ba4a87a8967a75d49af32cdea28225fa, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: ba4a87a8967a75d49af32cdea28225fa, type: 3}
       propertyPath: m_Name
       value: Enemy Minion (Archer)
@@ -1614,3 +1689,4 @@ SceneRoots:
   - {fileID: 1054708689}
   - {fileID: 3455641861522480423}
   - {fileID: 3518640679467284383}
+  - {fileID: 475060370}

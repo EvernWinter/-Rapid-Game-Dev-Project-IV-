@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3227810179278284260}
-  - component: {fileID: 3429490305127952877}
+  - component: {fileID: 8557392256404024600}
   - component: {fileID: 229204718126871422}
   - component: {fileID: 897097403902572957}
   - component: {fileID: 663567818737083761}
   m_Layer: 10
-  m_Name: Enemy Minion (Horseman)
+  m_Name: Ally Minion (Archer)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +36,7 @@ Transform:
   - {fileID: 6486368273660173384}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3429490305127952877
+--- !u!114 &8557392256404024600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,30 +45,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 2599753478477571907}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 074ad6766fede2e408ccb615f192f0dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 425a5adee852c9e4fa0550c4e0a7f799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterHealthComponent:
-    _maxHP: 300
-    _currentHP: 300
+    _maxHP: 1000
+    _currentHP: 1000
     _isInvulnerable: 0
   currentState: 0
-  characterSide: 1
-  _entityName: Horseman
-  _entityDescription: He's riding a horse and can attack bravery
+  characterSide: 0
+  _entityName: Archer
+  _entityDescription: He's holding a bow. can shoot an arrow from far range.
   rb: {fileID: 897097403902572957}
   characterCollider: {fileID: 663567818737083761}
   sprRndr: {fileID: 229204718126871422}
-  _moveSpeed: 15
+  _moveSpeed: 2
   _deploymentCost: 10
   _isOnField: 0
   _targetDetector: {fileID: 2937529039760323502}
-  _attackDamage: 150
-  _defense: 20
+  _attackDamage: 10
+  _defense: 10
   _isAOE: 0
   nextAttack: 0
   attackCooldownDuration: 1.5
-  _characterAnimator: {fileID: 0}
+  arrowPrefab: {fileID: 7099855677672156472, guid: feb737945fdae6042998c72740c4b1f7, type: 3}
+  initialSpeed: 10
 --- !u!212 &229204718126871422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -107,11 +108,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2022198179
-  m_SortingLayer: 5
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
-  m_Color: {r: 0.27358478, g: 0.28392652, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.24705881, b: 0.93024904, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -163,7 +164,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -229,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesInRange: []
-  detectionRadius: 4.5
+  detectionRadius: 15
   parentGameObject: {fileID: 2599753478477571907}
   isAlly: 0
 --- !u!58 &8006780179474566929
@@ -266,4 +267,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4.5
+  m_Radius: 15
