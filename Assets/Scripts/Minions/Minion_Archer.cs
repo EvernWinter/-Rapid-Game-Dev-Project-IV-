@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Minion_Archer : CharacterEntity
@@ -73,6 +74,10 @@ public class Minion_Archer : CharacterEntity
             Transform target = _targetDetector.enemiesInRange[0].transform;
             GameObject arrow = Instantiate(arrowPrefab, gameObject.transform.position, Quaternion.identity);
             Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
+            arrow.GetComponent<Bullet>().damage = _attackDamage;
+
+            bool isThisBulletForAlly = (characterSide == CharacterSide.Enemy);
+            arrow.GetComponent<Bullet>().isThisBulletForAlly = isThisBulletForAlly;
 
             float distance = Vector2.Distance(gameObject.transform.position, target.position);
             float requiredSpeed = Mathf.Sqrt(distance * 9.8f);
