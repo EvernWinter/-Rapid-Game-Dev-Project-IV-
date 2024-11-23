@@ -206,6 +206,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &175995334
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 663567818737083761, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599753478477571907, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_Name
+      value: Ally Minion (Swordman) (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.8631766
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227810179278284260, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
 --- !u!1001 &234206223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,9 +389,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 663567818737083761, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 512
+    - target: {fileID: -3223671172923587490, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
+      propertyPath: _attackDamage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -3223671172923587490, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
+      propertyPath: CharacterHealthComponent._maxHP
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: -3223671172923587490, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
+      propertyPath: CharacterHealthComponent._currentHP
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
       propertyPath: m_Name
@@ -379,10 +448,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4055278017499250512, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2059467172}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
 --- !u!114 &577615097 stripped
 MonoBehaviour:
@@ -395,11 +461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b4438e4834066408acbfd8c0028820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &625503865 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 4273033261860855748, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
-  m_PrefabInstance: {fileID: 298748351}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &845420615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6396272072034641080, guid: e02485a3599cce74bb5d8793f0f21caf, type: 3}
@@ -644,6 +705,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3429490305127952877, guid: 40edc0ba60e82ae48ba8604ef88d1bf1, type: 3}
+      propertyPath: _attackDamage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429490305127952877, guid: 40edc0ba60e82ae48ba8604ef88d1bf1, type: 3}
+      propertyPath: CharacterHealthComponent._maxHP
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -836,11 +905,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
---- !u!1 &1477725567 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8828865530605721486, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
-  m_PrefabInstance: {fileID: 298748351}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1639706437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1134,33 +1198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b4438e4834066408acbfd8c0028820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2059467170 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4055278017499250512, guid: 4d72692281ec21e4abb7a89cae742b84, type: 3}
-  m_PrefabInstance: {fileID: 298748351}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2059467172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2059467170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67c4115359c9e4c45a7e8afa0df162f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterRenderer: {fileID: 625503865}
-  _normalSprite: {fileID: 21300000, guid: 1e6be0e3108f6f94da7c63173fe40f98, type: 3}
-  _damagedSprite: {fileID: 21300000, guid: 02602d04325b0844e9e96e7f8d1eb703, type: 3}
-  _damagedDuration: 1
-  _hitRotationAngle: 10
-  _hitRotationDuration: 0.2
-  _lanceRenderer: {fileID: 1477725567}
-  _thrustDistance: 1.5
-  _thrustDuration: 0.2
-  _isFacingRight: 0
 --- !u!1001 &1309696598721034449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1691,6 +1728,7 @@ SceneRoots:
   - {fileID: 1334337080}
   - {fileID: 234206223}
   - {fileID: 1639706437}
+  - {fileID: 175995334}
   - {fileID: 298748351}
   - {fileID: 1906539878}
   - {fileID: 948373588}

@@ -148,12 +148,12 @@ MonoBehaviour:
   _deploymentCost: 10
   _isOnField: 0
   _targetDetector: {fileID: 2937529039760323502}
-  _attackDamage: 150
+  _attackDamage: 30
   _defense: 20
   _isAOE: 0
   nextAttack: 0
   attackCooldownDuration: 1.5
-  _characterAnimator: {fileID: 0}
+  _characterAnimator: {fileID: 1996604051273333480}
 --- !u!212 &229204718126871422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -277,6 +277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1523486647550158206}
+  - component: {fileID: 1996604051273333480}
   m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
@@ -301,6 +302,28 @@ Transform:
   - {fileID: 5808347086421488851}
   m_Father: {fileID: 3227810179278284260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1996604051273333480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4055278017499250512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c4115359c9e4c45a7e8afa0df162f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterRenderer: {fileID: 4273033261860855748}
+  _normalSprite: {fileID: 21300000, guid: 1e6be0e3108f6f94da7c63173fe40f98, type: 3}
+  _damagedSprite: {fileID: 21300000, guid: 02602d04325b0844e9e96e7f8d1eb703, type: 3}
+  _damagedDuration: 1
+  _hitRotationAngle: 10
+  _hitRotationDuration: 0.2
+  _lanceRenderer: {fileID: 8828865530605721486}
+  _thrustDistance: -1
+  _thrustDuration: 0.2
+  _isFacingRight: 0
 --- !u!1 &5609407795182474204
 GameObject:
   m_ObjectHideFlags: 0

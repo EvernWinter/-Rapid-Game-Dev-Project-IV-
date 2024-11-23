@@ -72,6 +72,11 @@ public class Minion_Swordman : CharacterEntity
                 {
                     _targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage);
                     _characterAnimator.OnAttack?.Invoke();
+                    if (_characterSFX != null)
+                    {
+                        _characterSFX.OnAttack?.Invoke();
+                    }
+                    
                 }
             }
             else
@@ -81,6 +86,10 @@ public class Minion_Swordman : CharacterEntity
                 {
                     enemy.CharacterHealthComponent.TakeDamage(this._attackDamage);
                     _characterAnimator.OnAttack?.Invoke();
+                    if (_characterSFX != null)
+                    {
+                        _characterSFX.OnAttack?.Invoke();
+                    }
                 }
             }
         }

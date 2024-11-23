@@ -9,14 +9,25 @@ public class HorsemanAnimation : CharacterAnimationBase
     [SerializeField] private bool _isFacingRight = true; // Determines the character's facing direction
 
     private Coroutine _attackCoroutine;
+    
 
     // Method to trigger the attack animation
     [ContextMenu("Play Attack Animation")]
     protected override void PlayAttackAnimation()
     {
+        Debug.Log("Horseman Attack Animation Triggered");
+        base.PlayAttackAnimation();
+
+        if (_lanceRenderer == null)
+        {
+            Debug.LogError("Lance Renderer is missing!");
+            return;
+        }
+
         if (_attackCoroutine != null)
         {
-            StopCoroutine(_attackCoroutine); // Stop any ongoing attack animation coroutine
+            Debug.Log("Stopping existing attack animation coroutine");
+            StopCoroutine(_attackCoroutine);
         }
 
         _attackCoroutine = StartCoroutine(AttackAnimationCoroutine());

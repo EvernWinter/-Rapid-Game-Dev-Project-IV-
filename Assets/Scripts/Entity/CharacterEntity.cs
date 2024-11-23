@@ -44,6 +44,10 @@ public class CharacterEntity : MonoBehaviour
     [SerializeField] protected CharacterAnimationBase _characterAnimator;
     public CharacterAnimationBase CharacterAnimation => _characterAnimator;
 
+    
+    [Header("Audio")]
+    [SerializeField] protected MinionSFX _characterSFX;
+    public MinionSFX CharacterSFX => _characterSFX;
     protected virtual void OnEnable()
     {
         if (GetComponentInChildren<CharacterAnimationBase>() != null)

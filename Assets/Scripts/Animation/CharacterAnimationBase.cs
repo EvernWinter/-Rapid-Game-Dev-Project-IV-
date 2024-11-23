@@ -18,14 +18,14 @@ public class CharacterAnimationBase : MonoBehaviour
 
     private Coroutine _damagedCoroutine; // Keeps track of the currently running coroutine
 
-    void Awake()
+    protected void Awake()
     {
         OnDamaged += PlayDamagedAnimation;
         OnAttack += PlayAttackAnimation;
     }
     
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         // Optional: Initialization logic if needed
     }
@@ -38,6 +38,7 @@ public class CharacterAnimationBase : MonoBehaviour
 
     protected virtual void PlayAttackAnimation()
     {
+        Debug.LogWarning($"{transform.parent.name} start an attack");
         // Implementation for attack animation if needed
     }
 
