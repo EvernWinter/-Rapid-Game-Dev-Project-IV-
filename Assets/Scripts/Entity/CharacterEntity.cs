@@ -16,7 +16,8 @@ public class CharacterEntity : MonoBehaviour
     [Header("Information")] 
     [SerializeField] protected string _entityName;
     [SerializeField] protected string _entityDescription;
-
+    [SerializeField] public BaseManager baseManager;
+    
     [Header("Component")]
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected CapsuleCollider2D characterCollider;
@@ -98,11 +99,16 @@ public class CharacterEntity : MonoBehaviour
         }
     }
     
-    protected virtual void Die()
+    public virtual void Die()
     {
         // Implement what happens when the character dies
         Debug.Log(gameObject.name + " died.");
+        if (characterSide == CharacterSide.Enemy)
+        {
+            baseManager.OnEnemyDeath();
+        }
         Destroy(gameObject);
+        
         //Destroy(gameObject, 4f);
     }
 

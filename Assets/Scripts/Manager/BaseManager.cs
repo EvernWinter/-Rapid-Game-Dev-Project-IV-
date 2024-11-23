@@ -26,7 +26,7 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private GameObject[] enemyMinionPrefabs;
     [SerializeField] private Transform minionSpawn;
     [SerializeField] private int[] mana;
-    
+    [SerializeField] private int enemiesRemainingInWave = 0;
     
     
     [Header("Cooldown Button")]
@@ -48,7 +48,8 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private float enemySpawnInterval = 2f; // Interval between enemy spawns
     private Queue<WaveUnit> enemyQueue = new Queue<WaveUnit>();
     private bool isSpawningWave = false;
-
+    [SerializeField] private int currentWaveIndex = 0;
+    [SerializeField] private bool isWaveActive = false;
     private void Awake()
     {
         enemyTypeToPrefab = new Dictionary<EnemyType, GameObject>
@@ -136,14 +137,6 @@ public class BaseManager : MonoBehaviour
                 cooldownTimers[index] = spawnCooldowns[index];
             } 
         }
-        else
-        {
-            if (enemyMinionPrefabs[index] != null)
-            {
-                Instantiate(enemyMinionPrefabs[index], minionSpawn.position, Quaternion.identity);
-                cooldownTimers[index] = spawnCooldowns[index];
-            }
-        }
     }
     
     public void TakeDamage(float damage)
@@ -173,17 +166,30 @@ public class BaseManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waveStartDelay);
 
-        foreach (var wave in waves)
+        while (currentWaveIndex < waves.Count)
         {
-            EnqueueWave(wave);
-
-            while (enemyQueue.Count > 0)
+            if (!isWaveActive && enemiesRemainingInWave == 0)
             {
-                SpawnEnemy(enemyQueue.Dequeue());
-                yield return new WaitForSeconds(enemySpawnInterval);
-            }
+                isWaveActive = true;
 
-            yield return new WaitForSeconds(waveStartDelay); // Wait before the next wave
+                var currentWave = waves[currentWaveIndex];
+                EnqueueWave(currentWave);
+
+                while (enemyQueue.Count > 0)
+                {
+                    SpawnEnemy(enemyQueue.Dequeue());
+                    yield return new WaitForSeconds(enemySpawnInterval);
+                }
+
+                while (enemiesRemainingInWave > 0)
+                {
+                    yield return null;
+                }
+
+                isWaveActive = false;
+                currentWaveIndex++;
+                yield return new WaitForSeconds(waveStartDelay);
+            }
         }
 
         Debug.Log("All waves completed!");
@@ -204,12 +210,21 @@ public class BaseManager : MonoBehaviour
     {
         if (enemyTypeToPrefab.TryGetValue(unit.unit, out var prefab))
         {
-            Instantiate(prefab, minionSpawn.position, Quaternion.identity);
+            GameObject enemy = Instantiate(prefab, minionSpawn.position, Quaternion.identity);
+            enemiesRemainingInWave++; // Increase the count when spawning an enemy
+            enemy.GetComponent<CharacterEntity>().baseManager = this;
+            // Assuming enemies have a script that calls this method when they die
+
         }
         else
         {
             Debug.LogError($"Prefab for {unit.unit} not found in dictionary!");
         }
+    }
+    
+    public void OnEnemyDeath()
+    {
+        enemiesRemainingInWave--;
     }
     
     [System.Serializable]
