@@ -1,9 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microlight.MicroBar;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
+public enum EnemyType
+{
+    Sword,
+    Priest,
+    HorseMan
+}
 
 public class BaseManager : MonoBehaviour
 {
@@ -14,15 +22,23 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private bool playerBase;
 
     [Header("Minion Settings")]
-    [SerializeField] private Button[] buttons;
-    [SerializeField] private TMP_Text[] manaText;
     [SerializeField] private GameObject[] playerMinionPrefabs;
     [SerializeField] private GameObject[] enemyMinionPrefabs;
     [SerializeField] private Transform minionSpawn;
-    [SerializeField] private float[] spawnCooldowns;
     [SerializeField] private int[] mana;
+    
+    
+    
+    [Header("Cooldown Button")]
+    [SerializeField] private Button[] buttons;
+    [SerializeField] private TMP_Text[] manaText;
+    private Dictionary<EnemyType, GameObject> enemyTypeToPrefab;
+    [SerializeField] private float[] spawnCooldowns;
+    [SerializeField] private Image[] cdBar;
     private float[] cooldownTimers;
-
+    [SerializeField] private GameObject[] costPanels;
+    [SerializeField] private GameObject[] cdPanels;
+    
     [Header("Game Data")]
     private GameData data;
     
@@ -33,19 +49,39 @@ public class BaseManager : MonoBehaviour
     private Queue<WaveUnit> enemyQueue = new Queue<WaveUnit>();
     private bool isSpawningWave = false;
 
+    private void Awake()
+    {
+        enemyTypeToPrefab = new Dictionary<EnemyType, GameObject>
+        {
+            { EnemyType.Sword, enemyMinionPrefabs[0] },
+            { EnemyType.Priest, enemyMinionPrefabs[1] },
+            { EnemyType.HorseMan, enemyMinionPrefabs[2] }
+        };
+    }
+
     void Start()
     {
         data = GameData.Instance;
         baseHealth = baseMaxHealth;
-        cooldownTimers = new float[buttons.Length];
+        healthBar.Initialize(baseMaxHealth);
         if (playerBase)
         {
+            cooldownTimers = new float[buttons.Length];
+            foreach (var cost in costPanels)
+            {
+                cost.SetActive(true);
+            }
+            foreach (var cd in cdPanels)
+            {
+                cd.SetActive(false);
+            }
             for (int i = 0; i < buttons.Length; i++)
             {
-                int index = i;
+                int index = i; // Fix: Capture the current index for the lambda
                 buttons[i].onClick.AddListener(() => SpawnMinion(index));
             }
 
+            // Initialize mana text for each button
             for (int i = 0; i < manaText.Length; i++)
             {
                 manaText[i].text = mana[i].ToString();
@@ -67,8 +103,23 @@ public class BaseManager : MonoBehaviour
             {
                 if (cooldownTimers[i] > 0)
                 {
+                    // Decrease the cooldown timer
                     cooldownTimers[i] -= Time.deltaTime;
+
+                    // Normalize the cooldown for the fillAmount
+                    float normalizedCooldown = cooldownTimers[i] / spawnCooldowns[i];
+
+                    // Update the cooldown bar fill and button state
+                    cdBar[i].fillAmount = normalizedCooldown;
                     buttons[i].interactable = cooldownTimers[i] <= 0;
+                    costPanels[i].SetActive(false);
+                    cdPanels[i].SetActive(true);
+                    Debug.Log($"Cooldown Timer[{i}]: {cooldownTimers[i]} | Normalized: {normalizedCooldown}");
+                }
+                else
+                {
+                    costPanels[i].SetActive(true);
+                    cdPanels[i].SetActive(false);
                 }
             }
         }
@@ -151,9 +202,13 @@ public class BaseManager : MonoBehaviour
     
     private void SpawnEnemy(WaveUnit unit)
     {
-        if (unit.prefab != null)
+        if (enemyTypeToPrefab.TryGetValue(unit.unit, out var prefab))
         {
-            Instantiate(unit.prefab, minionSpawn.position, Quaternion.identity);
+            Instantiate(prefab, minionSpawn.position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogError($"Prefab for {unit.unit} not found in dictionary!");
         }
     }
     
@@ -166,7 +221,7 @@ public class BaseManager : MonoBehaviour
     [System.Serializable]
     public class WaveUnit
     {
-        public GameObject prefab;
+        public EnemyType unit;
         public int count;
     }
 }

@@ -68,6 +68,7 @@ MonoBehaviour:
   _isAOE: 0
   nextAttack: 0
   attackCooldownDuration: 1.5
+  _characterAnimator: {fileID: 0}
   arrowPrefab: {fileID: 7099855677672156472, guid: feb737945fdae6042998c72740c4b1f7, type: 3}
   initialSpeed: 10
 --- !u!212 &229204718126871422
@@ -161,7 +162,7 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 512
