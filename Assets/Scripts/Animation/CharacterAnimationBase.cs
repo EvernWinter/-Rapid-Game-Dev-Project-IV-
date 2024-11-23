@@ -43,7 +43,7 @@ public class CharacterAnimationBase : MonoBehaviour
 
     protected virtual void PlayDamagedAnimation()
     {
-        Debug.Log($"{name} was damaged");
+        Debug.Log($"{transform.parent.name} was damaged");
         
         if (_damagedCoroutine != null)
         {
@@ -56,6 +56,8 @@ public class CharacterAnimationBase : MonoBehaviour
 
     private IEnumerator DamagedAnimationCoroutine()
     {
+        Debug.Log($"{transform.parent.name} was damaged (Inner)");
+        
         if (_characterRenderer != null && _damagedSprite != null)
         {
             _characterRenderer.sprite = _damagedSprite;

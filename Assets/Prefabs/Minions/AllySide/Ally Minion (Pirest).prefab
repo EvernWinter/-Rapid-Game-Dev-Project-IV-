@@ -347,8 +347,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterRenderer: {fileID: 7951129040026825272}
-  _normalSprite: {fileID: 21300000, guid: 799e1dbe841e01043a0815c5f2a2b696, type: 3}
-  _damagedSprite: {fileID: 21300000, guid: 430208cca9007744a84b7afa4522828b, type: 3}
+  _normalSprite: {fileID: 21300000, guid: b1e0a0888e4822c4fb721f1ec9b4f1eb, type: 3}
+  _damagedSprite: {fileID: 21300000, guid: e3936fe4f3c10004c9926adba3a31a43, type: 3}
   _damagedDuration: 1
   _hitRotationAngle: 10
   _hitRotationDuration: 0.2
