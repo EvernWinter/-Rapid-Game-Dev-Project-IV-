@@ -392,11 +392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b4438e4834066408acbfd8c0028820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &770983533 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3853736347639968796, guid: a521a862efe2c584dab440c4d5547200, type: 3}
-  m_PrefabInstance: {fileID: 1764833162}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &845420615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6396272072034641080, guid: e02485a3599cce74bb5d8793f0f21caf, type: 3}
@@ -463,17 +458,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d6497ff597c3294bb1c1ed02b731d99, type: 3}
---- !u!114 &957062711 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5666049233261036577, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
-  m_PrefabInstance: {fileID: 1334337080}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eb6f21409061274d8bd8ee0841e96f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1054708689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -795,10 +779,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 663567818737083761, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
       propertyPath: m_Name
       value: Ally Minion (Swordman)
@@ -843,10 +823,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5710838961901692638, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}
-      propertyPath: _characterAnimator
-      value: 
-      objectReference: {fileID: 957062711}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1024,10 +1000,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 663567818737083761, guid: a521a862efe2c584dab440c4d5547200, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
     - target: {fileID: 2599753478477571907, guid: a521a862efe2c584dab440c4d5547200, type: 3}
       propertyPath: m_Name
       value: Enemy Minion (Swordman)
@@ -1072,10 +1044,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8251199533649337538, guid: a521a862efe2c584dab440c4d5547200, type: 3}
-      propertyPath: _swordRenderer
-      value: 
-      objectReference: {fileID: 770983533}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -13,6 +13,8 @@ public class CharacterAnimationBase : MonoBehaviour
     public Action OnDamaged;
 
     [SerializeField] private float _damagedDuration = 1f; // Time in seconds to display the damaged sprite
+    [SerializeField] private float _hitRotationAngle = 10f; // Maximum angle for the hit effect
+    [SerializeField] private float _hitRotationDuration = 0.2f; // Time to complete the rotation effect
 
     private Coroutine _damagedCoroutine; // Keeps track of the currently running coroutine
 
@@ -41,9 +43,12 @@ public class CharacterAnimationBase : MonoBehaviour
 
     protected virtual void PlayDamagedAnimation()
     {
+        Debug.Log($"{name} was damaged");
+        
         if (_damagedCoroutine != null)
         {
-            StopCoroutine(_damagedCoroutine); // Stop any currently running coroutine
+            return;
+            //StopCoroutine(_damagedCoroutine); // Stop any currently running coroutine
         }
 
         _damagedCoroutine = StartCoroutine(DamagedAnimationCoroutine());
@@ -56,6 +61,8 @@ public class CharacterAnimationBase : MonoBehaviour
             _characterRenderer.sprite = _damagedSprite;
         }
 
+        yield return StartCoroutine(PlayHitReactionEffect());
+        
         yield return new WaitForSeconds(_damagedDuration);
 
         if (_characterRenderer != null && _normalSprite != null)
@@ -65,6 +72,35 @@ public class CharacterAnimationBase : MonoBehaviour
 
         _damagedCoroutine = null; // Clear the reference once the coroutine finishes
     }
+    
+    private IEnumerator PlayHitReactionEffect()
+    {
+        // Rotate the sprite to simulate a "hit" reaction
+        float elapsedTime = 0f;
+        Quaternion originalRotation = transform.localRotation;
+        Quaternion hitRotation = Quaternion.Euler(0f, 0f, _hitRotationAngle);
+
+        // Rotate to the hit angle
+        while (elapsedTime < _hitRotationDuration / 2)
+        {
+            elapsedTime += Time.deltaTime;
+            transform.localRotation = Quaternion.Lerp(originalRotation, hitRotation, elapsedTime / (_hitRotationDuration / 2));
+            yield return null;
+        }
+
+        elapsedTime = 0f;
+
+        // Rotate back to the original position
+        while (elapsedTime < _hitRotationDuration / 2)
+        {
+            elapsedTime += Time.deltaTime;
+            transform.localRotation = Quaternion.Lerp(hitRotation, originalRotation, elapsedTime / (_hitRotationDuration / 2));
+            yield return null;
+        }
+
+        transform.localRotation = originalRotation; // Ensure the rotation resets completely
+    }
+
 
     // You can expose this method to trigger damage animation from outside the script
     public void TriggerDamagedAnimation()

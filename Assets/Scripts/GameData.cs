@@ -34,7 +34,7 @@ public class GameData : MonoBehaviour
         if (manaSystem != null)
         {
             manaSystem.RegenerateMana(Time.deltaTime);
-            Debug.Log("Current Mana: " + manaSystem.CurrentMana);
+            //Debug.Log("Current Mana: " + manaSystem.CurrentMana);
         }
         else
         {

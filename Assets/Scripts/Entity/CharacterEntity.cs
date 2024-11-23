@@ -42,12 +42,16 @@ public class CharacterEntity : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] protected CharacterAnimationBase _characterAnimator;
+    public CharacterAnimationBase CharacterAnimation => _characterAnimator;
 
     protected virtual void OnEnable()
     {
-        if (_characterAnimator == null && GetComponentInChildren<CharacterAnimationBase>() != null)
+        if (GetComponentInChildren<CharacterAnimationBase>() != null)
         {
-            _characterAnimator = GetComponentInChildren<CharacterAnimationBase>();
+            if (_characterAnimator == null)
+            {
+                _characterAnimator = GetComponentInChildren<CharacterAnimationBase>();
+            }
             CharacterHealthComponent.OnDamageTaken += () => _characterAnimator.OnDamaged?.Invoke();
         }
         else
