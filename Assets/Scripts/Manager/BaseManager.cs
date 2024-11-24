@@ -50,6 +50,8 @@ public class BaseManager : MonoBehaviour
     private bool isSpawningWave = false;
     [SerializeField] private int currentWaveIndex = 0;
     [SerializeField] private bool isWaveActive = false;
+    [SerializeField] private RewardManager rewardManager;
+    [SerializeField] private TMP_Text waveText;
     private void Awake()
     {
         enemyTypeToPrefab = new Dictionary<EnemyType, GameObject>
@@ -90,6 +92,7 @@ public class BaseManager : MonoBehaviour
         }
         else
         {
+            waveText.text = $"Wave: {currentWaveIndex+1}/{waves.Count}";
             StartCoroutine(HandleEnemyWaves());
         }
         
@@ -188,6 +191,11 @@ public class BaseManager : MonoBehaviour
 
                 isWaveActive = false;
                 currentWaveIndex++;
+                waveText.text = $"Wave: {currentWaveIndex+1}/{waves.Count}";
+                if (currentWaveIndex >= 1)
+                {
+                    rewardManager.ChooseUpgrade();
+                }
                 yield return new WaitForSeconds(waveStartDelay);
             }
         }

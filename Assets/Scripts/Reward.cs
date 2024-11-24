@@ -10,7 +10,10 @@ public enum UpgradeType
 
 public enum UpgradeRarity
 {
-    
+    C,
+    B,
+    A,
+    S
 }
 public class Reward : MonoBehaviour
 {

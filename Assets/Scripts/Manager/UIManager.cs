@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
 
 public class UIManager : MonoBehaviour
@@ -9,11 +10,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private Camera camera;
     private bool isPaused = false;
-    private PostProcessVolume blur;
+    private Volume blur;
     // Start is called before the first frame update
     void Start()
     {
-        blur = camera.GetComponent<PostProcessVolume>();
+        blur = camera.GetComponent<Volume>();
     }
 
     // Update is called once per frame

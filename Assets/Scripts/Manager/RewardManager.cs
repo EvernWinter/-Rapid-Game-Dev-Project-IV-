@@ -8,9 +8,11 @@ public class RewardManager : MonoBehaviour
     [Header("Upgrade")]
     [SerializeField] private Button[] buttons;
     [SerializeField] private GameObject upgradePanel;
+    [SerializeField] private UIManager uiManager;
     // Start is called before the first frame update
     void Start()
     {
+        
     }
 
     // Update is called once per frame
@@ -19,22 +21,22 @@ public class RewardManager : MonoBehaviour
         
     }
 
-    /*public void ChooseUpgrade()
+    public void ChooseUpgrade()
     {
-        gameManager.PauseGame();
+        uiManager.PauseGame();
         upgradePanel.SetActive(true);
 
         // Create a list of all possible upgrade types
         List<UpgradeType> availableUpgrades = new List<UpgradeType>
         {
-            UpgradeType.1,
+            /*UpgradeType.1,
             UpgradeType.2,
             UpgradeType.3,
             UpgradeType.4,
-            UpgradeType.5
+            UpgradeType.5*/
         };
         Shuffle(availableUpgrades);
-        foreach (var button in buttons)
+        /*foreach (var button in buttons)
         {
             UpgradeType selectedUpgrade;
             
@@ -46,7 +48,7 @@ public class RewardManager : MonoBehaviour
 
                 // Check conditions before assigning the upgrade type
                 //-------------------------------------For Contain Max Type----------------------------------------//
-                if (selectedUpgrade == UpgradeType.4 &&
+                /*if (selectedUpgrade == UpgradeType.4 &&
                     player.GetComponent<PlayerController>().reservePositions.Count > 0)
                 {
                     button.GetComponent<Reward>().upgradeType = selectedUpgrade;
@@ -61,21 +63,21 @@ public class RewardManager : MonoBehaviour
                     button.GetComponent<Reward>().UpdateButton();
                     availableUpgrades.RemoveAt(randIndex);
                     break; // Exit the while loop once an upgrade is assigned
-                }
+                }#1#
                 //-------------------------------------For Contain Max Type----------------------------------------//
                 //-------------------------------------For Unlimit Type----------------------------------------//
-                else if (selectedUpgrade == UpgradeType.1 || selectedUpgrade == UpgradeType.2 || selectedUpgrade == UpgradeType.3)
+                /*else if (selectedUpgrade == UpgradeType.1 || selectedUpgrade == UpgradeType.2 || selectedUpgrade == UpgradeType.3)
                 {
                     button.GetComponent<Reward>().upgradeType = selectedUpgrade;
                     button.GetComponent<Reward>().UpdateButton();
                     availableUpgrades.RemoveAt(randIndex);
                     break; // Exit the while loop once an upgrade is assigned
-                }
+                }#1#
                 // If conditions are met or no special condition is required, assign and remove the upgrade type
             }
             Debug.Log($"Button {button.name} selected upgrade {selectedUpgrade}");
-        }
-    }*/
+        }*/
+    }
     
     private void Shuffle<T>(List<T> list)
     {
