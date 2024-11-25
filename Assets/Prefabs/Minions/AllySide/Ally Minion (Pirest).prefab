@@ -173,6 +173,7 @@ MonoBehaviour:
   characterSide: 0
   _entityName: Pirest
   _entityDescription: He's a wise man who can attack enemy from a far range.
+  baseManager: {fileID: 0}
   rb: {fileID: 897097403902572957}
   characterCollider: {fileID: 663567818737083761}
   sprRndr: {fileID: 7951129040026825272}
@@ -186,6 +187,7 @@ MonoBehaviour:
   nextAttack: 0
   attackCooldownDuration: 1.5
   _characterAnimator: {fileID: 3576760431216566820}
+  _characterSFX: {fileID: 0}
 --- !u!212 &229204718126871422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -367,7 +369,7 @@ GameObject:
   - component: {fileID: 2079674509166818271}
   - component: {fileID: 1352963799084237943}
   m_Layer: 9
-  m_Name: Square
+  m_Name: wand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,9 +430,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -697677197
   m_SortingLayer: 4
-  m_SortingOrder: 57
-  m_Sprite: {fileID: 21300000, guid: cc75ab2f30e8ca14f9f65c78410cc134, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: a5fd17da85ffe9b48abee8f7d53b5a99, type: 3}
+  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -70,10 +70,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2022198179
-  m_SortingLayer: 5
-  m_SortingOrder: 42
-  m_Sprite: {fileID: 21300000, guid: 36e3ea0a1d43fd84dadac066068c42a7, type: 3}
+  m_SortingLayerID: -697677197
+  m_SortingLayer: 4
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: cf41d3de5be00734a9649c695c3fca7e, type: 3}
   m_Color: {r: 0.4566037, g: 0.4566037, b: 0.4566037, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -141,10 +141,11 @@ MonoBehaviour:
   characterSide: 0
   _entityName: Horseman
   _entityDescription: He's riding a horse and can attack bravery
+  baseManager: {fileID: 0}
   rb: {fileID: 897097403902572957}
   characterCollider: {fileID: 663567818737083761}
   sprRndr: {fileID: 229204718126871422}
-  _moveSpeed: 15
+  _moveSpeed: 9
   _deploymentCost: 10
   _isOnField: 0
   _targetDetector: {fileID: 2937529039760323502}
@@ -154,6 +155,7 @@ MonoBehaviour:
   nextAttack: 0
   attackCooldownDuration: 1.5
   _characterAnimator: {fileID: 1996604051273333480}
+  _characterSFX: {fileID: 0}
 --- !u!212 &229204718126871422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -370,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesInRange: []
-  detectionRadius: 4.5
+  detectionRadius: 3
   parentGameObject: {fileID: 2599753478477571907}
   isAlly: 0
 --- !u!58 &8006780179474566929
@@ -407,7 +409,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4.5
+  m_Radius: 3
 --- !u!1 &8389226809969615120
 GameObject:
   m_ObjectHideFlags: 0

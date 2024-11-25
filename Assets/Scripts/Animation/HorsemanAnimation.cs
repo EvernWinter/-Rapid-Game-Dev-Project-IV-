@@ -4,7 +4,7 @@ using UnityEngine;
 public class HorsemanAnimation : CharacterAnimationBase
 {
     [SerializeField] private GameObject _lanceRenderer; // The object representing the lance
-    [SerializeField] private float _thrustDistance = 1.5f; // Distance the lance moves forward
+    [SerializeField] private float _thrustDistance = 1f; // Distance the lance moves forward
     [SerializeField] private float _thrustDuration = 0.2f; // Time it takes to thrust
     [SerializeField] private bool _isFacingRight = true; // Determines the character's facing direction
 

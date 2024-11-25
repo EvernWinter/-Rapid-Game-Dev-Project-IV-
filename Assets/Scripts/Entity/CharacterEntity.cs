@@ -58,11 +58,58 @@ public class CharacterEntity : MonoBehaviour
                 _characterAnimator = GetComponentInChildren<CharacterAnimationBase>();
             }
             CharacterHealthComponent.OnDamageTaken += () => _characterAnimator.OnDamaged?.Invoke();
+            CharacterHealthComponent.OnDamageTaken += () => DamagedFeedback();
         }
         else
         {
             Debug.LogWarning($"There is no animator for {name}");
         }
+    }
+
+    private void DamagedFeedback()
+    {
+        if (rb != null)
+        {
+            // Determine the direction of knockback
+            Vector2 knockbackDirection = characterSide == CharacterSide.Ally ? Vector2.left : Vector2.right;
+        
+            // Start coroutine for smooth knockback
+            StartCoroutine(SmoothKnockback(knockbackDirection, 0.5f, 0.2f)); // Adjust force and duration as needed
+        }
+        else
+        {
+            Debug.LogWarning($"Rigidbody2D is missing for {name}");
+        }
+    }
+
+// Coroutine to smoothly move the character back
+    private IEnumerator SmoothKnockback(Vector2 direction, float force, float duration)
+    {
+        Vector2 originalPosition = rb.position;
+        Vector2 targetPosition = originalPosition + direction * force;
+
+        float elapsedTime = 0f;
+
+        // Smoothly move the Rigidbody2D to the target position
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            rb.position = Vector2.Lerp(originalPosition, targetPosition, elapsedTime / duration);
+            yield return null;
+        }
+
+        rb.position = targetPosition;
+
+        // Optionally move back to the original position for a recoil effect
+        elapsedTime = 0f;
+        while (elapsedTime < duration / 2)
+        {
+            elapsedTime += Time.deltaTime;
+            rb.position = Vector2.Lerp(targetPosition, originalPosition, elapsedTime / (duration / 2));
+            yield return null;
+        }
+
+        rb.position = originalPosition;
     }
 
     protected virtual void OnDisable()
@@ -155,6 +202,13 @@ public class CharacterEntity : MonoBehaviour
     }
     #endregion
     
+    public enum CharacterTier
+    {
+        T1,
+        T2,
+        T3,
+        T4
+    }
 
 }
 
@@ -209,4 +263,6 @@ public class HealthComponent
         _maxHP = value;
     }
 }
+
+
 

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2419369233763328550}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.671978, y: -0.2224741, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -202,6 +202,7 @@ MonoBehaviour:
   characterSide: 1
   _entityName: Swordman
   _entityDescription: He's holding sword and attack in close range.
+  baseManager: {fileID: 0}
   rb: {fileID: 897097403902572957}
   characterCollider: {fileID: 663567818737083761}
   sprRndr: {fileID: 229204718126871422}
@@ -402,8 +403,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -697677197
   m_SortingLayer: 4
-  m_SortingOrder: 47
-  m_Sprite: {fileID: 21300000, guid: b8a13751907c002488db23d1e5f4303c, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: a367baa39b1bd774883fcd5e124bdf72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
