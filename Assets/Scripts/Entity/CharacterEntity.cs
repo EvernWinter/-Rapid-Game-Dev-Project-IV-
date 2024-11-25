@@ -64,8 +64,25 @@ public class CharacterEntity : MonoBehaviour
         {
             Debug.LogWarning($"There is no animator for {name}");
         }
+        
+        if (GetComponentInChildren<MinionSFX>() != null)
+        {
+            if (_characterSFX == null)
+            {
+                _characterSFX = GetComponentInChildren<MinionSFX>();
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"There is no sfx for {name}");
+        }
     }
 
+    public virtual void OnDeploy()
+    {
+        
+    }
+    
     private void DamagedFeedback()
     {
         if (rb != null)

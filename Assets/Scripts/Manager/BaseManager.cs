@@ -135,9 +135,10 @@ public class BaseManager : MonoBehaviour
         {
             if (cooldownTimers[index] <= 0 && playerMinionPrefabs[index] != null  && data.manaSystem.CurrentMana > mana[index])
             {
-                Instantiate(playerMinionPrefabs[index], minionSpawn.position, Quaternion.identity);
+                CharacterEntity spawnedCharacter = Instantiate(playerMinionPrefabs[index], minionSpawn.position, Quaternion.identity).GetComponent<CharacterEntity>();
                 data.manaSystem.SpendMana(mana[index]);
                 cooldownTimers[index] = spawnCooldowns[index];
+                spawnedCharacter.OnDeploy();
             } 
         }
     }

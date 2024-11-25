@@ -9,6 +9,7 @@ public class MinionSFX : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _attackSFX;
     [SerializeField] private AudioClip _damagedSFX;
+    [SerializeField] public AudioClip[] _specialSFX;
     
     public Action OnAttack;
     public Action OnDamaged;

@@ -9,7 +9,6 @@ public class HorsemanAnimation : CharacterAnimationBase
     [SerializeField] private bool _isFacingRight = true; // Determines the character's facing direction
 
     private Coroutine _attackCoroutine;
-    
 
     // Method to trigger the attack animation
     [ContextMenu("Play Attack Animation")]

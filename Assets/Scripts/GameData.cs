@@ -15,7 +15,7 @@ public class GameData : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            manaSystem = new ManaSystem(0, 1500, 100);  
+            manaSystem = new ManaSystem(0, 1500, 2);  
             moneySystem = new MoneySystem(100);
         }
         else
@@ -60,6 +60,7 @@ public class ManaSystem
     public int CurrentMana => _currentMana;
     public int MaxMana => _maxMana;
 
+    private float manaRegenAccumulator = 0f;
     public void SpendMana(int amount)
     {
         if (amount <= _currentMana)
@@ -75,13 +76,19 @@ public class ManaSystem
 
     public void RegenerateMana(float deltaTime)
     {
-        float manaToRegenerate = Mathf.RoundToInt(_manaRegenRate * deltaTime);
-        //Debug.Log($"Regen Rate: {_manaRegenRate}, DeltaTime: {deltaTime}, Mana to Regen: {manaToRegenerate}");
+        // Accumulate delta time
+        manaRegenAccumulator += deltaTime;
 
-        _currentMana += Mathf.RoundToInt(_manaRegenRate * deltaTime);
-        _currentMana = Mathf.Clamp(_currentMana, 0, _maxMana);
+        // Determine how much mana to regenerate based on fixed intervals
+        float regenInterval = 0.1f; // Regenerate mana every 1 second
+        if (manaRegenAccumulator >= regenInterval)
+        {
+            int manaToRegenerate = Mathf.FloorToInt(manaRegenAccumulator / regenInterval) * _manaRegenRate;
+            _currentMana = Mathf.Clamp(_currentMana + manaToRegenerate, 0, _maxMana);
 
-        //Debug.Log($"Current Mana after Regen: {_currentMana}");
+            // Reduce the accumulator by the processed time
+            manaRegenAccumulator %= regenInterval;
+        }
     }
 
 

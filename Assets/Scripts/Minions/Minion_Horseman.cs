@@ -29,6 +29,12 @@ public class Minion_Horseman : CharacterEntity
         base.UpdateEntity();
     }
 
+    public override void OnDeploy()
+    {
+        base.OnDeploy();
+        CharacterSFX.GetComponent<AudioSource>().PlayOneShot(_characterSFX._specialSFX[0]);
+    }
+
     private void HandleState()
     {
         switch (currentState)
@@ -72,6 +78,10 @@ public class Minion_Horseman : CharacterEntity
                 {
                     _targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage);
                     _characterAnimator.OnAttack?.Invoke();
+                    if (_characterSFX != null)
+                    {
+                        _characterSFX.OnAttack?.Invoke();
+                    }
                 }
             }
             else
@@ -81,6 +91,10 @@ public class Minion_Horseman : CharacterEntity
                 {
                     enemy.CharacterHealthComponent.TakeDamage(this._attackDamage);
                     _characterAnimator.OnAttack?.Invoke();
+                    if (_characterSFX != null)
+                    {
+                        _characterSFX.OnAttack?.Invoke();
+                    }
                 }
             }
         }
