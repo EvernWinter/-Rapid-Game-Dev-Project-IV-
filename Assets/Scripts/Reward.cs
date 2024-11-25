@@ -5,15 +5,22 @@ using UnityEngine.UI;
 
 public enum UpgradeType
 {
-    
+    SwordManSilver,
+    PriestSilver,
+    HorseManSilver,
+    SwordManGold,
+    PriestGold,
+    HorseManGold,
+    SwordManPlatinum,
+    PriestPlatinum,
+    HorseManPlatinum,
 }
 
 public enum UpgradeRarity
 {
-    C,
-    B,
-    A,
-    S
+    Common,
+    Rare,
+    Legendary,
 }
 public class Reward : MonoBehaviour
 {
@@ -32,47 +39,76 @@ public class Reward : MonoBehaviour
     {
         
     }
+    
+    public UpgradeRarity GetRarity()
+    {
+        switch (upgradeType)
+        {
+            case UpgradeType.SwordManSilver:
+            case UpgradeType.PriestSilver:
+            case UpgradeType.HorseManSilver:
+                return UpgradeRarity.Common;
 
-    /*public void UpdateButton()
+            case UpgradeType.SwordManGold:
+            case UpgradeType.PriestGold:
+            case UpgradeType.HorseManGold:
+                return UpgradeRarity.Rare;
+
+            case UpgradeType.SwordManPlatinum:
+            case UpgradeType.PriestPlatinum:
+            case UpgradeType.HorseManPlatinum:
+                return UpgradeRarity.Legendary;
+
+            default:
+                return UpgradeRarity.Common; // Default case, if needed
+        }
+    }
+
+    public void UpdateButton()
     {
-        switch (upgradeType)
+        // Cast the enum value to an integer and use it as the index for the sprite array
+        int spriteIndex = (int)upgradeType;
+
+        // Ensure the index is within bounds to avoid errors
+        if (spriteIndex >= 0 && spriteIndex < upgradeSprite.Length)
         {
-            case UpgradeType.1:
-                upgradeImage.sprite = upgradeSprite[0];
+            upgradeImage.sprite = upgradeSprite[spriteIndex];
+        }
+        else
+        {
+            Debug.LogWarning($"Invalid sprite index: {spriteIndex}. Check UpgradeType or upgradeSprite array.");
+        }
+    }
+    
+    public void ChooseUpgrade()
+    {
+        // Use the enum value as an index to identify the upgrade logic dynamically
+        int upgradeIndex = (int)upgradeType;
+
+        switch (upgradeIndex)
+        {
+            case 0: // SwordManSilver
+            case 1: // PriestSilver
+            case 2: // HorseManSilver
+                Debug.Log("Chosen upgrade is Common rarity.");
                 break;
-            case UpgradeType.2:
-                upgradeImage.sprite = upgradeSprite[1];
+
+            case 3: // SwordManGold
+            case 4: // PriestGold
+            case 5: // HorseManGold
+                Debug.Log("Chosen upgrade is Rare rarity.");
                 break;
-            case UpgradeType.3:
-                upgradeImage.sprite = upgradeSprite[2];
+
+            case 6: // SwordManPlatinum
+            case 7: // PriestPlatinum
+            case 8: // HorseManPlatinum
+                Debug.Log("Chosen upgrade is Legendary rarity.");
                 break;
-            case UpgradeType.4:
-                upgradeImage.sprite = upgradeSprite[3];
-                break;
-            case UpgradeType.5:
-                upgradeImage.sprite = upgradeSprite[4];
+
+            default:
+                Debug.LogWarning($"Upgrade type {upgradeType} is not handled.");
                 break;
         }
-    }*/
-    /*public void ChooseUpgrade()
-    {
-        switch (upgradeType)
-        {
-            case UpgradeType.1:
-                
-                break;
-            case UpgradeType.2:
-                
-                break;
-            case UpgradeType.3:
-                
-                break;
-            case UpgradeType.4:
-                
-                break;
-            case UpgradeType.5:
-                
-                break;
-        }
-    }*/
+    }
+    
 }

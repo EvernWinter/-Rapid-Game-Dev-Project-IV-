@@ -27,7 +27,7 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private Transform minionSpawn;
     [SerializeField] private int[] mana;
     [SerializeField] private int enemiesRemainingInWave = 0;
-    
+    private HashSet<UpgradeType> unlockedUpgrades = new HashSet<UpgradeType>();
     
     [Header("Cooldown Button")]
     [SerializeField] private Button[] buttons;
@@ -228,6 +228,20 @@ public class BaseManager : MonoBehaviour
         else
         {
             Debug.LogError($"Prefab for {unit.unit} not found in dictionary!");
+        }
+    }
+    
+    public bool HasUpgrade(UpgradeType upgradeType)
+    {
+        return unlockedUpgrades.Contains(upgradeType);
+    }
+
+    public void UnlockUpgrade(UpgradeType upgradeType)
+    {
+        if (!unlockedUpgrades.Contains(upgradeType))
+        {
+            unlockedUpgrades.Add(upgradeType);
+            Debug.Log($"Unlocked upgrade: {upgradeType}");
         }
     }
     
