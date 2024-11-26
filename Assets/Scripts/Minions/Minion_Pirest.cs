@@ -73,19 +73,28 @@ public class Minion_Pirest : CharacterEntity
                 if (_targetDetector.alliesInRange.Count > 0)
                 {
                     _targetDetector.alliesInRange[0].CharacterHealthComponent.Heal(this.healPoint);
+                    
                 }
                 else if (_targetDetector.enemiesInRange.Count > 0)
                 {
-                    _targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage);
+                    //_targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage);
                 }
             }
             else
             {
                 if (_targetDetector.alliesInRange.Count > 0)
                 {
+                    bool attackInitiated = false;
+                    
                     foreach (var ally in _targetDetector.alliesInRange)
                     {
                         ally.CharacterHealthComponent.Heal(this.healPoint);
+                        attackInitiated = true;
+                    }
+
+                    if (attackInitiated)
+                    {
+                        _characterAnimator.OnAttack?.Invoke();
                     }
                 }
                 else
@@ -93,7 +102,7 @@ public class Minion_Pirest : CharacterEntity
                     // AOE attack, hit all enemies in range
                     foreach (var enemy in _targetDetector.enemiesInRange)
                     {
-                        enemy.CharacterHealthComponent.TakeDamage(this._attackDamage);
+                        //enemy.CharacterHealthComponent.TakeDamage(this._attackDamage);
                     }
                 }
             }

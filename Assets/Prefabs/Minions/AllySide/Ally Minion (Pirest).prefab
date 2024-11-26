@@ -187,7 +187,7 @@ MonoBehaviour:
   _isAOE: 1
   nextAttack: 0
   attackCooldownDuration: 1.5
-  _characterAnimator: {fileID: 3576760431216566820}
+  _characterAnimator: {fileID: 4760693816539435465}
   _characterSFX: {fileID: 0}
   healPoint: 10
 --- !u!212 &229204718126871422
@@ -313,8 +313,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 247049551895839878}
-  - component: {fileID: 3576760431216566820}
   - component: {fileID: 2300350716489242878}
+  - component: {fileID: 4760693816539435465}
   m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
@@ -339,28 +339,6 @@ Transform:
   - {fileID: 3819593006371718700}
   m_Father: {fileID: 3227810179278284260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3576760431216566820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3478469541779998473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eb6f21409061274d8bd8ee0841e96f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterRenderer: {fileID: 7951129040026825272}
-  _normalSprite: {fileID: 21300000, guid: b1e0a0888e4822c4fb721f1ec9b4f1eb, type: 3}
-  _damagedSprite: {fileID: 21300000, guid: e3936fe4f3c10004c9926adba3a31a43, type: 3}
-  _damagedDuration: 1
-  _hitRotationAngle: 10
-  _hitRotationDuration: 0.2
-  _swordRenderer: {fileID: 2259710285275058869}
-  _rotationAngle: 30
-  _rotationDuration: 0.2
-  _isFacingRight: 0
 --- !u!210 &2300350716489242878
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -373,6 +351,28 @@ SortingGroup:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &4760693816539435465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3478469541779998473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9934e1322272a6b4c888c1f5c96ddebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterRenderer: {fileID: 7951129040026825272}
+  _normalSprite: {fileID: 21300000, guid: b1e0a0888e4822c4fb721f1ec9b4f1eb, type: 3}
+  _damagedSprite: {fileID: 21300000, guid: e3936fe4f3c10004c9926adba3a31a43, type: 3}
+  _damagedDuration: 1
+  _hitRotationAngle: 10
+  _hitRotationDuration: 0.2
+  wandTransform: {fileID: 3819593006371718700}
+  wandEffect: {fileID: 0}
+  wandLiftHeight: 0.2
+  wandLiftDuration: 0.2
 --- !u!1 &4907553911570199659
 GameObject:
   m_ObjectHideFlags: 0

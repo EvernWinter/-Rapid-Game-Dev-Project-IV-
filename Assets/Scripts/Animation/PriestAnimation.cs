@@ -18,13 +18,14 @@ public class PriestAnimation : CharacterAnimationBase
         }
     }
 
+    [ContextMenu("Play Animation")]
     protected override void PlayAttackAnimation()
     {
         base.PlayAttackAnimation(); // Optionally log or trigger a generic attack
 
         if (wandEffect != null)
         {
-            wandEffect.Play(); // Emit particles for the wand effect
+            //wandEffect.Play(); // Emit particles for the wand effect
         }
 
         if (wandTransform != null)
