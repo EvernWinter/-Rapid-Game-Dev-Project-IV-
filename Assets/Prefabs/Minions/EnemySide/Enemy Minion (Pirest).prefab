@@ -136,6 +136,7 @@ MonoBehaviour:
   _audioSource: {fileID: 2632600116697212256}
   _attackSFX: {fileID: 8300000, guid: 105247173c6c7194d8e25abd1991d34f, type: 3}
   _damagedSFX: {fileID: 8300000, guid: 744161516db04b448a037f7b2d35a40d, type: 3}
+  _specialSFX: []
 --- !u!82 &2632600116697212256
 AudioSource:
   m_ObjectHideFlags: 0
@@ -305,6 +306,7 @@ MonoBehaviour:
   attackCooldownDuration: 1.5
   _characterAnimator: {fileID: 0}
   _characterSFX: {fileID: 0}
+  healPoint: 10
 --- !u!212 &229204718126871422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -514,7 +516,7 @@ GameObject:
   - component: {fileID: 6486368273660173384}
   - component: {fileID: 2937529039760323502}
   - component: {fileID: 8006780179474566929}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TargetDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,6 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesInRange: []
+  alliesInRange: []
   detectionRadius: 6
   parentGameObject: {fileID: 2599753478477571907}
   isAlly: 0

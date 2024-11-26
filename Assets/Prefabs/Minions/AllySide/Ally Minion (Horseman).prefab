@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 6486368273660173384}
   - component: {fileID: 2937529039760323502}
   - component: {fileID: 8006780179474566929}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: TargetDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,6 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesInRange: []
+  alliesInRange: []
   detectionRadius: 3
   parentGameObject: {fileID: 2599753478477571907}
   isAlly: 0

@@ -5,6 +5,7 @@ using static Spine.Unity.Examples.BasicPlatformerController;
 
 public class Minion_Pirest : CharacterEntity
 {
+    [SerializeField] private float healPoint = 0f;
     protected override void Awake()
     {
         base.Awake();
@@ -69,17 +70,31 @@ public class Minion_Pirest : CharacterEntity
             if (!_isAOE)
             {
                 // Single target attack
-                if (_targetDetector.enemiesInRange.Count > 0)
+                if (_targetDetector.alliesInRange.Count > 0)
+                {
+                    _targetDetector.alliesInRange[0].CharacterHealthComponent.Heal(this.healPoint);
+                }
+                else if (_targetDetector.enemiesInRange.Count > 0)
                 {
                     _targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage);
                 }
             }
             else
             {
-                // AOE attack, hit all enemies in range
-                foreach (var enemy in _targetDetector.enemiesInRange)
+                if (_targetDetector.alliesInRange.Count > 0)
                 {
-                    enemy.CharacterHealthComponent.TakeDamage(this._attackDamage);
+                    foreach (var ally in _targetDetector.alliesInRange)
+                    {
+                        ally.CharacterHealthComponent.Heal(this.healPoint);
+                    }
+                }
+                else
+                {
+                    // AOE attack, hit all enemies in range
+                    foreach (var enemy in _targetDetector.enemiesInRange)
+                    {
+                        enemy.CharacterHealthComponent.TakeDamage(this._attackDamage);
+                    }
                 }
             }
         }

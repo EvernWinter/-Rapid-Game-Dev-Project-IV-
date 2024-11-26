@@ -252,7 +252,7 @@ CapsuleCollider2D:
     m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 6486368273660173384}
   - component: {fileID: 2937529039760323502}
   - component: {fileID: 8006780179474566929}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TargetDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,6 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesInRange: []
+  alliesInRange: []
   detectionRadius: 1.5
   parentGameObject: {fileID: 2599753478477571907}
   isAlly: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TargetDetector : MonoBehaviour
 {
     public List<CharacterEntity> enemiesInRange = new List<CharacterEntity>();  // List to store enemies in attack range
+    public List<CharacterEntity> alliesInRange = new List<CharacterEntity>();
     public float detectionRadius = 5f; // Radius for detecting enemies
 
     [SerializeField] private GameObject parentGameObject;
@@ -29,6 +30,7 @@ public class TargetDetector : MonoBehaviour
         CharacterEntity characterEntity = other.GetComponent<CharacterEntity>();
         if (characterEntity != null)
         {
+            // Add Enemies in range
             if (isAlly && characterEntity.GetComponent<CharacterEntity>().characterSide == CharacterEntity.CharacterSide.Enemy)
             {
                 // This entity is an ally, and the other is an enemy
@@ -40,6 +42,18 @@ public class TargetDetector : MonoBehaviour
                 // This entity is an enemy, and the other is an ally
                 enemiesInRange.Add(characterEntity);
                 Debug.Log("Enemy entered range: " + other.name);
+            }
+
+            // Add Allies in range
+            if (isAlly && characterEntity.GetComponent<CharacterEntity>().characterSide == CharacterEntity.CharacterSide.Ally)
+            {
+                alliesInRange.Add(characterEntity);
+                Debug.Log("Ally entered range: " + other.name);
+            }
+            else if (!isAlly && characterEntity.GetComponent<CharacterEntity>().characterSide == CharacterEntity.CharacterSide.Enemy)
+            {
+                alliesInRange.Add(characterEntity);
+                Debug.Log("Ally entered range: " + other.name);
             }
         }
     }
