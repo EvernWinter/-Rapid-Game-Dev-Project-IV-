@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -14,7 +13,14 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] private float target;
     [SerializeField] private float tweenDuration;
-    // Start is called before the first frame update
+
+    private bool isSceneTransitioning = false; // Tracks if the coroutine is already running
+
+    private void OnEnable()
+    {
+        ShowStartMenu();
+    }
+    
     private void Awake()
     {
         playButton.GetComponent<CanvasGroup>().alpha = 0;
@@ -22,19 +28,15 @@ public class MenuManager : MonoBehaviour
         quitButton.GetComponent<CanvasGroup>().alpha = 0;
     }
 
-    void Start()
-    {
-        ShowStartMenu();
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
         
     }
 
-    void ShowStartMenu()
+    private void ShowStartMenu()
     {
+        BGMPlayer.Instance.PlayMainMenuBGM();
+        
         Sequence menuSequence = DOTween.Sequence();
 
         // Animate title first
@@ -42,7 +44,7 @@ public class MenuManager : MonoBehaviour
 
         // Animate playButton after title, including both position and fade
         menuSequence.Append(playButton.DOAnchorPosY(playButton.anchoredPosition.y - target, tweenDuration));
-        menuSequence.Join(playButton.GetComponent<CanvasGroup>().DOFade(1f, tweenDuration)); 
+        menuSequence.Join(playButton.GetComponent<CanvasGroup>().DOFade(1f, tweenDuration));
 
         // Animate howToPlayButton after playButton
         menuSequence.Append(howToPlayButton.DOAnchorPosY(howToPlayButton.anchoredPosition.y - target, tweenDuration));
@@ -51,5 +53,27 @@ public class MenuManager : MonoBehaviour
         // Animate quitButton after howToPlayButton
         menuSequence.Append(quitButton.DOAnchorPosY(quitButton.anchoredPosition.y - target, tweenDuration));
         menuSequence.Join(quitButton.GetComponent<CanvasGroup>().DOFade(1f, tweenDuration));
+    }
+
+    public void InitiateStartGameScene()
+    {
+        if (!isSceneTransitioning) // Prevent overlapping coroutines
+        {
+            StartCoroutine(StartGameSceneCoroutine());
+        }
+    }
+
+    private IEnumerator StartGameSceneCoroutine()
+    {
+        isSceneTransitioning = true; // Mark the coroutine as running
+
+        // Optionally, fade out the music or other effects before scene transition
+        BGMPlayer.Instance.StopAllAudio(true);
+
+        yield return new WaitForSeconds(1.5f); // Adjust based on your transition needs
+
+        SceneManager.LoadScene(1);
+
+        isSceneTransitioning = false; // Reset the flag after the transition
     }
 }
