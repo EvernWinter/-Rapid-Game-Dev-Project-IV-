@@ -9,6 +9,7 @@ public class Minion_Archer : CharacterEntity
     [SerializeField] private GameObject arrowPrefab;
     //[SerializeField] private float shootForce;
     [SerializeField] float initialSpeed = 10f;
+    [SerializeField] private Transform target;
 
     protected override void Awake()
     {
@@ -71,7 +72,15 @@ public class Minion_Archer : CharacterEntity
         {
             nextAttack = Time.time + attackCooldownDuration;
 
-            Transform target = _targetDetector.enemiesInRange[0].transform;
+            if(_targetDetector.baseManagerInRange != null && _targetDetector.baseManagerInRange.GetComponent<BaseManager>().baseHealth > 0)
+            {
+                target = _targetDetector.baseManagerInRange.transform;
+            }
+            else if(_targetDetector.enemiesInRange[0].transform != null)
+            {
+                target = _targetDetector.enemiesInRange[0].transform;
+            }
+            
             GameObject arrow = Instantiate(arrowPrefab, gameObject.transform.position, Quaternion.identity);
             Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
             arrow.GetComponent<Bullet>().damage = _attackDamage;

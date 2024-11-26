@@ -68,7 +68,11 @@ public class Minion_Swordman : CharacterEntity
             if (!_isAOE)
             {
                 // Single target attack
-                if (_targetDetector.enemiesInRange.Count > 0)
+                if(_targetDetector.baseManagerInRange != null && _targetDetector.baseManagerInRange.GetComponent<BaseManager>().baseHealth > 0)
+                {
+                    _targetDetector.baseManagerInRange.TakeDamage(this._attackDamage);
+                }
+                else if (_targetDetector.enemiesInRange.Count > 0)
                 {
                     _targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage);
                     _characterAnimator.OnAttack?.Invoke();
@@ -76,11 +80,15 @@ public class Minion_Swordman : CharacterEntity
                     {
                         _characterSFX.OnAttack?.Invoke();
                     }
-                    
                 }
             }
             else
             {
+                if (_targetDetector.baseManagerInRange != null && _targetDetector.baseManagerInRange.GetComponent<BaseManager>().baseHealth > 0)
+                {
+                    _targetDetector.baseManagerInRange.TakeDamage(this._attackDamage);
+                }
+
                 // AOE attack, hit all enemies in range
                 foreach (var enemy in _targetDetector.enemiesInRange)
                 {

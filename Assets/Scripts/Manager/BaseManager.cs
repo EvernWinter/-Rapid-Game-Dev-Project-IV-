@@ -17,9 +17,9 @@ public class BaseManager : MonoBehaviour
 {
     [Header("Base Settings")]
     [SerializeField] private float baseMaxHealth = 100f;
-    [SerializeField] private float baseHealth;
+    [SerializeField] public float baseHealth;
     [SerializeField] private MicroBar healthBar;
-    [SerializeField] private bool playerBase;
+    [SerializeField] public bool playerBase;
 
     [Header("Minion Settings")]
     [SerializeField] private GameObject[] playerMinionPrefabs;

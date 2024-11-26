@@ -376,7 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesInRange: []
   alliesInRange: []
-  detectionRadius: 15
+  detectionRadius: 10
   parentGameObject: {fileID: 2599753478477571907}
   isAlly: 0
 --- !u!58 &8006780179474566929
@@ -413,7 +413,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 10
 --- !u!1 &5834146061496649951
 GameObject:
   m_ObjectHideFlags: 0

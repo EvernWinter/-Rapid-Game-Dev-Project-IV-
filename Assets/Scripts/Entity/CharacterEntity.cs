@@ -212,7 +212,7 @@ public class CharacterEntity : MonoBehaviour
             rb.velocity = new Vector2(-MoveSpeed, rb.velocity.y);
         }
 
-        if (_targetDetector.enemiesInRange.Count > 0)
+        if (_targetDetector.enemiesInRange.Count > 0 || _targetDetector.baseManagerInRange != null)
         {
             currentState = CharacterState.Attack;
         }

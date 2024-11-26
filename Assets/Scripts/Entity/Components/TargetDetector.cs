@@ -6,6 +6,8 @@ public class TargetDetector : MonoBehaviour
 {
     public List<CharacterEntity> enemiesInRange = new List<CharacterEntity>();  // List to store enemies in attack range
     public List<CharacterEntity> alliesInRange = new List<CharacterEntity>();
+
+    public BaseManager baseManagerInRange;
     public float detectionRadius = 5f; // Radius for detecting enemies
 
     [SerializeField] private GameObject parentGameObject;
@@ -56,6 +58,22 @@ public class TargetDetector : MonoBehaviour
                 Debug.Log("Ally entered range: " + other.name);
             }
         }
+
+        BaseManager baseManager = other.GetComponent<BaseManager>();
+        if (baseManager != null)
+        {
+            // Add Allies in range
+            if (isAlly && baseManager.GetComponent<BaseManager>().playerBase == false)
+            {
+                baseManagerInRange = baseManager;
+                Debug.Log("Ally entered range: " + other.name);
+            }
+            else if (!isAlly && baseManager.GetComponent<BaseManager>().playerBase == true)
+            {
+                baseManagerInRange = baseManager;
+                Debug.Log("Ally entered range: " + other.name);
+            }
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -65,6 +83,12 @@ public class TargetDetector : MonoBehaviour
         {
             enemiesInRange.Remove(characterEntity);
             Debug.Log("Enemy exited range: " + other.name);
+        }
+
+        if (characterEntity != null && alliesInRange.Contains(characterEntity))
+        {
+            alliesInRange.Remove(characterEntity);
+            Debug.Log("Ally exited range: " + other.name);
         }
     }
 

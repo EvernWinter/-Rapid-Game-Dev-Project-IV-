@@ -11,11 +11,19 @@ public class Bullet : MonoBehaviour
     {
         if((other.gameObject.layer == LayerMask.NameToLayer("Enemy")) && !isThisBulletForAlly)
         {
+            if(other.gameObject.GetComponent<CharacterEntity>() != null)
             other.gameObject.GetComponent<CharacterEntity>().CharacterHealthComponent.TakeDamage(damage);
+
+            if (other.gameObject.GetComponent<BaseManager>() != null)
+                other.gameObject.GetComponent<BaseManager>().TakeDamage(damage);
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Ally") && isThisBulletForAlly)
         {
-            other.gameObject.GetComponent<CharacterEntity>().CharacterHealthComponent.TakeDamage(damage);
+            if (other.gameObject.GetComponent<CharacterEntity>() != null)
+                other.gameObject.GetComponent<CharacterEntity>().CharacterHealthComponent.TakeDamage(damage);
+
+            if (other.gameObject.GetComponent<BaseManager>() != null)
+                other.gameObject.GetComponent<BaseManager>().TakeDamage(damage);
         }
     }
 }

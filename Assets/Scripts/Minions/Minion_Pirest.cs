@@ -79,6 +79,10 @@ public class Minion_Pirest : CharacterEntity
                 {
                     //_targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage);
                 }
+                /*else if(_targetDetector.baseManagerInRange != null && _targetDetector.baseManagerInRange.GetComponent<BaseManager>().baseHealth > 0)
+                {
+                    _targetDetector.baseManagerInRange.TakeDamage(this._attackDamage);
+                }*/
             }
             else
             {
@@ -105,6 +109,11 @@ public class Minion_Pirest : CharacterEntity
                         //enemy.CharacterHealthComponent.TakeDamage(this._attackDamage);
                     }
                 }
+
+                /*if (_targetDetector.baseManagerInRange != null && _targetDetector.baseManagerInRange.GetComponent<BaseManager>().baseHealth > 0)
+                {
+                    _targetDetector.baseManagerInRange.TakeDamage(this._attackDamage);
+                }*/
             }
         }
 
