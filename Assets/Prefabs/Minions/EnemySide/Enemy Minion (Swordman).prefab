@@ -442,7 +442,7 @@ Transform:
   m_GameObject: {fileID: 2953435758980259415}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.089, z: 0}
+  m_LocalPosition: {x: 0, y: 1.089, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -543,6 +543,7 @@ GameObject:
   - component: {fileID: 1681472333711085055}
   - component: {fileID: 1801376562928639261}
   - component: {fileID: 8251199533649337538}
+  - component: {fileID: 2168912823646710711}
   m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
@@ -641,6 +642,18 @@ MonoBehaviour:
   _rotationAngle: -30
   _rotationDuration: 0.2
   _isFacingRight: 1
+--- !u!210 &2168912823646710711
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572045028879032450}
+  m_Enabled: 1
+  m_SortingLayerID: -697677197
+  m_SortingLayer: 4
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &5609407795182474204
 GameObject:
   m_ObjectHideFlags: 0

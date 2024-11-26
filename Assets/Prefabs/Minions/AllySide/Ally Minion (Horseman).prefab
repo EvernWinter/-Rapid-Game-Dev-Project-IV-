@@ -281,6 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1523486647550158206}
   - component: {fileID: 1996604051273333480}
+  - component: {fileID: 2459131155003209139}
   m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
@@ -327,6 +328,18 @@ MonoBehaviour:
   _thrustDistance: -1
   _thrustDuration: 0.2
   _isFacingRight: 0
+--- !u!210 &2459131155003209139
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4055278017499250512}
+  m_Enabled: 1
+  m_SortingLayerID: -697677197
+  m_SortingLayer: 4
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &4437263205419182505
 GameObject:
   m_ObjectHideFlags: 0
