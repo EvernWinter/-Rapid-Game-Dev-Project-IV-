@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Microlight.MicroBar;
 using TMPro;
 using UnityEngine;
@@ -25,7 +26,7 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private GameObject[] playerMinionPrefabs;
     [SerializeField] private GameObject[] enemyMinionPrefabs;
     [SerializeField] private Transform minionSpawn;
-    [SerializeField] private int[] mana;
+    [SerializeField] private int[] manas;
     [SerializeField] private int enemiesRemainingInWave = 0;
     private HashSet<UpgradeType> unlockedUpgrades = new HashSet<UpgradeType>();
     
@@ -38,6 +39,8 @@ public class BaseManager : MonoBehaviour
     private float[] cooldownTimers;
     [SerializeField] private GameObject[] costPanels;
     [SerializeField] private GameObject[] cdPanels;
+    [SerializeField] private GameObject[] noPanels;
+    private Vector3[] originalScale;
     
     [Header("Game Data")]
     private GameData data;
@@ -69,6 +72,7 @@ public class BaseManager : MonoBehaviour
         healthBar.Initialize(baseMaxHealth);
         if (playerBase)
         {
+            originalScale = new Vector3[buttons.Length];
             cooldownTimers = new float[buttons.Length];
             foreach (var cost in costPanels)
             {
@@ -82,12 +86,13 @@ public class BaseManager : MonoBehaviour
             {
                 int index = i; // Fix: Capture the current index for the lambda
                 buttons[i].onClick.AddListener(() => SpawnMinion(index));
+                originalScale[i] = buttons[i].transform.localScale;
             }
 
             // Initialize mana text for each button
             for (int i = 0; i < manaText.Length; i++)
             {
-                manaText[i].text = mana[i].ToString();
+                manaText[i].text = manas[i].ToString();
             }
         }
         else
@@ -126,6 +131,18 @@ public class BaseManager : MonoBehaviour
                     cdPanels[i].SetActive(false);
                 }
             }
+
+            for (int i = 0; i < manas.Length; i++)
+            {
+                if (data.manaSystem.CurrentMana < manas[i] && buttons[i] != null)
+                {
+                    noPanels[i].SetActive(true);
+                }
+                else
+                {
+                    noPanels[i].SetActive(false);
+                }
+            }
         }
     }
     
@@ -133,13 +150,21 @@ public class BaseManager : MonoBehaviour
     {
         if (playerBase)
         {
-            if (cooldownTimers[index] <= 0 && playerMinionPrefabs[index] != null  && data.manaSystem.CurrentMana > mana[index])
+            if (cooldownTimers[index] <= 0 && playerMinionPrefabs[index] != null  && data.manaSystem.CurrentMana > manas[index])
             {
                 CharacterEntity spawnedCharacter = Instantiate(playerMinionPrefabs[index], minionSpawn.position, Quaternion.identity).GetComponent<CharacterEntity>();
-                data.manaSystem.SpendMana(mana[index]);
+                data.manaSystem.SpendMana(manas[index]);
+                buttons[index].GetComponent<RectTransform>().DOScale(originalScale[index] * 0.9f, 0.1f)
+                    .SetEase(Ease.OutBounce).OnComplete(() =>
+                        buttons[index].transform.DOScale(originalScale[index], 0.1f).SetEase(Ease.InOutQuad));
                 cooldownTimers[index] = spawnCooldowns[index];
                 spawnedCharacter.OnDeploy();
-            } 
+            }
+            else
+            {
+                buttons[index].GetComponent<RectTransform>().DOShakePosition(0.5f, strength: new Vector3(5f, 5f, 0f), vibrato: 8, randomness: 70)
+                    .SetEase(Ease.OutQuad);
+            }
         }
     }
     
@@ -195,7 +220,7 @@ public class BaseManager : MonoBehaviour
                 waveText.text = $"Wave: {currentWaveIndex+1}/{waves.Count}";
                 if (currentWaveIndex >= 1)
                 {
-                    rewardManager.ChooseUpgrade();
+                    //rewardManager.ChooseUpgrade();
                 }
                 yield return new WaitForSeconds(waveStartDelay);
             }

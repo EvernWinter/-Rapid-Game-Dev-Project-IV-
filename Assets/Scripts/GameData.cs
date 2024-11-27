@@ -15,7 +15,7 @@ public class GameData : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            manaSystem = new ManaSystem(0, 1500, 2);  
+            manaSystem = new ManaSystem(0, 1500, 5);  
             moneySystem = new MoneySystem(100);
         }
         else
