@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class RewardManager : MonoBehaviour
 {
     [Header("Upgrade")]
-    [SerializeField] private Button[] buttons;
+    [SerializeField] private GameObject[] buttons;
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private UIManager uiManager;
     [SerializeField] private BaseManager baseManager;

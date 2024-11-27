@@ -8336,9 +8336,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 671540216}
+  - {fileID: 372596987}
+  - {fileID: 1991045917}
+  - {fileID: 376643293}
+  - {fileID: 1076872265}
   upgradePanel: {fileID: 1533752256}
   uiManager: {fileID: 2027898061}
   baseManager: {fileID: 1046416538}
