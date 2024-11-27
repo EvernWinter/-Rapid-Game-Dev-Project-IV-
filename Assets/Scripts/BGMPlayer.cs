@@ -136,4 +136,35 @@ public class BGMPlayer : MonoBehaviour
 
         _musicAudioSource.volume = targetVolume;
     }
+    
+    public void StopMusic()
+    {
+        if (fadeCoroutine != null)
+        {
+            StopCoroutine(fadeCoroutine);
+        }
+
+        fadeCoroutine = StartCoroutine(FadeOutAndStop());
+    }
+
+    public void PauseMusic()
+    {
+        if (_musicAudioSource.isPlaying)
+        {
+            _musicAudioSource.Pause();
+        }
+    }
+
+    public void ResumeMusic()
+    {
+        if (!_musicAudioSource.isPlaying)
+        {
+            _musicAudioSource.UnPause();
+        }
+    }
+
+    public void SetLoop(bool shouldLoop)
+    {
+        _musicAudioSource.loop = shouldLoop;
+    }
 }
