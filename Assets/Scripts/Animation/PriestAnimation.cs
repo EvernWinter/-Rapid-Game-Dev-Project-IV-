@@ -10,8 +10,10 @@ public class PriestAnimation : CharacterAnimationBase
 
     private Vector3 _originalWandPosition;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        
         if (wandTransform != null)
         {
             _originalWandPosition = wandTransform.localPosition;

@@ -115,6 +115,7 @@ public class Minion_Archer : CharacterEntity
             // Rotate the arrow to face the direction it's moving
             float rotationAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
             arrow.transform.rotation = Quaternion.Euler(0, 0, rotationAngle);
+            _characterAnimator.OnAttack?.Invoke();
         }
     }
 }

@@ -18,7 +18,7 @@ public class CharacterAnimationBase : MonoBehaviour
 
     private Coroutine _damagedCoroutine; // Keeps track of the currently running coroutine
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         OnDamaged += PlayDamagedAnimation;
         OnAttack += PlayAttackAnimation;

@@ -188,7 +188,7 @@ MonoBehaviour:
   nextAttack: 0
   attackCooldownDuration: 1.5
   _characterAnimator: {fileID: 4760693816539435465}
-  _characterSFX: {fileID: 0}
+  _characterSFX: {fileID: 8134914136055165372}
   healPoint: 10
 --- !u!212 &229204718126871422
 SpriteRenderer:
@@ -504,6 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesInRange: []
   alliesInRange: []
+  baseManagerInRange: {fileID: 0}
   detectionRadius: 6
   parentGameObject: {fileID: 2599753478477571907}
   isAlly: 0
@@ -588,7 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 4434601002721449331}
-  _attackSFX: {fileID: 8300000, guid: 105247173c6c7194d8e25abd1991d34f, type: 3}
+  _attackSFX: {fileID: 8300000, guid: b71b550d1f7ec004388d138d094e46ad, type: 3}
   _damagedSFX: {fileID: 8300000, guid: 744161516db04b448a037f7b2d35a40d, type: 3}
   _specialSFX: []
 --- !u!82 &4434601002721449331

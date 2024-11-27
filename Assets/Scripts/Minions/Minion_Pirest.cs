@@ -73,6 +73,7 @@ public class Minion_Pirest : CharacterEntity
                 if (_targetDetector.alliesInRange.Count > 0)
                 {
                     _targetDetector.alliesInRange[0].CharacterHealthComponent.Heal(this.healPoint);
+                    _characterSFX.OnAttack?.Invoke();
                     
                 }
                 else if (_targetDetector.enemiesInRange.Count > 0)
@@ -99,6 +100,7 @@ public class Minion_Pirest : CharacterEntity
                     if (attackInitiated)
                     {
                         _characterAnimator.OnAttack?.Invoke();
+                        _characterSFX.OnAttack?.Invoke();
                     }
                 }
                 else
