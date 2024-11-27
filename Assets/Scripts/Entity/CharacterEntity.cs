@@ -350,6 +350,7 @@ public class CharacterStat
     {
         Attack += amount;
     }
+}
 
 /// <summary>
 /// Changes the Defense by the specified amount.
