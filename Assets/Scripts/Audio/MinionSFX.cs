@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class MinionSFX : MonoBehaviour
 {
 
@@ -13,7 +14,6 @@ public class MinionSFX : MonoBehaviour
     
     public Action OnAttack;
     public Action OnDamaged;
-
 
     void Awake()
     {

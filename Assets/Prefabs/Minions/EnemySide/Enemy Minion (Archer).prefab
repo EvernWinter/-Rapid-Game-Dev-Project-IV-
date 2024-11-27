@@ -70,7 +70,7 @@ MonoBehaviour:
   _isAOE: 0
   nextAttack: 0
   attackCooldownDuration: 1.5
-  _characterAnimator: {fileID: 0}
+  _characterAnimator: {fileID: 6608589355198620088}
   _characterSFX: {fileID: 0}
   arrowPrefab: {fileID: 7099855677672156472, guid: feb737945fdae6042998c72740c4b1f7, type: 3}
   initialSpeed: 10
@@ -401,7 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2325628866490520427}
   - component: {fileID: 6588808740899397829}
-  - component: {fileID: 2072075214971859222}
+  - component: {fileID: 6608589355198620088}
   - component: {fileID: 4177918413114230891}
   m_Layer: 9
   m_Name: GFX
@@ -479,7 +479,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2072075214971859222
+--- !u!114 &6608589355198620088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -488,18 +488,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7276594004358999291}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eb6f21409061274d8bd8ee0841e96f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 44dd79cf03b092f47a1cdbc32e9a2b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _characterRenderer: {fileID: 6588808740899397829}
   _normalSprite: {fileID: 21300000, guid: f6212c21a4bab3c43adc213b351d5494, type: 3}
   _damagedSprite: {fileID: 21300000, guid: fa501c583a3150a4eb2009c1911f78ea, type: 3}
   _damagedDuration: 1
-  _hitRotationAngle: -10
+  _hitRotationAngle: 10
   _hitRotationDuration: 0.2
-  _swordRenderer: {fileID: 0}
-  _rotationAngle: -30
-  _rotationDuration: 0.2
+  _bowRenderer: {fileID: 2788005707436645519}
+  _aimRotationAngle: 35
+  _rotationDuration: 0.3
   _isFacingRight: 1
 --- !u!210 &4177918413114230891
 SortingGroup:

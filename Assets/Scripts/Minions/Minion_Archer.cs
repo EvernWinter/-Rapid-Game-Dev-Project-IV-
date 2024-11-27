@@ -72,14 +72,14 @@ public class Minion_Archer : CharacterEntity
         {
             nextAttack = Time.time + attackCooldownDuration;
 
-            if(_targetDetector.baseManagerInRange != null && _targetDetector.baseManagerInRange.GetComponent<BaseManager>().baseHealth > 0)
-            {
-                target = _targetDetector.baseManagerInRange.transform;
-            }
-            else if(_targetDetector.enemiesInRange[0].transform != null)
+            if(_targetDetector.enemiesInRange[0].transform != null)
             {
                 target = _targetDetector.enemiesInRange[0].transform;
             }
+            else if(_targetDetector.baseManagerInRange != null && _targetDetector.baseManagerInRange.GetComponent<BaseManager>().baseHealth > 0)
+            {
+                target = _targetDetector.baseManagerInRange.transform;
+            } 
             
             GameObject arrow = Instantiate(arrowPrefab, gameObject.transform.position, Quaternion.identity);
             Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();

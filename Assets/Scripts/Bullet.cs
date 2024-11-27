@@ -9,21 +9,40 @@ public class Bullet : MonoBehaviour
         
     private void OnTriggerEnter2D(Collider2D other)
     {
+        bool isHit = false;
+        
         if((other.gameObject.layer == LayerMask.NameToLayer("Enemy")) && !isThisBulletForAlly)
         {
-            if(other.gameObject.GetComponent<CharacterEntity>() != null)
-            other.gameObject.GetComponent<CharacterEntity>().CharacterHealthComponent.TakeDamage(damage);
+            if (other.gameObject.GetComponent<CharacterEntity>() != null)
+            {
+                other.gameObject.GetComponent<CharacterEntity>().CharacterHealthComponent.TakeDamage(damage);
+                isHit = true;
+            }
 
             if (other.gameObject.GetComponent<BaseManager>() != null)
+            {
                 other.gameObject.GetComponent<BaseManager>().TakeDamage(damage);
+                isHit = true;
+            }
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Ally") && isThisBulletForAlly)
         {
             if (other.gameObject.GetComponent<CharacterEntity>() != null)
+            {
                 other.gameObject.GetComponent<CharacterEntity>().CharacterHealthComponent.TakeDamage(damage);
-
+                isHit = true;
+            }
+            
             if (other.gameObject.GetComponent<BaseManager>() != null)
+            {
                 other.gameObject.GetComponent<BaseManager>().TakeDamage(damage);
+                isHit = true;
+            }
+        }
+
+        if (isHit)
+        {
+            Destroy(gameObject);
         }
     }
 }
