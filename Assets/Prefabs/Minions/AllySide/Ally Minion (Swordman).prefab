@@ -216,7 +216,7 @@ MonoBehaviour:
   rb: {fileID: 897097403902572957}
   characterCollider: {fileID: 663567818737083761}
   sprRndr: {fileID: 229204718126871422}
-  _moveSpeed: 1
+  _moveSpeed: 1.2
   _deploymentCost: 10
   _isOnField: 0
   _targetDetector: {fileID: 2937529039760323502}
@@ -557,6 +557,7 @@ MonoBehaviour:
   _audioSource: {fileID: 8587990818398936114}
   _attackSFX: {fileID: 8300000, guid: 105247173c6c7194d8e25abd1991d34f, type: 3}
   _damagedSFX: {fileID: 8300000, guid: 744161516db04b448a037f7b2d35a40d, type: 3}
+  _deadSFX: {fileID: 8300000, guid: 744161516db04b448a037f7b2d35a40d, type: 3}
   _specialSFX: []
 --- !u!82 &8587990818398936114
 AudioSource:

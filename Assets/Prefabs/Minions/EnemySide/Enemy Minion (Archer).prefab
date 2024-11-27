@@ -48,6 +48,7 @@ MonoBehaviour:
   _audioSource: {fileID: 6573722019962867900}
   _attackSFX: {fileID: 8300000, guid: 4db7420cb2e1f4640b9e70c87cd4d838, type: 3}
   _damagedSFX: {fileID: 0}
+  _deadSFX: {fileID: 8300000, guid: 744161516db04b448a037f7b2d35a40d, type: 3}
   _specialSFX: []
 --- !u!82 &6573722019962867900
 AudioSource:
@@ -196,8 +197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterHealthComponent:
-    _maxHP: 1000
-    _currentHP: 1000
+    _maxHP: 50
+    _currentHP: 50
     _isInvulnerable: 0
   currentState: 0
   characterSide: 1
@@ -211,7 +212,7 @@ MonoBehaviour:
   _deploymentCost: 10
   _isOnField: 0
   _targetDetector: {fileID: 2937529039760323502}
-  _attackDamage: 10
+  _attackDamage: 15
   _defense: 10
   _isAOE: 0
   nextAttack: 0

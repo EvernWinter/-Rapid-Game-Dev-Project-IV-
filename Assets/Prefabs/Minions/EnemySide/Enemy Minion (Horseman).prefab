@@ -506,6 +506,7 @@ MonoBehaviour:
   _audioSource: {fileID: 445920089435363519}
   _attackSFX: {fileID: 8300000, guid: 105247173c6c7194d8e25abd1991d34f, type: 3}
   _damagedSFX: {fileID: 8300000, guid: 744161516db04b448a037f7b2d35a40d, type: 3}
+  _deadSFX: {fileID: 8300000, guid: 744161516db04b448a037f7b2d35a40d, type: 3}
   _specialSFX:
   - {fileID: 8300000, guid: 5c1cbfdeac58d9c48a4cfb2b9d104844, type: 3}
 --- !u!82 &445920089435363519

@@ -115,6 +115,8 @@ public class CharacterEntity : MonoBehaviour
     
     private void DamagedFeedback()
     {
+        _characterSFX.OnDamaged?.Invoke();
+        
         if (rb != null)
         {
             // Determine the direction of knockback
@@ -201,6 +203,9 @@ public class CharacterEntity : MonoBehaviour
         {
             baseManager.OnEnemyDeath();
         }
+        
+        _characterSFX.OnDead?.Invoke();
+        
         Destroy(gameObject);
         
         //Destroy(gameObject, 4f);
@@ -311,5 +316,44 @@ public class HealthComponent
     }
 }
 
+[Serializable]
+public class CharacterStat
+{
+    [field: SerializeField] public float Speed { get; private set; }
+    [field: SerializeField] public int MaxHP { get; private set; }
+    [field: SerializeField] public int Attack { get; private set; }
+    [field: SerializeField] public int Defense { get; private set; }
+
+    /// <summary>
+    /// Changes the Speed by the specified amount.
+    /// </summary>
+    /// <param name="amount">The amount to change Speed by.</param>
+    public void ChangeSpeed(float amount)
+    {
+        Speed += amount;
+    }
+
+    /// <summary>
+    /// Changes the MaxHP by the specified amount.
+    /// </summary>
+    /// <param name="amount">The amount to change MaxHP by.</param>
+    public void ChangeMaxHP(int amount)
+    {
+        MaxHP += amount;
+    }
+
+    /// <summary>
+    /// Changes the Attack by the specified amount.
+    /// </summary>
+    /// <param name="amount">The amount to change Attack by.</param>
+    public void ChangeAttack(int amount)
+    {
+        Attack += amount;
+    }
+
+/// <summary>
+/// Changes the Defense by the specified amount.
+/// </summary>
+/// <param name="amount
 
 
