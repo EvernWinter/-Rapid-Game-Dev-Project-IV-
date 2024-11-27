@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
         {
             Time.timeScale = 0;   // Freeze the game time
             isPaused = true;      // Set paused state to tru
+            BGMPlayer.Instance.PauseMusic();
             blur.enabled = true;
         }
     }
@@ -54,6 +55,7 @@ public class UIManager : MonoBehaviour
         {
             Time.timeScale = 1;   // Resume the game time
             isPaused = false;     // Set paused state to false
+            BGMPlayer.Instance.ResumeMusic();
             blur.enabled = false;
         }
     }
