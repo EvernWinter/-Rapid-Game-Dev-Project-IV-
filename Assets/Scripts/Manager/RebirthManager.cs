@@ -7,20 +7,21 @@ using UnityEngine.UI;
 public class RebirthManager : MonoBehaviour
 {
     [Header("Rebirth Setttings")]
-    [SerializeField] private Button rebirthButton;
+    [SerializeField] private GameObject rebirthButton;
     [SerializeField] private Image blackBorderImage;
     [SerializeField] private Image rebirthImage;
-    [SerializeField] private Image fireImage;
+    [SerializeField] private RectTransform fireImage;
     [SerializeField] private float cooldown;
     [SerializeField] private float cooldownTimer;
     private Vector3 originalScale;
     // Start is called before the first frame update
     void Start()
     {
-        rebirthButton.onClick.AddListener(() => Rebirth());
+        rebirthButton.GetComponent<Button>().onClick.AddListener(() => Rebirth());
         blackBorderImage.fillAmount = 0;
         rebirthImage.fillAmount = 0;
-        fireImage.fillAmount = 0;
+        originalScale = rebirthButton.transform.localScale;
+        fireImage.transform.localScale = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -31,15 +32,24 @@ public class RebirthManager : MonoBehaviour
 
     private void Rebirth()
     {
-        if (cooldownTimer <= 0)
+        // Ensure the cooldown is complete before triggering the rebirth action
+        if (cooldownTimer >= cooldown)
         {
+            
+            // Correctly scale the button using DOScale
             rebirthButton.GetComponent<RectTransform>().DOScale(originalScale * 0.9f, 0.1f)
-                .SetEase(Ease.OutBounce).OnComplete(() =>
-                    rebirthButton.transform.DOScale(originalScale, 0.1f).SetEase(Ease.InOutQuad));
-            cooldownTimer = cooldown;
+                .SetEase(Ease.OutBounce)
+                .OnComplete(() =>
+                    rebirthButton.GetComponent<RectTransform>().DOScale(originalScale, 0.1f)
+                        .SetEase(Ease.InOutQuad));
+
+            // Reset cooldownTimer after rebirth
+            cooldownTimer = 0;
         }
         else
         {
+            
+            // Button shake animation when cooldown hasn't completed
             rebirthButton.GetComponent<RectTransform>().DOShakePosition(0.5f, strength: new Vector3(5f, 5f, 0f), vibrato: 8, randomness: 70)
                 .SetEase(Ease.OutQuad);
         }
@@ -47,28 +57,39 @@ public class RebirthManager : MonoBehaviour
 
     private void UICooldown()
     {
-        if (cooldownTimer > 0) // Check if the cooldown timer is greater than 0
+        
+        if (cooldownTimer < cooldown) // Check if the cooldown timer is less than the full cooldown time
         {
-            // Decrease the cooldown timer
-            cooldownTimer -= Time.deltaTime;
+            // Increase the cooldown timer
+            cooldownTimer += Time.deltaTime;
 
             // Normalize the cooldown for the fillAmount
-            float normalizedCooldown = 1 - (cooldownTimer / cooldown); // This normalizes the cooldown so it fills from 0 to 1
+            float normalizedCooldown = cooldownTimer / cooldown; // This normalizes the cooldown so it fills from 0 to 1
 
-            // Update the cooldown bar fill and button state
-            blackBorderImage.fillAmount = normalizedCooldown;
+            // For the black border image, start at 0.4 and increase to 1
+            blackBorderImage.fillAmount = Mathf.Clamp(0.3f + normalizedCooldown * (1 - 0.3f), 0.3f, 1);
+
+            // Update the rebirthImage normally from 0 to 1
             rebirthImage.fillAmount = normalizedCooldown;
-            fireImage.fillAmount = normalizedCooldown;
-
-            // Disable button when cooldown is not finished
-            rebirthButton.interactable = cooldownTimer <= 0;
+            
+            // Disable button when cooldown is finished
+            //rebirthButton.GetComponent<Button>().interactable = cooldownTimer >= cooldown;
+           
+            Color blackColor = blackBorderImage.color;
+            blackColor.a = 0.8f; // Alpha goes back to 0 (invisible)
+            blackBorderImage.color = blackColor;
+            
+            fireImage.DOScale(Vector3.zero, 0.05f).SetEase(Ease.InOutQuad);
         }
         else
         {
-            // In case cooldownTimer is below zero, make sure the UI elements are fully reset (optional)
+            fireImage.DOScale(Vector3.one, 0.1f).SetEase(Ease.OutBounce);
+            // Once the cooldown is finished, ensure all the UI elements are filled
             blackBorderImage.fillAmount = 1;
             rebirthImage.fillAmount = 1;
-            fireImage.fillAmount = 1;
+            Color blackColor = blackBorderImage.color;
+            blackColor.a = 0f; // Alpha goes back to 0 (invisible)
+            blackBorderImage.color = blackColor;
         }
     }
 }

@@ -3,6 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum UnitTier
+{
+    Common,
+    Silver,
+    Gold,
+    Platinum
+}
+
+public enum MinionType
+{
+    SwordMan,
+    Priest,
+    HorseMan
+}
+
+
 public class RewardManager : MonoBehaviour
 {
     [Header("Upgrade")]
@@ -10,137 +26,119 @@ public class RewardManager : MonoBehaviour
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private UIManager uiManager;
     [SerializeField] private BaseManager baseManager;
+    [SerializeField] private int[] upgradeSlivers;
+    [SerializeField] private int[] upgradeGolds;
+    [SerializeField] private int[] upgradePlatinums;
+    [SerializeField] private Button[] upgradeButtons;
+    
+    private MinionType selectedMinion; // The selected minion type (SwordMan, Priest, HorseMan)
+    private UnitTier selectedMinionTier; // The selected minion's current tier
+    
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        upgradeButtons = new Button[buttons.Length];
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            int index = i;
+            upgradeButtons[i] = buttons[i].GetComponent<Button>();
+            upgradeButtons[i].onClick.AddListener(() => OnUpgradeButtonClick(index));
+        }
     }
-
     // Update is called once per frame
     void Update()
     {
-        
+        CheckUpgradeConditions();
     }
 
-    public void ChooseUpgrade()
+    private void CheckUpgradeConditions()
     {
-        uiManager.PauseGame();
-        upgradePanel.SetActive(true);
+        // SwordMan Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
+        CheckMinionUpgradeConditions(0, baseManager.unitTiers[MinionType.SwordMan], upgradeSlivers[0], upgradeGolds[0], upgradePlatinums[0]);
 
-        // Create a list of all possible upgrade types
-        List<UpgradeType> availableUpgrades = new List<UpgradeType>((UpgradeType[])System.Enum.GetValues(typeof(UpgradeType)));
-        Shuffle(availableUpgrades);
-    
-        foreach (var button in buttons)
-        {
-            UpgradeType selectedUpgrade;
+        // Priest Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
+        CheckMinionUpgradeConditions(1, baseManager.unitTiers[MinionType.Priest], upgradeSlivers[1], upgradeGolds[1], upgradePlatinums[1]);
 
-            while (true)
-            {
-                // Randomly select an upgrade type from the shuffled list
-                int randIndex = Random.Range(0, availableUpgrades.Count);
-                selectedUpgrade = availableUpgrades[randIndex];
-
-                // Check conditions for upgrade eligibility
-                if (CanAssignUpgrade(selectedUpgrade))
-                {
-                    // Set the upgrade type and update the button
-                    Reward reward = button.GetComponent<Reward>();
-                    reward.upgradeType = selectedUpgrade;
-                    reward.UpdateButton();
-                
-                    // Remove assigned upgrade from the list
-                    availableUpgrades.RemoveAt(randIndex); 
-                    break; // Exit loop once upgrade is assigned
-                }
-            }
-
-            Debug.Log($"Button {button.name} selected upgrade {selectedUpgrade}");
-        }
-        /*foreach (var button in buttons)
-        {
-            UpgradeType selectedUpgrade;
-            
-            while (true)
-            {
-                // Randomly select an upgrade type from the list
-                int randIndex = Random.Range(0, availableUpgrades.Count);
-                selectedUpgrade = availableUpgrades[randIndex];
-
-                // Check conditions before assigning the upgrade type
-                //-------------------------------------For Contain Max Type----------------------------------------//
-                if (selectedUpgrade == UpgradeType.4 &&
-                    player.GetComponent<PlayerController>().reservePositions.Count > 0)
-                {
-                    button.GetComponent<Reward>().upgradeType = selectedUpgrade;
-                    button.GetComponent<Reward>().UpdateButton();
-                    availableUpgrades.RemoveAt(randIndex);
-                    break; // Exit the while loop once an upgrade is assigned
-                }
-                else if (selectedUpgrade == UpgradeType.5 &&
-                         player.GetComponent<PlayerController>().ShootingCooldown >= 0.5f)
-                {
-                    button.GetComponent<Reward>().upgradeType = selectedUpgrade;
-                    button.GetComponent<Reward>().UpdateButton();
-                    availableUpgrades.RemoveAt(randIndex);
-                    break; // Exit the while loop once an upgrade is assigned
-                }
-                //-------------------------------------For Contain Max Type----------------------------------------//
-                //-------------------------------------For Unlimit Type----------------------------------------//
-                else if (selectedUpgrade == UpgradeType.1 || selectedUpgrade == UpgradeType.2 || selectedUpgrade == UpgradeType.3)
-                {
-                    button.GetComponent<Reward>().upgradeType = selectedUpgrade;
-                    button.GetComponent<Reward>().UpdateButton();
-                    availableUpgrades.RemoveAt(randIndex);
-                    break; // Exit the while loop once an upgrade is assigned
-                }
-                // If conditions are met or no special condition is required, assign and remove the upgrade type
-            }
-            Debug.Log($"Button {button.name} selected upgrade {selectedUpgrade}");
-        }*/
+        // HorseMan Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
+        CheckMinionUpgradeConditions(2, baseManager.unitTiers[MinionType.HorseMan], upgradeSlivers[2], upgradeGolds[2], upgradePlatinums[2]);
     }
-    
-    private void Shuffle<T>(List<T> list)
+
+    private void CheckMinionUpgradeConditions(int buttonIndex, UnitTier unitTier, int sliverCost, int goldCost, int platinumCost)
     {
-        for (int i = 0; i < list.Count; i++)
+        int playerMoney = GameData.Instance.moneySystem.PlayerMoney;
+        UnitTier currentTier = unitTier;
+
+        switch (currentTier)
         {
-            T temp = list[i];
-            int randomIndex = Random.Range(i, list.Count);
-            list[i] = list[randomIndex];
-            list[randomIndex] = temp;
-        }
-    }
-    
-    // Helper method to check if the upgrade can be assigned
-    private bool CanAssignUpgrade(UpgradeType selectedUpgrade)
-    {
-        switch (selectedUpgrade)
-        {
-            case UpgradeType.SwordManSilver:
-            case UpgradeType.PriestSilver:
-            case UpgradeType.HorseManSilver:
-                return true; // Silver upgrades are always available
-
-            case UpgradeType.SwordManGold:
-                return baseManager.HasUpgrade(UpgradeType.SwordManSilver);
-
-            case UpgradeType.PriestGold:
-                return baseManager.HasUpgrade(UpgradeType.PriestSilver);
-
-            case UpgradeType.HorseManGold:
-                return baseManager.HasUpgrade(UpgradeType.HorseManSilver);
-
-            case UpgradeType.SwordManPlatinum:
-                return baseManager.HasUpgrade(UpgradeType.SwordManGold);
-
-            case UpgradeType.PriestPlatinum:
-                return baseManager.HasUpgrade(UpgradeType.PriestGold);
-
-            case UpgradeType.HorseManPlatinum:
-                return baseManager.HasUpgrade(UpgradeType.HorseManGold);
-
+            case UnitTier.Common:
+                upgradeButtons[buttonIndex].gameObject.SetActive(playerMoney >= sliverCost);
+                break;
+            case UnitTier.Silver:
+                upgradeButtons[buttonIndex].gameObject.SetActive(playerMoney >= goldCost);
+                break;
+            case UnitTier.Gold:
+                upgradeButtons[buttonIndex].gameObject.SetActive(playerMoney >= platinumCost);
+                break;
             default:
-                return false; // Any unhandled upgrade type is invalid
+                upgradeButtons[buttonIndex].gameObject.SetActive(false);
+                break;
         }
     }
+
+    public void OnUpgradeButtonClick(int buttonIndex)
+    {
+        selectedMinion = (MinionType)buttonIndex;
+        UnitTier currentTier = baseManager.unitTiers[selectedMinion];
+
+        Debug.Log($"Upgrade button clicked for Minion: {selectedMinion} (Current Tier: {currentTier})");
+
+        switch (currentTier)
+        {
+            case UnitTier.Common:
+                if (GameData.Instance.moneySystem.PlayerMoney >= upgradeSlivers[buttonIndex])
+                {
+                    PerformUpgrade(UnitTier.Silver, upgradeSlivers[buttonIndex]);
+                }
+                else
+                {
+                    Debug.Log("Not enough money to upgrade to Silver.");
+                }
+                break;
+
+            case UnitTier.Silver:
+                if (GameData.Instance.moneySystem.PlayerMoney >= upgradeGolds[buttonIndex])
+                {
+                    PerformUpgrade(UnitTier.Gold, upgradeGolds[buttonIndex]);
+                }
+                else
+                {
+                    Debug.Log("Not enough money to upgrade to Gold.");
+                }
+                break;
+
+            case UnitTier.Gold:
+                if (GameData.Instance.moneySystem.PlayerMoney >= upgradePlatinums[buttonIndex])
+                {
+                    PerformUpgrade(UnitTier.Platinum, upgradePlatinums[buttonIndex]);
+                }
+                else
+                {
+                    Debug.Log("Not enough money to upgrade to Platinum.");
+                }
+                break;
+
+            case UnitTier.Platinum:
+                Debug.Log($"{selectedMinion} is already at the highest tier.");
+                break;
+        }
+    }
+
+    private void PerformUpgrade(UnitTier newTier, int cost)
+    {
+        GameData.Instance.moneySystem.SpendMoney(cost);
+        baseManager.unitTiers[selectedMinion] = newTier;
+        Debug.Log($"Successfully upgraded {selectedMinion} to {newTier}!");
+    }
+    
 }

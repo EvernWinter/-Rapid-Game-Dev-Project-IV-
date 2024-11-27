@@ -28,7 +28,7 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private Transform minionSpawn;
     [SerializeField] private int[] manas;
     [SerializeField] private int enemiesRemainingInWave = 0;
-    private HashSet<UpgradeType> unlockedUpgrades = new HashSet<UpgradeType>();
+    public Dictionary<MinionType, UnitTier> unitTiers;
     
     [Header("Cooldown Button")]
     [SerializeField] private Button[] buttons;
@@ -40,6 +40,8 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private GameObject[] costPanels;
     [SerializeField] private GameObject[] cdPanels;
     [SerializeField] private GameObject[] noPanels;
+    [SerializeField] private RectTransform notified;
+    private bool isNotified;
     private Vector3[] originalScale;
     
     [Header("Game Data")]
@@ -62,6 +64,12 @@ public class BaseManager : MonoBehaviour
             { EnemyType.Sword, enemyMinionPrefabs[0] },
             { EnemyType.Priest, enemyMinionPrefabs[1] },
             { EnemyType.HorseMan, enemyMinionPrefabs[2] }
+        };
+        unitTiers = new Dictionary<MinionType,UnitTier>
+        {
+            { MinionType.SwordMan, UnitTier.Common },
+            { MinionType.Priest,  UnitTier.Common },
+            { MinionType.HorseMan,  UnitTier.Common }
         };
     }
 
@@ -106,6 +114,11 @@ public class BaseManager : MonoBehaviour
     void Update()
     {
         // Update cooldown timers and button states
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
         if (playerBase)
         {
             for (int i = 0; i < cooldownTimers.Length; i++)
@@ -130,8 +143,9 @@ public class BaseManager : MonoBehaviour
                     costPanels[i].SetActive(true);
                     cdPanels[i].SetActive(false);
                 }
+                
             }
-
+            
             for (int i = 0; i < manas.Length; i++)
             {
                 if (data.manaSystem.CurrentMana < manas[i] && buttons[i] != null)
@@ -145,7 +159,6 @@ public class BaseManager : MonoBehaviour
             }
         }
     }
-    
     private void SpawnMinion(int index)
     {
         if (playerBase)
@@ -164,6 +177,33 @@ public class BaseManager : MonoBehaviour
             {
                 buttons[index].GetComponent<RectTransform>().DOShakePosition(0.5f, strength: new Vector3(5f, 5f, 0f), vibrato: 8, randomness: 70)
                     .SetEase(Ease.OutQuad);
+                if (!isNotified)
+                {
+                    notified.DOAnchorPos(new Vector2(notified.anchoredPosition.x, 450f), 1f)  // Move down
+                        .SetEase(Ease.InOutQuad)
+                        .OnStart(() =>
+                        {
+                            // Set the flag to true when the movement starts
+                            if (!isNotified)
+                            {
+                                isNotified = true;
+                            }
+                        })
+                        .OnComplete(() =>
+                        {
+                            // Wait for 1 second, then move back up
+                            DOVirtual.DelayedCall(1f, () =>
+                            {
+                                notified.DOAnchorPos(new Vector2(notified.anchoredPosition.x, 600f), 1f)
+                                    .SetEase(Ease.InOutQuad)
+                                    .OnComplete(() =>
+                                    {
+                                        // Once the movement is complete, reset the flag
+                                        isNotified = false;
+                                    });
+                            });
+                        });
+                }
             }
         }
     }
@@ -189,6 +229,7 @@ public class BaseManager : MonoBehaviour
     private void OnBaseDestroyed()
     {
         Debug.Log("Base destroyed! Game over!");
+        Destroy(gameObject);
     }
     
     private IEnumerator HandleEnemyWaves()
@@ -256,19 +297,6 @@ public class BaseManager : MonoBehaviour
         }
     }
     
-    public bool HasUpgrade(UpgradeType upgradeType)
-    {
-        return unlockedUpgrades.Contains(upgradeType);
-    }
-
-    public void UnlockUpgrade(UpgradeType upgradeType)
-    {
-        if (!unlockedUpgrades.Contains(upgradeType))
-        {
-            unlockedUpgrades.Add(upgradeType);
-            Debug.Log($"Unlocked upgrade: {upgradeType}");
-        }
-    }
     
     public void OnEnemyDeath()
     {
@@ -287,4 +315,6 @@ public class BaseManager : MonoBehaviour
         public EnemyType unit;
         public int count;
     }
+    
+    
 }
