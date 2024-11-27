@@ -31,7 +31,7 @@ public class Minion_Pirest : CharacterEntity
         base.UpdateEntity();
     }
 
-    private void HandleState()
+    protected override void HandleState()
     {
         switch (currentState)
         {
@@ -59,7 +59,7 @@ public class Minion_Pirest : CharacterEntity
         }
     }
 
-    private void Attack()
+    protected override void Attack()
     {
         rb.velocity = Vector2.zero;
 

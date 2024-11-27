@@ -36,35 +36,35 @@ public class Minion_Archer : CharacterEntity
         base.UpdateEntity();
     }
 
-    private void HandleState()
-    {
-        switch (currentState)
-        {
-            case CharacterState.Run:
-                Walk();
-                break;
+    // protected override void HandleState()
+    // {
+    //     switch (currentState)
+    //     {
+    //         case CharacterState.Run:
+    //             Walk();
+    //             break;
+    //
+    //         case CharacterState.Attack:
+    //
+    //             if (_targetDetector.enemiesInRange.Count > 0)
+    //             {
+    //                 Attack();
+    //             }
+    //             else
+    //             {
+    //                 currentState = CharacterState.Run;
+    //             }
+    //             break;
+    //
+    //         case CharacterState.Died:
+    //             characterCollider.enabled = false;
+    //             rb.velocity = Vector2.zero;
+    //
+    //             break;
+    //     }
+    // }
 
-            case CharacterState.Attack:
-
-                if (_targetDetector.enemiesInRange.Count > 0)
-                {
-                    Attack();
-                }
-                else
-                {
-                    currentState = CharacterState.Run;
-                }
-                break;
-
-            case CharacterState.Died:
-                characterCollider.enabled = false;
-                rb.velocity = Vector2.zero;
-
-                break;
-        }
-    }
-
-    private void Attack()
+    protected override void Attack()
     {
         rb.velocity = Vector2.zero;
 
@@ -116,6 +116,10 @@ public class Minion_Archer : CharacterEntity
             float rotationAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
             arrow.transform.rotation = Quaternion.Euler(0, 0, rotationAngle);
             _characterAnimator.OnAttack?.Invoke();
+            if (_characterSFX != null)
+            {
+                _characterSFX.OnAttack?.Invoke();
+            }
         }
     }
 }

@@ -29,35 +29,35 @@ public class Minion_Swordman : CharacterEntity
         base.UpdateEntity();
     }
 
-    private void HandleState()
-    {
-        switch (currentState)
-        {
-            case CharacterState.Run:
-                Walk();
-                break;
+    // protected override void HandleState()
+    // {
+    //     switch (currentState)
+    //     {
+    //         case CharacterState.Run:
+    //             Walk();
+    //             break;
+    //
+    //         case CharacterState.Attack:
+    //
+    //             if (_targetDetector.enemiesInRange.Count > 0)
+    //             {
+    //                 Attack();
+    //             }
+    //             else
+    //             {
+    //                 currentState = CharacterState.Run;
+    //             }
+    //             break;
+    //
+    //         case CharacterState.Died:
+    //             characterCollider.enabled = false;
+    //             rb.velocity = Vector2.zero;
+    //
+    //             break;
+    //     }
+    // }
 
-            case CharacterState.Attack:
-
-                if (_targetDetector.enemiesInRange.Count > 0)
-                {
-                    Attack();
-                }
-                else
-                {
-                    currentState = CharacterState.Run;
-                }
-                break;
-
-            case CharacterState.Died:
-                characterCollider.enabled = false;
-                rb.velocity = Vector2.zero;
-
-                break;
-        }
-    }
-
-    private void Attack()
+    protected override void Attack()
     {
         rb.velocity = Vector2.zero;
 
@@ -71,6 +71,11 @@ public class Minion_Swordman : CharacterEntity
                 if(_targetDetector.baseManagerInRange != null && _targetDetector.baseManagerInRange.GetComponent<BaseManager>().baseHealth > 0)
                 {
                     _targetDetector.baseManagerInRange.TakeDamage(this._attackDamage);
+                    _characterAnimator.OnAttack?.Invoke();
+                    if (_characterSFX != null)
+                    {
+                        _characterSFX.OnAttack?.Invoke();
+                    }
                 }
                 else if (_targetDetector.enemiesInRange.Count > 0)
                 {

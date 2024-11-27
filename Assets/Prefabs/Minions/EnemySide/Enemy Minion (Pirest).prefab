@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterRenderer: {fileID: 4305332101290363413}
-  _normalSprite: {fileID: 21300000, guid: 799e1dbe841e01043a0815c5f2a2b696, type: 3}
-  _damagedSprite: {fileID: 21300000, guid: 430208cca9007744a84b7afa4522828b, type: 3}
+  _normalSprite: {fileID: 21300000, guid: 8480656fce848ac49a33e0ef726b82e6, type: 3}
+  _damagedSprite: {fileID: 21300000, guid: 8717c9b5f7074c7479be1a84f1c37da7, type: 3}
   _damagedDuration: 1
   _hitRotationAngle: 10
   _hitRotationDuration: 0.2
@@ -677,7 +677,7 @@ SpriteRenderer:
   m_SortingLayerID: -697677197
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 799e1dbe841e01043a0815c5f2a2b696, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8480656fce848ac49a33e0ef726b82e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0

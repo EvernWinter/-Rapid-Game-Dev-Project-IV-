@@ -82,6 +82,36 @@ public class CharacterEntity : MonoBehaviour
     {
         
     }
+
+    protected virtual void HandleState()
+    {
+        switch (currentState)
+        {
+            case CharacterState.Run:
+                Walk();
+                break;
+
+            case CharacterState.Attack:
+
+                if (_targetDetector.enemiesInRange.Count > 0 || _targetDetector.baseManagerInRange != null)
+                {
+                    Attack();
+                }
+                else
+                {
+                    currentState = CharacterState.Run;
+                }
+                break;
+
+            case CharacterState.Died:
+                characterCollider.enabled = false;
+                rb.velocity = Vector2.zero;
+
+                break;
+        }
+    }
+    
+    protected virtual void Attack(){}
     
     private void DamagedFeedback()
     {

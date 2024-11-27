@@ -234,9 +234,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c4115359c9e4c45a7e8afa0df162f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterRenderer: {fileID: 0}
-  _normalSprite: {fileID: 0}
-  _damagedSprite: {fileID: 0}
+  _characterRenderer: {fileID: 6065990483001741634}
+  _normalSprite: {fileID: 21300000, guid: 08c76790944c5fb4bad9d97f6da4355d, type: 3}
+  _damagedSprite: {fileID: 21300000, guid: 3cb1cbbe4c952d44fa5db0f29414dba1, type: 3}
   _damagedDuration: 1
   _hitRotationAngle: 10
   _hitRotationDuration: 0.2
@@ -677,7 +677,7 @@ SpriteRenderer:
   m_SortingLayerID: -697677197
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ab3cf6c5a7a734744a846f4554dd793c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08c76790944c5fb4bad9d97f6da4355d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
