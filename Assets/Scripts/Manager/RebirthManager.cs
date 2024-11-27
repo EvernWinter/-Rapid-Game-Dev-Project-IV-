@@ -47,23 +47,28 @@ public class RebirthManager : MonoBehaviour
 
     private void UICooldown()
     {
-        if (cooldownTimer < 0)
+        if (cooldownTimer > 0) // Check if the cooldown timer is greater than 0
         {
             // Decrease the cooldown timer
-            cooldownTimer += Time.deltaTime;
+            cooldownTimer -= Time.deltaTime;
 
             // Normalize the cooldown for the fillAmount
-            float normalizedCooldown =  (cooldownTimer / cooldown);
+            float normalizedCooldown = 1 - (cooldownTimer / cooldown); // This normalizes the cooldown so it fills from 0 to 1
 
             // Update the cooldown bar fill and button state
             blackBorderImage.fillAmount = normalizedCooldown;
             rebirthImage.fillAmount = normalizedCooldown;
             fireImage.fillAmount = normalizedCooldown;
+
+            // Disable button when cooldown is not finished
             rebirthButton.interactable = cooldownTimer <= 0;
         }
         else
         {
-            
+            // In case cooldownTimer is below zero, make sure the UI elements are fully reset (optional)
+            blackBorderImage.fillAmount = 1;
+            rebirthImage.fillAmount = 1;
+            fireImage.fillAmount = 1;
         }
     }
 }
