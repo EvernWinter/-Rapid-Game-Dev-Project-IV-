@@ -408,6 +408,7 @@ MonoBehaviour:
     _isInvulnerable: 0
   currentState: 0
   characterSide: 0
+  unitType: 4
   _entityName: Archer
   _entityDescription: He's holding a bow. can shoot an arrow from far range.
   baseManager: {fileID: 0}
@@ -427,6 +428,7 @@ MonoBehaviour:
   attackCooldownDuration: 1.5
   _characterAnimator: {fileID: 0}
   _characterSFX: {fileID: 0}
+  rebirthOrb: {fileID: 6286209386262093751, guid: 31b34be0cd03fd64aa73f0e343772fb7, type: 3}
   arrowPrefab: {fileID: 7099855677672156472, guid: feb737945fdae6042998c72740c4b1f7, type: 3}
   initialSpeed: 10
   target: {fileID: 0}

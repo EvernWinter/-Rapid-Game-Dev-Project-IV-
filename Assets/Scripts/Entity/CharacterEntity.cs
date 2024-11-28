@@ -12,6 +12,8 @@ public class CharacterEntity : MonoBehaviour
     [SerializeField] protected CharacterState currentState;
     [SerializeField] public enum CharacterSide { Ally, Enemy }
     [SerializeField] public CharacterSide characterSide;
+    [SerializeField] protected enum UnitType { Swordman, Pirest, Horseman, Shield, Archer }
+    [SerializeField] protected UnitType unitType;
 
     [Header("Information")] 
     [SerializeField] protected string _entityName;
@@ -54,6 +56,10 @@ public class CharacterEntity : MonoBehaviour
     [Header("Audio")]
     [SerializeField] protected MinionSFX _characterSFX;
     public MinionSFX CharacterSFX => _characterSFX;
+
+    [Header("GameObject Prefab")]
+    [SerializeField] private GameObject rebirthOrb;
+
     protected virtual void OnEnable()
     {
         if (GetComponentInChildren<CharacterAnimationBase>() != null)
@@ -112,6 +118,35 @@ public class CharacterEntity : MonoBehaviour
                 characterCollider.enabled = false;
                 rb.velocity = Vector2.zero;
 
+                break;
+        }
+    }
+
+    protected void CreateRebirthOrb()
+    {
+        GameObject orb = Instantiate(rebirthOrb);
+        orb.transform.position = gameObject.transform.position;
+
+        switch (unitType)
+        {
+            case UnitType.Swordman:
+                orb.GetComponent<RebirthOrb>().unitType = RebirthOrb.UnitType.Swordman;
+                break;
+
+            case UnitType.Pirest:
+                orb.GetComponent<RebirthOrb>().unitType = RebirthOrb.UnitType.Pirest;
+                break;
+
+            case UnitType.Horseman:
+                orb.GetComponent<RebirthOrb>().unitType = RebirthOrb.UnitType.Horseman;
+                break;
+
+            case UnitType.Shield:
+                orb.GetComponent<RebirthOrb>().unitType = RebirthOrb.UnitType.Shield;
+                break;
+
+            case UnitType.Archer:
+                orb.GetComponent<RebirthOrb>().unitType = RebirthOrb.UnitType.Archer;
                 break;
         }
     }
@@ -258,6 +293,10 @@ public class CharacterEntity : MonoBehaviour
         if (characterSide == CharacterSide.Enemy)
         {
             baseManager.OnEnemyDeath();
+        }
+        else
+        {
+            CreateRebirthOrb();
         }
         
         _characterSFX.OnDead?.Invoke();

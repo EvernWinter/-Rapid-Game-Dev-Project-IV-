@@ -14,7 +14,23 @@ public class RebirthManager : MonoBehaviour
     [SerializeField] private float cooldown;
     [SerializeField] private float cooldownTimer;
     private Vector3 originalScale;
-    // Start is called before the first frame update
+
+    [SerializeField] public List<GameObject> rebirthOrbs;
+
+    public static RebirthManager Instance;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         rebirthButton.GetComponent<Button>().onClick.AddListener(() => Rebirth());
@@ -24,7 +40,6 @@ public class RebirthManager : MonoBehaviour
         fireImage.transform.localScale = Vector3.zero;
     }
 
-    // Update is called once per frame
     void Update()
     {
         UICooldown();
@@ -45,6 +60,11 @@ public class RebirthManager : MonoBehaviour
 
             // Reset cooldownTimer after rebirth
             cooldownTimer = 0;
+
+            foreach(GameObject rebirthOrb in rebirthOrbs)
+            {
+                rebirthOrb.GetComponent<RebirthOrb>().Rebirth();
+            }
         }
         else
         {
@@ -53,6 +73,16 @@ public class RebirthManager : MonoBehaviour
             rebirthButton.GetComponent<RectTransform>().DOShakePosition(0.5f, strength: new Vector3(5f, 5f, 0f), vibrato: 8, randomness: 70)
                 .SetEase(Ease.OutQuad);
         }
+    }
+
+    public void AddRebirthOrb(GameObject orb)
+    {
+        rebirthOrbs.Add(orb);
+    }
+
+    public void RemoveRebirthOrb(GameObject orb)
+    {
+        rebirthOrbs.Remove(orb);
     }
 
     private void UICooldown()

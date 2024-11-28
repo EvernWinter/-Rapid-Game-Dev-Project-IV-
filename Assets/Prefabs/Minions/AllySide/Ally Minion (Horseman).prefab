@@ -140,6 +140,7 @@ MonoBehaviour:
     _isInvulnerable: 0
   currentState: 0
   characterSide: 0
+  unitType: 2
   _entityName: Horseman
   _entityDescription: He's riding a horse and can attack bravery
   baseManager: {fileID: 0}
@@ -159,6 +160,7 @@ MonoBehaviour:
   attackCooldownDuration: 1.2
   _characterAnimator: {fileID: 1996604051273333480}
   _characterSFX: {fileID: 0}
+  rebirthOrb: {fileID: 6286209386262093751, guid: 31b34be0cd03fd64aa73f0e343772fb7, type: 3}
 --- !u!212 &229204718126871422
 SpriteRenderer:
   m_ObjectHideFlags: 0

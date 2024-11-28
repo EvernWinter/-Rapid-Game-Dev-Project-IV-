@@ -210,6 +210,7 @@ MonoBehaviour:
     _isInvulnerable: 0
   currentState: 0
   characterSide: 0
+  unitType: 0
   _entityName: Swordman
   _entityDescription: He's holding sword and attack in close range.
   baseManager: {fileID: 0}
@@ -229,6 +230,7 @@ MonoBehaviour:
   attackCooldownDuration: 1.5
   _characterAnimator: {fileID: 5666049233261036577}
   _characterSFX: {fileID: 2580568593215076832}
+  rebirthOrb: {fileID: 6286209386262093751, guid: 31b34be0cd03fd64aa73f0e343772fb7, type: 3}
 --- !u!212 &229204718126871422
 SpriteRenderer:
   m_ObjectHideFlags: 0
