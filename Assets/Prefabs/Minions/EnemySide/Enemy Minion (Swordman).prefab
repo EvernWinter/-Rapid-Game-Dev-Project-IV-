@@ -202,6 +202,7 @@ MonoBehaviour:
     _isInvulnerable: 0
   currentState: 0
   characterSide: 1
+  _characterType: 0
   _entityName: Swordman
   _entityDescription: He's holding sword and attack in close range.
   baseManager: {fileID: 0}
@@ -215,7 +216,7 @@ MonoBehaviour:
   _isOnField: 0
   _targetDetector: {fileID: 2937529039760323502}
   _attackDamage: 20
-  _defense: 10
+  _defense: 8
   _isAOE: 0
   nextAttack: 0
   attackCooldownDuration: 1.5

@@ -33,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7121499036870175136}
+  - {fileID: 8309121715478631848}
   - {fileID: 384612864611043798}
   m_Father: {fileID: 3227810179278284260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -106,6 +107,7 @@ MonoBehaviour:
   _damagedDuration: 1
   _hitRotationAngle: 10
   _hitRotationDuration: 0.2
+  _lanceOrigin: {fileID: 8309121715478631848}
   _lanceRenderer: {fileID: 569261890647729430}
   _thrustDistance: -0.2
   _thrustDuration: 0.2
@@ -122,6 +124,37 @@ SortingGroup:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!1 &507367069656064421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8309121715478631848}
+  m_Layer: 9
+  m_Name: weaponOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8309121715478631848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507367069656064421}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.564, y: 0.44399995, z: 0}
+  m_LocalScale: {x: 0.5937, y: 0.5937, z: 0.5937}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4508566248341855531}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &569261890647729430
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 569261890647729430}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.21599995, y: 0.18899983, z: 0}
+  m_LocalPosition: {x: 0.564, y: 0.529, z: 0}
   m_LocalScale: {x: 0.5937, y: 0.5937, z: 0.5937}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -211,12 +244,14 @@ MonoBehaviour:
   currentState: 0
   characterSide: 0
   unitType: 3
+  _characterType: 0
   _entityName: Shield
   _entityDescription: He's holding sword and attack in close range.
   baseManager: {fileID: 0}
   rb: {fileID: 897097403902572957}
   characterCollider: {fileID: 663567818737083761}
   sprRndr: {fileID: 229204718126871422}
+  _characterTierNumber: 0
   _characterTier: 0
   _characterTierStat: []
   _moveSpeed: 1.2
@@ -455,7 +490,7 @@ Transform:
   m_GameObject: {fileID: 3772621440200980620}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.025, y: 0.63, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

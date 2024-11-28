@@ -141,12 +141,14 @@ MonoBehaviour:
   currentState: 0
   characterSide: 0
   unitType: 2
+  _characterType: 0
   _entityName: Horseman
   _entityDescription: He's riding a horse and can attack bravery
   baseManager: {fileID: 0}
   rb: {fileID: 897097403902572957}
   characterCollider: {fileID: 663567818737083761}
   sprRndr: {fileID: 229204718126871422}
+  _characterTierNumber: 0
   _characterTier: 0
   _characterTierStat: []
   _moveSpeed: 4
@@ -307,6 +309,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2420896505823666967}
+  - {fileID: 3632238503551609311}
   - {fileID: 5808347086421488851}
   m_Father: {fileID: 3227810179278284260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -328,6 +331,7 @@ MonoBehaviour:
   _damagedDuration: 1
   _hitRotationAngle: 10
   _hitRotationDuration: 0.2
+  _lanceOrigin: {fileID: 3632238503551609311}
   _lanceRenderer: {fileID: 8828865530605721486}
   _thrustDistance: -1
   _thrustDuration: 0.2
@@ -577,6 +581,37 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3
+--- !u!1 &7064709367364443382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3632238503551609311}
+  m_Layer: 9
+  m_Name: weaponOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3632238503551609311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7064709367364443382}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1523486647550158206}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8389226809969615120
 GameObject:
   m_ObjectHideFlags: 0

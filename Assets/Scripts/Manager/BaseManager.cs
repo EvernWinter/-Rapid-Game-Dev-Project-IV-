@@ -7,11 +7,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EnemyType
+public enum CharacterType
 {
     Sword,
     Priest,
-    HorseMan
+    HorseMan,
+    Archer,
+    Shield
 }
 
 public class BaseManager : MonoBehaviour
@@ -33,7 +35,7 @@ public class BaseManager : MonoBehaviour
     [Header("Cooldown Button")]
     [SerializeField] private Button[] buttons;
     [SerializeField] private TMP_Text[] manaText;
-    private Dictionary<EnemyType, GameObject> enemyTypeToPrefab;
+    private Dictionary<CharacterType, GameObject> enemyTypeToPrefab;
     [SerializeField] private float[] spawnCooldowns;
     [SerializeField] private Image[] cdBar;
     private float[] cooldownTimers;
@@ -59,11 +61,11 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private TMP_Text waveText;
     private void Awake()
     {
-        enemyTypeToPrefab = new Dictionary<EnemyType, GameObject>
+        enemyTypeToPrefab = new Dictionary<CharacterType, GameObject>
         {
-            { EnemyType.Sword, enemyMinionPrefabs[0] },
-            { EnemyType.Priest, enemyMinionPrefabs[1] },
-            { EnemyType.HorseMan, enemyMinionPrefabs[2] }
+            { CharacterType.Sword, enemyMinionPrefabs[0] },
+            { CharacterType.Priest, enemyMinionPrefabs[1] },
+            { CharacterType.HorseMan, enemyMinionPrefabs[2] }
         };
         unitTiers = new Dictionary<MinionType,UnitTier>
         {
@@ -312,7 +314,7 @@ public class BaseManager : MonoBehaviour
     [System.Serializable]
     public class WaveUnit
     {
-        public EnemyType unit;
+        public CharacterType unit;
         public int count;
     }
     

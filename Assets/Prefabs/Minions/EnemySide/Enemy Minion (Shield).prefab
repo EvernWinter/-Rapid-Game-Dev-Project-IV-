@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1240458863735910490}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.025, y: 0.63, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4134786445905013922}
-  - component: {fileID: 3023917826931368948}
+  - component: {fileID: 174241407565705212}
   - component: {fileID: 3769705238282773861}
   m_Layer: 9
   m_Name: SFX
@@ -117,7 +117,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3227810179278284260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3023917826931368948
+--- !u!114 &174241407565705212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,14 +126,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2419369233763328550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ada54b9414213e479d56f24d25fa89e, type: 3}
+  m_Script: {fileID: 11500000, guid: 559b4578e4ad30248a816b60951a4c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 3769705238282773861}
-  _attackSFX: {fileID: 8300000, guid: 105247173c6c7194d8e25abd1991d34f, type: 3}
-  _damagedSFX: {fileID: 8300000, guid: 744161516db04b448a037f7b2d35a40d, type: 3}
-  _deadSFX: {fileID: 8300000, guid: 744161516db04b448a037f7b2d35a40d, type: 3}
-  _specialSFX: []
+  _attackSFX: {fileID: 8300000, guid: dd9a513aa28504d4ba02070d5b6a1c22, type: 3}
+  _damagedSFX: {fileID: 8300000, guid: c65400392b7302c4399253d06fe0efed, type: 3}
+  _deadSFX: {fileID: 8300000, guid: dd9a513aa28504d4ba02070d5b6a1c22, type: 3}
+  _specialSFX:
+  - {fileID: 8300000, guid: c65400392b7302c4399253d06fe0efed, type: 3}
+  _characterEntity: {fileID: 5710838961901692638}
 --- !u!82 &3769705238282773861
 AudioSource:
   m_ObjectHideFlags: 0
@@ -146,7 +148,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -263,6 +265,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8100015045898147230}
+  - {fileID: 6319547504412261333}
   - {fileID: 8664827169634562968}
   m_Father: {fileID: 3227810179278284260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -336,7 +339,8 @@ MonoBehaviour:
   _damagedDuration: 1
   _hitRotationAngle: 10
   _hitRotationDuration: 0.2
-  _lanceRenderer: {fileID: 0}
+  _lanceOrigin: {fileID: 6319547504412261333}
+  _lanceRenderer: {fileID: 7331673009776426505}
   _thrustDistance: 0.2
   _thrustDuration: 0.2
   _isFacingRight: 0
@@ -408,6 +412,7 @@ MonoBehaviour:
     _isInvulnerable: 0
   currentState: 0
   characterSide: 1
+  _characterType: 4
   _entityName: Swordman
   _entityDescription: He's holding sword and attack in close range.
   baseManager: {fileID: 0}
@@ -421,12 +426,12 @@ MonoBehaviour:
   _isOnField: 0
   _targetDetector: {fileID: 2937529039760323502}
   _attackDamage: 7
-  _defense: 20
-  _isAOE: 0
+  _defense: 12
+  _isAOE: 1
   nextAttack: 0
   attackCooldownDuration: 1.5
   _characterAnimator: {fileID: 0}
-  _characterSFX: {fileID: 3023917826931368948}
+  _characterSFX: {fileID: 0}
 --- !u!212 &229204718126871422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -625,6 +630,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4146162154861545822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6319547504412261333}
+  m_Layer: 9
+  m_Name: weaponOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6319547504412261333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146162154861545822}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.8000002, y: 0.50999975, z: 0}
+  m_LocalScale: {x: 0.5937, y: 0.5937, z: 0.5937}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6822468767592223069}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5609407795182474204
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +772,7 @@ Transform:
   m_GameObject: {fileID: 7331673009776426505}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.43, y: 0.18899965, z: 0}
+  m_LocalPosition: {x: -0.8, y: 0.51, z: 0}
   m_LocalScale: {x: 0.5937, y: 0.5937, z: 0.5937}
   m_ConstrainProportionsScale: 0
   m_Children:

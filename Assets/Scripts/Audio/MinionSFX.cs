@@ -7,32 +7,21 @@ using UnityEngine;
 public class MinionSFX : MonoBehaviour
 {
 
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip _attackSFX;
-    [SerializeField] private AudioClip _damagedSFX;
-    [SerializeField] private AudioClip _deadSFX;
+    [SerializeField] protected AudioSource _audioSource;
+    [SerializeField] protected AudioClip _attackSFX;
+    [SerializeField] protected AudioClip _damagedSFX;
+    [SerializeField] protected AudioClip _deadSFX;
     [SerializeField] public AudioClip[] _specialSFX;
-    
+
     public Action OnAttack;
     public Action OnDamaged;
     public Action OnDead;
 
-    void Awake()
+    protected virtual void Awake()
     {
         OnAttack += () => _audioSource.PlayOneShot(_attackSFX);
         OnDamaged += () => _audioSource.PlayOneShot(_deadSFX);
         OnDead += () => _audioSource.PlayOneShot(_deadSFX);
     }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+

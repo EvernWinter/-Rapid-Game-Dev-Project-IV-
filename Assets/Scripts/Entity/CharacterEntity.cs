@@ -12,8 +12,12 @@ public class CharacterEntity : MonoBehaviour
     [SerializeField] protected CharacterState currentState;
     [SerializeField] public enum CharacterSide { Ally, Enemy }
     [SerializeField] public CharacterSide characterSide;
+
     [SerializeField] protected enum UnitType { Swordman, Pirest, Horseman, Shield, Archer }
     [SerializeField] protected UnitType unitType;
+
+    
+    [SerializeField] protected CharacterType _characterType;
 
     [Header("Information")] 
     [SerializeField] protected string _entityName;
@@ -25,9 +29,11 @@ public class CharacterEntity : MonoBehaviour
     [SerializeField] protected CapsuleCollider2D characterCollider;
     [SerializeField] protected SpriteRenderer sprRndr;
 
-    [Header("Character Tier")] 
+    [Header("Character Tier")]
+    [SerializeField] protected int _characterTierNumber = 0;
     [SerializeField] protected CharacterTier _characterTier;
     [SerializeField] protected List<CharacterStat> _characterTierStat;
+    public CharacterTier CharacterCurrentTier => _characterTier;
     
     [Header("Movement")]
     [SerializeField] protected float _moveSpeed = 10f;
@@ -91,8 +97,40 @@ public class CharacterEntity : MonoBehaviour
 
     public virtual void OnDeploy()
     {
-        
-    }
+        switch (_characterType)
+        {
+            case CharacterType.Sword:
+                _moveSpeed = TierManager.Instance.SwordManTierStats[_characterTierNumber].Speed;
+                _attackDamage = TierManager.Instance.SwordManTierStats[_characterTierNumber].Attack;
+                CharacterHealthComponent.SetMaxHP(TierManager.Instance.SwordManTierStats[_characterTierNumber].MaxHP);
+                _defense = TierManager.Instance.SwordManTierStats[_characterTierNumber].Defense;
+                break;
+            case CharacterType.Archer:
+                _moveSpeed = TierManager.Instance.ArcherTierStats[_characterTierNumber].Speed;
+                _attackDamage = TierManager.Instance.ArcherTierStats[_characterTierNumber].Attack;
+                CharacterHealthComponent.SetMaxHP(TierManager.Instance.ArcherTierStats[_characterTierNumber].MaxHP);
+                _defense = TierManager.Instance.ArcherTierStats[_characterTierNumber].Defense;
+                break;
+            case CharacterType.Priest:
+                _moveSpeed = TierManager.Instance.PriestTierStats[_characterTierNumber].Speed;
+                _attackDamage = TierManager.Instance.PriestTierStats[_characterTierNumber].Attack;
+                CharacterHealthComponent.SetMaxHP(TierManager.Instance.PriestTierStats[_characterTierNumber].MaxHP);
+                _defense = TierManager.Instance.PriestTierStats[_characterTierNumber].Defense;
+                break;
+            case CharacterType.Shield:
+                _moveSpeed = TierManager.Instance.ShieldTierStats[_characterTierNumber].Speed;
+                _attackDamage = TierManager.Instance.ShieldTierStats[_characterTierNumber].Attack;
+                CharacterHealthComponent.SetMaxHP(TierManager.Instance.ShieldTierStats[_characterTierNumber].MaxHP);
+                _defense = TierManager.Instance.ShieldTierStats[_characterTierNumber].Defense;
+                break;
+            case CharacterType.HorseMan:
+                _moveSpeed = TierManager.Instance.ShieldTierStats[_characterTierNumber].Speed;
+                _attackDamage = TierManager.Instance.ShieldTierStats[_characterTierNumber].Attack;
+                CharacterHealthComponent.SetMaxHP(TierManager.Instance.ShieldTierStats[_characterTierNumber].MaxHP);
+                _defense = TierManager.Instance.ShieldTierStats[_characterTierNumber].Defense;
+                break;
+        }
+    }   
 
     protected virtual void HandleState()
     {
@@ -204,17 +242,33 @@ public class CharacterEntity : MonoBehaviour
         
     }
     
-    private void DamagedFeedback()
+    protected virtual void DamagedFeedback(float knockbackFroce = 0.6f)
     {
         _characterSFX.OnDamaged?.Invoke();
         
         if (rb != null)
         {
+            if (_characterType == CharacterType.Shield)
+            {
+                knockbackFroce *= 0.5f;
+            }
+            else if (_characterType == CharacterType.Priest || _characterType == CharacterType.Archer)
+            {
+                knockbackFroce *= 2.5f;
+            }
+            else if (_characterType == CharacterType.HorseMan)
+            {
+                knockbackFroce *= 0.8f;
+            }
+            {
+                
+            }
+            
             // Determine the direction of knockback
             Vector2 knockbackDirection = characterSide == CharacterSide.Ally ? Vector2.left : Vector2.right;
         
             // Start coroutine for smooth knockback
-            StartCoroutine(SmoothKnockback(knockbackDirection, 0.5f, 0.2f)); // Adjust force and duration as needed
+            StartCoroutine(SmoothKnockback(knockbackDirection, knockbackFroce, 0.2f)); // Adjust force and duration as needed
         }
         else
         {
@@ -240,16 +294,16 @@ public class CharacterEntity : MonoBehaviour
 
         rb.position = targetPosition;
 
-        // Optionally move back to the original position for a recoil effect
-        elapsedTime = 0f;
-        while (elapsedTime < duration / 2)
-        {
-            elapsedTime += Time.deltaTime;
-            rb.position = Vector2.Lerp(targetPosition, originalPosition, elapsedTime / (duration / 2));
-            yield return null;
-        }
+        // // Optionally move back to the original position for a recoil effect
+        // elapsedTime = 0f;
+        // while (elapsedTime < duration / 2)
+        // {
+        //     elapsedTime += Time.deltaTime;
+        //     rb.position = Vector2.Lerp(targetPosition, originalPosition, elapsedTime / (duration / 2));
+        //     yield return null;
+        // }
 
-        rb.position = originalPosition;
+        //rb.position = originalPosition;
     }
 
     protected virtual void OnDisable()
@@ -351,6 +405,7 @@ public class CharacterEntity : MonoBehaviour
     
     public enum CharacterTier
     {
+        T0,
         T1,
         T2,
         T3,

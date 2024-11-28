@@ -45,26 +45,90 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SwordManTierStats>k__BackingField:
-  - <Speed>k__BackingField: 0
-    <MaxHP>k__BackingField: 0
-    <Attack>k__BackingField: 0
-    <Defense>k__BackingField: 0
-  - <Speed>k__BackingField: 0
-    <MaxHP>k__BackingField: 0
-    <Attack>k__BackingField: 0
-    <Defense>k__BackingField: 0
-  - <Speed>k__BackingField: 0
-    <MaxHP>k__BackingField: 0
-    <Attack>k__BackingField: 0
-    <Defense>k__BackingField: 0
-  - <Speed>k__BackingField: 0
-    <MaxHP>k__BackingField: 0
-    <Attack>k__BackingField: 0
-    <Defense>k__BackingField: 0
-  <PriestTierStats>k__BackingField: []
-  <HorseManTierStats>k__BackingField: []
-  <ArcherTierStats>k__BackingField: []
-  <ShieldTierStats>k__BackingField: []
+  - <Speed>k__BackingField: 1.2
+    <MaxHP>k__BackingField: 90
+    <Attack>k__BackingField: 20
+    <Defense>k__BackingField: 8
+  - <Speed>k__BackingField: 1.2
+    <MaxHP>k__BackingField: 105
+    <Attack>k__BackingField: 23
+    <Defense>k__BackingField: 10
+  - <Speed>k__BackingField: 1.2
+    <MaxHP>k__BackingField: 120
+    <Attack>k__BackingField: 26
+    <Defense>k__BackingField: 12
+  - <Speed>k__BackingField: 1.2
+    <MaxHP>k__BackingField: 150
+    <Attack>k__BackingField: 30
+    <Defense>k__BackingField: 14
+  <PriestTierStats>k__BackingField:
+  - <Speed>k__BackingField: 1
+    <MaxHP>k__BackingField: 60
+    <Attack>k__BackingField: 10
+    <Defense>k__BackingField: 3
+  - <Speed>k__BackingField: 1
+    <MaxHP>k__BackingField: 80
+    <Attack>k__BackingField: 12
+    <Defense>k__BackingField: 5
+  - <Speed>k__BackingField: 1
+    <MaxHP>k__BackingField: 90
+    <Attack>k__BackingField: 14
+    <Defense>k__BackingField: 8
+  - <Speed>k__BackingField: 1
+    <MaxHP>k__BackingField: 120
+    <Attack>k__BackingField: 18
+    <Defense>k__BackingField: 12
+  <HorseManTierStats>k__BackingField:
+  - <Speed>k__BackingField: 4
+    <MaxHP>k__BackingField: 200
+    <Attack>k__BackingField: 30
+    <Defense>k__BackingField: 10
+  - <Speed>k__BackingField: 4
+    <MaxHP>k__BackingField: 215
+    <Attack>k__BackingField: 35
+    <Defense>k__BackingField: 12
+  - <Speed>k__BackingField: 4
+    <MaxHP>k__BackingField: 230
+    <Attack>k__BackingField: 40
+    <Defense>k__BackingField: 14
+  - <Speed>k__BackingField: 4
+    <MaxHP>k__BackingField: 250
+    <Attack>k__BackingField: 50
+    <Defense>k__BackingField: 16
+  <ArcherTierStats>k__BackingField:
+  - <Speed>k__BackingField: 1.1
+    <MaxHP>k__BackingField: 70
+    <Attack>k__BackingField: 15
+    <Defense>k__BackingField: 5
+  - <Speed>k__BackingField: 1.1
+    <MaxHP>k__BackingField: 80
+    <Attack>k__BackingField: 18
+    <Defense>k__BackingField: 7
+  - <Speed>k__BackingField: 1.1
+    <MaxHP>k__BackingField: 90
+    <Attack>k__BackingField: 21
+    <Defense>k__BackingField: 9
+  - <Speed>k__BackingField: 1.1
+    <MaxHP>k__BackingField: 100
+    <Attack>k__BackingField: 25
+    <Defense>k__BackingField: 11
+  <ShieldTierStats>k__BackingField:
+  - <Speed>k__BackingField: 1.2
+    <MaxHP>k__BackingField: 150
+    <Attack>k__BackingField: 7
+    <Defense>k__BackingField: 12
+  - <Speed>k__BackingField: 1.2
+    <MaxHP>k__BackingField: 180
+    <Attack>k__BackingField: 8
+    <Defense>k__BackingField: 15
+  - <Speed>k__BackingField: 1.2
+    <MaxHP>k__BackingField: 210
+    <Attack>k__BackingField: 9
+    <Defense>k__BackingField: 18
+  - <Speed>k__BackingField: 1.2
+    <MaxHP>k__BackingField: 240
+    <Attack>k__BackingField: 11
+    <Defense>k__BackingField: 21
   <SwordManModifier>k__BackingField:
     <Speed>k__BackingField: 0
     <MaxHP>k__BackingField: 0

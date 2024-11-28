@@ -303,6 +303,7 @@ MonoBehaviour:
     _isInvulnerable: 0
   currentState: 0
   characterSide: 1
+  _characterType: 1
   _entityName: Pirest
   _entityDescription: He's a wise man who can attack enemy from a far range.
   baseManager: {fileID: 0}
@@ -315,14 +316,14 @@ MonoBehaviour:
   _deploymentCost: 10
   _isOnField: 0
   _targetDetector: {fileID: 2937529039760323502}
-  _attackDamage: 24
-  _defense: 5
+  _attackDamage: 10
+  _defense: 3
   _isAOE: 1
   nextAttack: 0
   attackCooldownDuration: 1.5
   _characterAnimator: {fileID: 0}
   _characterSFX: {fileID: 0}
-  healPoint: 15
+  healPoint: 12
 --- !u!212 &229204718126871422
 SpriteRenderer:
   m_ObjectHideFlags: 0
