@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterHealthComponent:
-    _maxHP: 300
-    _currentHP: 300
+    _maxHP: 200
+    _currentHP: 200
     _isInvulnerable: 0
   currentState: 0
   characterSide: 0
@@ -146,15 +146,17 @@ MonoBehaviour:
   rb: {fileID: 897097403902572957}
   characterCollider: {fileID: 663567818737083761}
   sprRndr: {fileID: 229204718126871422}
-  _moveSpeed: 9
+  _characterTier: 0
+  _characterTierStat: []
+  _moveSpeed: 4
   _deploymentCost: 10
   _isOnField: 0
   _targetDetector: {fileID: 2937529039760323502}
   _attackDamage: 30
-  _defense: 20
+  _defense: 12
   _isAOE: 0
   nextAttack: 0
-  attackCooldownDuration: 1.5
+  attackCooldownDuration: 1.2
   _characterAnimator: {fileID: 1996604051273333480}
   _characterSFX: {fileID: 0}
 --- !u!212 &229204718126871422

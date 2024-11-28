@@ -22,6 +22,10 @@ public class CharacterEntity : MonoBehaviour
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected CapsuleCollider2D characterCollider;
     [SerializeField] protected SpriteRenderer sprRndr;
+
+    [Header("Character Tier")] 
+    [SerializeField] protected CharacterTier _characterTier;
+    [SerializeField] protected List<CharacterStat> _characterTierStat;
     
     [Header("Movement")]
     [SerializeField] protected float _moveSpeed = 10f;
@@ -37,6 +41,7 @@ public class CharacterEntity : MonoBehaviour
     [SerializeField] protected int _attackDamage = 10;
     [SerializeField] protected int _defense = 10;
     [SerializeField] protected bool _isAOE = false;
+    [SerializeField] public int Defense => _defense;
 
     [SerializeField] protected float nextAttack;
     [SerializeField] protected float attackCooldownDuration = 1.5f;
@@ -110,8 +115,59 @@ public class CharacterEntity : MonoBehaviour
                 break;
         }
     }
-    
-    protected virtual void Attack(){}
+
+    protected virtual void Attack()
+    {
+        rb.velocity = Vector2.zero;
+
+        if (Time.time > nextAttack)
+        {
+            nextAttack = Time.time + attackCooldownDuration;
+
+            if (!_isAOE)
+            {
+                // Single target attack
+                if(_targetDetector.baseManagerInRange != null && _targetDetector.baseManagerInRange.GetComponent<BaseManager>().baseHealth > 0)
+                {
+                    _targetDetector.baseManagerInRange.TakeDamage(this._attackDamage);
+                    _characterAnimator.OnAttack?.Invoke();
+                    if (_characterSFX != null)
+                    {
+                        _characterSFX.OnAttack?.Invoke();
+                    }
+                }
+                else if (_targetDetector.enemiesInRange.Count > 0)
+                {
+                    _targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage, _targetDetector.enemiesInRange[0]._defense);
+                    _characterAnimator.OnAttack?.Invoke();
+                    if (_characterSFX != null)
+                    {
+                        _characterSFX.OnAttack?.Invoke();
+                    }
+                }
+            }
+            else
+            {
+                if (_targetDetector.baseManagerInRange != null && _targetDetector.baseManagerInRange.GetComponent<BaseManager>().baseHealth > 0)
+                {
+                    _targetDetector.baseManagerInRange.TakeDamage(this._attackDamage);
+                }
+
+                // AOE attack, hit all enemies in range
+                foreach (var enemy in _targetDetector.enemiesInRange)
+                {
+                    enemy.CharacterHealthComponent.TakeDamage(this._attackDamage, _targetDetector.enemiesInRange[0]._defense);
+                    _characterAnimator.OnAttack?.Invoke();
+                    if (_characterSFX != null)
+                    {
+                        _characterSFX.OnAttack?.Invoke();
+                    }
+                }
+            }
+        }
+
+        
+    }
     
     private void DamagedFeedback()
     {
@@ -288,17 +344,27 @@ public class HealthComponent
         _currentHP = Mathf.Clamp(_currentHP += healValue, 0, _maxHP);
     }
 
-    public void TakeDamage(float damageValue)
+    public void TakeDamage(float damageValue, int defense = 0)
     {
         if (_isInvulnerable)
         {
             return;
         }
-        
+
+        // Calculate the effective damage, limiting the defense reduction to a maximum of 80% of the damage value
+        float maxReduction = damageValue * 0.8f; // 80% of the damage
+        float reducedDamage = damageValue - Mathf.Min(defense, maxReduction);
+
+        // Ensure damage doesn't go negative
+        reducedDamage = Mathf.Max(reducedDamage, 0);
+
+        // Apply the damage
+        _currentHP = Mathf.Clamp(_currentHP - reducedDamage, 0, _maxHP);
+
         OnDamageTaken?.Invoke();
-        _currentHP = Mathf.Clamp(_currentHP -= damageValue, 0, _maxHP);
-        
     }
+
+    
 
     public void BecomeInvulnerable()
     {
@@ -330,7 +396,7 @@ public class CharacterStat
     /// <param name="amount">The amount to change Speed by.</param>
     public void ChangeSpeed(float amount)
     {
-        Speed += amount;
+        Speed = amount;
     }
 
     /// <summary>
@@ -339,7 +405,7 @@ public class CharacterStat
     /// <param name="amount">The amount to change MaxHP by.</param>
     public void ChangeMaxHP(int amount)
     {
-        MaxHP += amount;
+        MaxHP = amount;
     }
 
     /// <summary>
@@ -348,7 +414,7 @@ public class CharacterStat
     /// <param name="amount">The amount to change Attack by.</param>
     public void ChangeAttack(int amount)
     {
-        Attack += amount;
+        Attack = amount;
     }
 }
 

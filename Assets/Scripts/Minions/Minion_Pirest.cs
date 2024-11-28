@@ -72,7 +72,7 @@ public class Minion_Pirest : CharacterEntity
                 // Single target attack
                 if (_targetDetector.alliesInRange.Count > 0)
                 {
-                    _targetDetector.alliesInRange[0].CharacterHealthComponent.Heal(this.healPoint);
+                    _targetDetector.alliesInRange[0].CharacterHealthComponent.Heal(this._attackDamage);
                     _characterSFX.OnAttack?.Invoke();
                     
                 }
@@ -93,7 +93,7 @@ public class Minion_Pirest : CharacterEntity
                     
                     foreach (var ally in _targetDetector.alliesInRange)
                     {
-                        ally.CharacterHealthComponent.Heal(this.healPoint);
+                        ally.CharacterHealthComponent.Heal(this._attackDamage);
                         attackInitiated = true;
                     }
 

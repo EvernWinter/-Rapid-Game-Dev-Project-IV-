@@ -1117,6 +1117,96 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.295353, y: 8.99328}
   m_EdgeRadius: 0
+--- !u!1 &1294173212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1294173214}
+  - component: {fileID: 1294173213}
+  m_Layer: 0
+  m_Name: TierManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1294173213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294173212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 619672e4c1509704fa63e07129d3e24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SwordManTierStats>k__BackingField:
+  - <Speed>k__BackingField: 0
+    <MaxHP>k__BackingField: 0
+    <Attack>k__BackingField: 0
+    <Defense>k__BackingField: 0
+  - <Speed>k__BackingField: 0
+    <MaxHP>k__BackingField: 0
+    <Attack>k__BackingField: 0
+    <Defense>k__BackingField: 0
+  - <Speed>k__BackingField: 0
+    <MaxHP>k__BackingField: 0
+    <Attack>k__BackingField: 0
+    <Defense>k__BackingField: 0
+  - <Speed>k__BackingField: 0
+    <MaxHP>k__BackingField: 0
+    <Attack>k__BackingField: 0
+    <Defense>k__BackingField: 0
+  <PriestTierStats>k__BackingField: []
+  <HorseManTierStats>k__BackingField: []
+  <ArcherTierStats>k__BackingField: []
+  <ShieldTierStats>k__BackingField: []
+  <SwordManModifier>k__BackingField:
+    <Speed>k__BackingField: 0
+    <MaxHP>k__BackingField: 0
+    <Attack>k__BackingField: 0
+    <Defense>k__BackingField: 0
+  <PriestModifier>k__BackingField:
+    <Speed>k__BackingField: 0
+    <MaxHP>k__BackingField: 0
+    <Attack>k__BackingField: 0
+    <Defense>k__BackingField: 0
+  <HorsemanModifier>k__BackingField:
+    <Speed>k__BackingField: 0
+    <MaxHP>k__BackingField: 0
+    <Attack>k__BackingField: 0
+    <Defense>k__BackingField: 0
+  <ArcherModifier>k__BackingField:
+    <Speed>k__BackingField: 0
+    <MaxHP>k__BackingField: 0
+    <Attack>k__BackingField: 0
+    <Defense>k__BackingField: 0
+  <ShieldModifier>k__BackingField:
+    <Speed>k__BackingField: 0
+    <MaxHP>k__BackingField: 0
+    <Attack>k__BackingField: 0
+    <Defense>k__BackingField: 0
+--- !u!4 &1294173214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294173212}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.2036157, y: 0.59100443, z: 0.06293133}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1311993929 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3764560681460342376, guid: 75d11dd80ee79384eadaf9b7fa3949db, type: 3}
@@ -2331,3 +2421,4 @@ SceneRoots:
   - {fileID: 793897955}
   - {fileID: 1898975617}
   - {fileID: 1482986810}
+  - {fileID: 1294173214}

@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
         {
             if (other.gameObject.GetComponent<CharacterEntity>() != null)
             {
-                other.gameObject.GetComponent<CharacterEntity>().CharacterHealthComponent.TakeDamage(damage);
+                other.gameObject.GetComponent<CharacterEntity>().CharacterHealthComponent.TakeDamage(damage, other.GetComponent<CharacterEntity>().Defense);
                 isHit = true;
             }
 
@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
         {
             if (other.gameObject.GetComponent<CharacterEntity>() != null)
             {
-                other.gameObject.GetComponent<CharacterEntity>().CharacterHealthComponent.TakeDamage(damage);
+                other.gameObject.GetComponent<CharacterEntity>().CharacterHealthComponent.TakeDamage(damage, other.GetComponent<CharacterEntity>().Defense);
                 isHit = true;
             }
             

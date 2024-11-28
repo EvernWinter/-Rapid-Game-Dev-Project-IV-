@@ -754,6 +754,7 @@ MonoBehaviour:
   costPanels: []
   cdPanels: []
   noPanels: []
+  notified: {fileID: 0}
   waves:
   - units:
     - unit: 0

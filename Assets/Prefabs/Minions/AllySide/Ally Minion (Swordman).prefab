@@ -205,8 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterHealthComponent:
-    _maxHP: 70
-    _currentHP: 70
+    _maxHP: 90
+    _currentHP: 90
     _isInvulnerable: 0
   currentState: 0
   characterSide: 0
@@ -216,6 +216,8 @@ MonoBehaviour:
   rb: {fileID: 897097403902572957}
   characterCollider: {fileID: 663567818737083761}
   sprRndr: {fileID: 229204718126871422}
+  _characterTier: 0
+  _characterTierStat: []
   _moveSpeed: 1.2
   _deploymentCost: 10
   _isOnField: 0
