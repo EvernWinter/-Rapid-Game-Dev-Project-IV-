@@ -3,22 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum UnitTier
-{
-    Common,
-    Silver,
-    Gold,
-    Platinum
-}
-
-public enum MinionType
-{
-    SwordMan,
-    Priest,
-    HorseMan
-}
-
-
 public class RewardManager : MonoBehaviour
 {
     [Header("Upgrade")]
@@ -31,7 +15,7 @@ public class RewardManager : MonoBehaviour
     [SerializeField] private int[] upgradePlatinums;
     [SerializeField] private Button[] upgradeButtons;
     
-    private MinionType selectedMinion; // The selected minion type (SwordMan, Priest, HorseMan)
+    
     private UnitTier selectedMinionTier; // The selected minion's current tier
     
     
@@ -55,13 +39,19 @@ public class RewardManager : MonoBehaviour
     private void CheckUpgradeConditions()
     {
         // SwordMan Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
-        CheckMinionUpgradeConditions(0, baseManager.unitTiers[MinionType.SwordMan], upgradeSlivers[0], upgradeGolds[0], upgradePlatinums[0]);
+        CheckMinionUpgradeConditions(0, TierManager.Instance.unitTiers[MinionType.SwordMan], upgradeSlivers[0], upgradeGolds[0], upgradePlatinums[0]);
 
         // Priest Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
-        CheckMinionUpgradeConditions(1, baseManager.unitTiers[MinionType.Priest], upgradeSlivers[1], upgradeGolds[1], upgradePlatinums[1]);
+        CheckMinionUpgradeConditions(1, TierManager.Instance.unitTiers[MinionType.Priest], upgradeSlivers[1], upgradeGolds[1], upgradePlatinums[1]);
 
         // HorseMan Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
-        CheckMinionUpgradeConditions(2, baseManager.unitTiers[MinionType.HorseMan], upgradeSlivers[2], upgradeGolds[2], upgradePlatinums[2]);
+        CheckMinionUpgradeConditions(2, TierManager.Instance.unitTiers[MinionType.HorseMan], upgradeSlivers[2], upgradeGolds[2], upgradePlatinums[2]);
+        
+        // Archer Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
+        CheckMinionUpgradeConditions(3, TierManager.Instance.unitTiers[MinionType.Archer], upgradeSlivers[3], upgradeGolds[3], upgradePlatinums[3]);
+        
+        // Sheild Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
+        CheckMinionUpgradeConditions(4, TierManager.Instance.unitTiers[MinionType.Sheild], upgradeSlivers[4], upgradeGolds[4], upgradePlatinums[4]);
     }
 
     private void CheckMinionUpgradeConditions(int buttonIndex, UnitTier unitTier, int sliverCost, int goldCost, int platinumCost)
@@ -88,8 +78,8 @@ public class RewardManager : MonoBehaviour
 
     public void OnUpgradeButtonClick(int buttonIndex)
     {
-        selectedMinion = (MinionType)buttonIndex;
-        UnitTier currentTier = baseManager.unitTiers[selectedMinion];
+        MinionType selectedMinion = (MinionType)buttonIndex;
+        UnitTier currentTier = TierManager.Instance.unitTiers[selectedMinion];
 
         Debug.Log($"Upgrade button clicked for Minion: {selectedMinion} (Current Tier: {currentTier})");
 
@@ -98,7 +88,7 @@ public class RewardManager : MonoBehaviour
             case UnitTier.Common:
                 if (GameData.Instance.moneySystem.PlayerMoney >= upgradeSlivers[buttonIndex])
                 {
-                    PerformUpgrade(UnitTier.Silver, upgradeSlivers[buttonIndex]);
+                    PerformUpgrade(UnitTier.Silver, upgradeSlivers[buttonIndex], selectedMinion);
                 }
                 else
                 {
@@ -109,7 +99,7 @@ public class RewardManager : MonoBehaviour
             case UnitTier.Silver:
                 if (GameData.Instance.moneySystem.PlayerMoney >= upgradeGolds[buttonIndex])
                 {
-                    PerformUpgrade(UnitTier.Gold, upgradeGolds[buttonIndex]);
+                    PerformUpgrade(UnitTier.Gold, upgradeGolds[buttonIndex], selectedMinion);
                 }
                 else
                 {
@@ -120,7 +110,7 @@ public class RewardManager : MonoBehaviour
             case UnitTier.Gold:
                 if (GameData.Instance.moneySystem.PlayerMoney >= upgradePlatinums[buttonIndex])
                 {
-                    PerformUpgrade(UnitTier.Platinum, upgradePlatinums[buttonIndex]);
+                    PerformUpgrade(UnitTier.Platinum, upgradePlatinums[buttonIndex], selectedMinion);
                 }
                 else
                 {
@@ -134,11 +124,11 @@ public class RewardManager : MonoBehaviour
         }
     }
 
-    private void PerformUpgrade(UnitTier newTier, int cost)
+    private void PerformUpgrade(UnitTier newTier, int cost, MinionType minion)
     {
         GameData.Instance.moneySystem.SpendMoney(cost);
-        baseManager.unitTiers[selectedMinion] = newTier;
-        Debug.Log($"Successfully upgraded {selectedMinion} to {newTier}!");
+        TierManager.Instance.UpgradeUnitTier(minion);
+        Debug.Log($"Successfully upgraded {minion} to {newTier}!");
     }
     
 }

@@ -16,7 +16,7 @@ public class RebirthManager : MonoBehaviour
     private Vector3 originalScale;
 
     [SerializeField] public List<GameObject> rebirthOrbs;
-
+    private Vector3 originalPos;
     public static RebirthManager Instance;
 
     void Awake()
@@ -33,7 +33,8 @@ public class RebirthManager : MonoBehaviour
 
     void Start()
     {
-        rebirthButton.GetComponent<Button>().onClick.AddListener(() => Rebirth());
+        rebirthButton.GetComponent<Button>().onClick.AddListener(() => Rebirth()); 
+        originalPos = rebirthImage.transform.position;
         blackBorderImage.fillAmount = 0;
         rebirthImage.fillAmount = 0;
         originalScale = rebirthButton.transform.localScale;
@@ -70,8 +71,8 @@ public class RebirthManager : MonoBehaviour
         {
             
             // Button shake animation when cooldown hasn't completed
-            rebirthButton.GetComponent<RectTransform>().DOShakePosition(0.5f, strength: new Vector3(5f, 5f, 0f), vibrato: 8, randomness: 70)
-                .SetEase(Ease.OutQuad);
+            UIManager.Instance.ShakeButton(rebirthButton.GetComponent<RectTransform>(), originalPos);
+            UIManager.Instance.DoNotified("Ultimate on cooldown!");
         }
     }
 

@@ -30,7 +30,6 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private Transform minionSpawn;
     [SerializeField] private int[] manas;
     [SerializeField] private int enemiesRemainingInWave = 0;
-    public Dictionary<MinionType, UnitTier> unitTiers;
     
     [Header("Cooldown Button")]
     [SerializeField] private Button[] buttons;
@@ -42,8 +41,7 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private GameObject[] costPanels;
     [SerializeField] private GameObject[] cdPanels;
     [SerializeField] private GameObject[] noPanels;
-    [SerializeField] private RectTransform notified;
-    private bool isNotified;
+    
     private Vector3[] originalScale;
     
     [Header("Game Data")]
@@ -57,7 +55,6 @@ public class BaseManager : MonoBehaviour
     private bool isSpawningWave = false;
     [SerializeField] private int currentWaveIndex = 0;
     [SerializeField] private bool isWaveActive = false;
-    [SerializeField] private RewardManager rewardManager;
     [SerializeField] private TMP_Text waveText;
     private void Awake()
     {
@@ -65,13 +62,9 @@ public class BaseManager : MonoBehaviour
         {
             { CharacterType.Sword, enemyMinionPrefabs[0] },
             { CharacterType.Priest, enemyMinionPrefabs[1] },
-            { CharacterType.HorseMan, enemyMinionPrefabs[2] }
-        };
-        unitTiers = new Dictionary<MinionType,UnitTier>
-        {
-            { MinionType.SwordMan, UnitTier.Common },
-            { MinionType.Priest,  UnitTier.Common },
-            { MinionType.HorseMan,  UnitTier.Common }
+            { CharacterType.HorseMan, enemyMinionPrefabs[2] },
+            { CharacterType.Archer, enemyMinionPrefabs[3] },
+            { CharacterType.Shield, enemyMinionPrefabs[4] }
         };
     }
 
@@ -135,7 +128,6 @@ public class BaseManager : MonoBehaviour
 
                     // Update the cooldown bar fill and button state
                     cdBar[i].fillAmount = normalizedCooldown;
-                    buttons[i].interactable = cooldownTimers[i] <= 0;
                     costPanels[i].SetActive(false);
                     cdPanels[i].SetActive(true);
                     Debug.Log($"Cooldown Timer[{i}]: {cooldownTimers[i]} | Normalized: {normalizedCooldown}");
@@ -146,11 +138,7 @@ public class BaseManager : MonoBehaviour
                     cdPanels[i].SetActive(false);
                 }
                 
-            }
-            
-            for (int i = 0; i < manas.Length; i++)
-            {
-                if (data.manaSystem.CurrentMana < manas[i] && buttons[i] != null)
+                if ((data.manaSystem.CurrentMana < manas[i] ||  cooldownTimers[i] > 0) && buttons[i] != null)
                 {
                     noPanels[i].SetActive(true);
                 }
@@ -158,7 +146,9 @@ public class BaseManager : MonoBehaviour
                 {
                     noPanels[i].SetActive(false);
                 }
+                
             }
+            
         }
     }
     private void SpawnMinion(int index)
@@ -177,34 +167,14 @@ public class BaseManager : MonoBehaviour
             }
             else
             {
-                buttons[index].GetComponent<RectTransform>().DOShakePosition(0.5f, strength: new Vector3(5f, 5f, 0f), vibrato: 8, randomness: 70)
-                    .SetEase(Ease.OutQuad);
-                if (!isNotified)
+                UIManager.Instance.ShakeButton(buttons[index].GetComponent<RectTransform>(), Vector3.zero);
+                if (GameData.Instance.manaSystem.CurrentMana < manas[index] && cooldownTimers[index] <= 0)
                 {
-                    notified.DOAnchorPos(new Vector2(notified.anchoredPosition.x, 450f), 1f)  // Move down
-                        .SetEase(Ease.InOutQuad)
-                        .OnStart(() =>
-                        {
-                            // Set the flag to true when the movement starts
-                            if (!isNotified)
-                            {
-                                isNotified = true;
-                            }
-                        })
-                        .OnComplete(() =>
-                        {
-                            // Wait for 1 second, then move back up
-                            DOVirtual.DelayedCall(1f, () =>
-                            {
-                                notified.DOAnchorPos(new Vector2(notified.anchoredPosition.x, 600f), 1f)
-                                    .SetEase(Ease.InOutQuad)
-                                    .OnComplete(() =>
-                                    {
-                                        // Once the movement is complete, reset the flag
-                                        isNotified = false;
-                                    });
-                            });
-                        });
+                    UIManager.Instance.DoNotified("Not enough Mana!");
+                }
+                else
+                {
+                    UIManager.Instance.DoNotified("Minion on cooldown!");
                 }
             }
         }
@@ -261,10 +231,6 @@ public class BaseManager : MonoBehaviour
                 isWaveActive = false;
                 currentWaveIndex++;
                 waveText.text = $"Wave: {currentWaveIndex+1}/{waves.Count}";
-                if (currentWaveIndex >= 1)
-                {
-                    //rewardManager.ChooseUpgrade();
-                }
                 yield return new WaitForSeconds(waveStartDelay);
             }
         }
