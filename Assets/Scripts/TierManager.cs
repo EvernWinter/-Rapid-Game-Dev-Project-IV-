@@ -6,7 +6,16 @@ public class TierManager : MonoBehaviour
 {
 
     public static TierManager Instance;
-    
+
+    [field: Header("Current Tiers")]
+    [field: SerializeField] public int SwordManTier { get; private set; } = 0;
+    [field: SerializeField] public int PriestTier { get; private set; } = 0;
+    [field: SerializeField] public int HorsemanTier { get; private set; } = 0;
+    [field: SerializeField] public int ArcherTier { get; private set; } = 0;
+    [field: SerializeField] public int ShieldTier { get; private set; } = 0;
+
+
+
     [field: Header("Tier Stats")]
     [field: SerializeField] public List<CharacterStat> SwordManTierStats { get; private set; }
     [field: SerializeField] public List<CharacterStat> PriestTierStats { get; private set; }

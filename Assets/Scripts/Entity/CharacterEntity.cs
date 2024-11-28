@@ -13,11 +13,11 @@ public class CharacterEntity : MonoBehaviour
     [SerializeField] public enum CharacterSide { Ally, Enemy }
     [SerializeField] public CharacterSide characterSide;
 
-    [SerializeField] protected enum UnitType { Swordman, Pirest, Horseman, Shield, Archer }
+    [SerializeField] protected enum UnitType { Swordman, Priest, Horseman, Shield, Archer }
     [SerializeField] protected UnitType unitType;
 
     
-    [SerializeField] protected CharacterType _characterType;
+    //[SerializeField] protected CharacterType _characterType;
 
     [Header("Information")] 
     [SerializeField] protected string _entityName;
@@ -42,6 +42,7 @@ public class CharacterEntity : MonoBehaviour
     [Header("Deployment")] 
     [SerializeField] protected int _deploymentCost = 10;
     [SerializeField] protected bool _isOnField = false;
+    [SerializeField] protected bool _isDeployed = false;
     public bool IsOnField => _isOnField;
 
     [Header("Combat")] 
@@ -97,43 +98,66 @@ public class CharacterEntity : MonoBehaviour
 
     public virtual void OnDeploy()
     {
-        switch (_characterType)
+        switch (unitType)
         {
-            case CharacterType.Sword:
+            case UnitType.Swordman:
+                _characterTierNumber = TierManager.Instance.SwordManTier;
+                
                 _moveSpeed = TierManager.Instance.SwordManTierStats[_characterTierNumber].Speed;
                 _attackDamage = TierManager.Instance.SwordManTierStats[_characterTierNumber].Attack;
                 CharacterHealthComponent.SetMaxHP(TierManager.Instance.SwordManTierStats[_characterTierNumber].MaxHP);
                 _defense = TierManager.Instance.SwordManTierStats[_characterTierNumber].Defense;
+                attackCooldownDuration = TierManager.Instance.SwordManTierStats[_characterTierNumber].AttackRate;
                 break;
-            case CharacterType.Archer:
+            case UnitType.Archer:
+                _characterTierNumber = TierManager.Instance.ArcherTier;
+                
                 _moveSpeed = TierManager.Instance.ArcherTierStats[_characterTierNumber].Speed;
                 _attackDamage = TierManager.Instance.ArcherTierStats[_characterTierNumber].Attack;
                 CharacterHealthComponent.SetMaxHP(TierManager.Instance.ArcherTierStats[_characterTierNumber].MaxHP);
                 _defense = TierManager.Instance.ArcherTierStats[_characterTierNumber].Defense;
+                attackCooldownDuration = TierManager.Instance.ArcherTierStats[_characterTierNumber].AttackRate;
                 break;
-            case CharacterType.Priest:
+            case UnitType.Priest:
+                _characterTierNumber = TierManager.Instance.PriestTier;
+                
                 _moveSpeed = TierManager.Instance.PriestTierStats[_characterTierNumber].Speed;
                 _attackDamage = TierManager.Instance.PriestTierStats[_characterTierNumber].Attack;
                 CharacterHealthComponent.SetMaxHP(TierManager.Instance.PriestTierStats[_characterTierNumber].MaxHP);
                 _defense = TierManager.Instance.PriestTierStats[_characterTierNumber].Defense;
+                attackCooldownDuration = TierManager.Instance.PriestTierStats[_characterTierNumber].AttackRate;
                 break;
-            case CharacterType.Shield:
+            case UnitType.Shield:
+                _characterTierNumber = TierManager.Instance.ShieldTier;
+                
                 _moveSpeed = TierManager.Instance.ShieldTierStats[_characterTierNumber].Speed;
                 _attackDamage = TierManager.Instance.ShieldTierStats[_characterTierNumber].Attack;
                 CharacterHealthComponent.SetMaxHP(TierManager.Instance.ShieldTierStats[_characterTierNumber].MaxHP);
                 _defense = TierManager.Instance.ShieldTierStats[_characterTierNumber].Defense;
+                attackCooldownDuration = TierManager.Instance.ShieldTierStats[_characterTierNumber].AttackRate;
                 break;
-            case CharacterType.HorseMan:
-                _moveSpeed = TierManager.Instance.ShieldTierStats[_characterTierNumber].Speed;
-                _attackDamage = TierManager.Instance.ShieldTierStats[_characterTierNumber].Attack;
-                CharacterHealthComponent.SetMaxHP(TierManager.Instance.ShieldTierStats[_characterTierNumber].MaxHP);
-                _defense = TierManager.Instance.ShieldTierStats[_characterTierNumber].Defense;
+            case UnitType.Horseman:
+                _characterTierNumber = TierManager.Instance.HorsemanTier;
+                
+                _moveSpeed = TierManager.Instance.HorseManTierStats[_characterTierNumber].Speed;
+                _attackDamage = TierManager.Instance.HorseManTierStats[_characterTierNumber].Attack;
+                CharacterHealthComponent.SetMaxHP(TierManager.Instance.HorseManTierStats[_characterTierNumber].MaxHP);
+                _defense = TierManager.Instance.HorseManTierStats[_characterTierNumber].Defense;
+                attackCooldownDuration = TierManager.Instance.HorseManTierStats[_characterTierNumber].AttackRate;
                 break;
         }
+        CharacterHealthComponent.SetHP(CharacterHealthComponent.MaxHP);
+
+        _isDeployed = true;
     }   
 
     protected virtual void HandleState()
     {
+        if (!_isDeployed)
+        {
+            OnDeploy();
+        }
+        
         switch (currentState)
         {
             case CharacterState.Run:
@@ -171,7 +195,7 @@ public class CharacterEntity : MonoBehaviour
                 orb.GetComponent<RebirthOrb>().unitType = RebirthOrb.UnitType.Swordman;
                 break;
 
-            case UnitType.Pirest:
+            case UnitType.Priest:
                 orb.GetComponent<RebirthOrb>().unitType = RebirthOrb.UnitType.Pirest;
                 break;
 
@@ -248,22 +272,19 @@ public class CharacterEntity : MonoBehaviour
         
         if (rb != null)
         {
-            if (_characterType == CharacterType.Shield)
+            if (unitType == UnitType.Shield)
             {
                 knockbackFroce *= 0.5f;
             }
-            else if (_characterType == CharacterType.Priest || _characterType == CharacterType.Archer)
+            else if (unitType == UnitType.Priest || unitType == UnitType.Archer)
             {
                 knockbackFroce *= 2.5f;
             }
-            else if (_characterType == CharacterType.HorseMan)
+            else if (unitType == UnitType.Horseman)
             {
                 knockbackFroce *= 0.8f;
             }
-            {
-                
-            }
-            
+
             // Determine the direction of knockback
             Vector2 knockbackDirection = characterSide == CharacterSide.Ally ? Vector2.left : Vector2.right;
         
@@ -483,6 +504,7 @@ public class CharacterStat
     [field: SerializeField] public int MaxHP { get; private set; }
     [field: SerializeField] public int Attack { get; private set; }
     [field: SerializeField] public int Defense { get; private set; }
+    [field: SerializeField] public float AttackRate { get; private set; } = 1.5f;
 
     /// <summary>
     /// Changes the Speed by the specified amount.

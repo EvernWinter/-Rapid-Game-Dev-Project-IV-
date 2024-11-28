@@ -33,6 +33,11 @@ public class Minion_Pirest : CharacterEntity
 
     protected override void HandleState()
     {
+        if (!_isDeployed)
+        {
+            OnDeploy();
+        }
+        
         switch (currentState)
         {
             case CharacterState.Run:
