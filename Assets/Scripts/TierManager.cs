@@ -13,10 +13,10 @@ public enum UnitTier
 public enum MinionType
 {
     SwordMan,
+    Archer,
+    Sheild,
     Priest,
     HorseMan,
-    Archer,
-    Sheild
 }
 
 public class TierManager : MonoBehaviour

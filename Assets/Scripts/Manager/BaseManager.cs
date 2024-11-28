@@ -10,10 +10,10 @@ using UnityEngine.UI;
 public enum CharacterType
 {
     Sword,
+    Archer,
+    Shield,
     Priest,
     HorseMan,
-    Archer,
-    Shield
 }
 
 public class BaseManager : MonoBehaviour

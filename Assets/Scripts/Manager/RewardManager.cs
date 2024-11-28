@@ -41,17 +41,17 @@ public class RewardManager : MonoBehaviour
         // SwordMan Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
         CheckMinionUpgradeConditions(0, TierManager.Instance.unitTiers[MinionType.SwordMan], upgradeSlivers[0], upgradeGolds[0], upgradePlatinums[0]);
 
-        // Priest Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
-        CheckMinionUpgradeConditions(1, TierManager.Instance.unitTiers[MinionType.Priest], upgradeSlivers[1], upgradeGolds[1], upgradePlatinums[1]);
-
-        // HorseMan Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
-        CheckMinionUpgradeConditions(2, TierManager.Instance.unitTiers[MinionType.HorseMan], upgradeSlivers[2], upgradeGolds[2], upgradePlatinums[2]);
-        
         // Archer Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
-        CheckMinionUpgradeConditions(3, TierManager.Instance.unitTiers[MinionType.Archer], upgradeSlivers[3], upgradeGolds[3], upgradePlatinums[3]);
+        CheckMinionUpgradeConditions(1, TierManager.Instance.unitTiers[MinionType.Archer], upgradeSlivers[1], upgradeGolds[1], upgradePlatinums[1]);
         
         // Sheild Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
-        CheckMinionUpgradeConditions(4, TierManager.Instance.unitTiers[MinionType.Sheild], upgradeSlivers[4], upgradeGolds[4], upgradePlatinums[4]);
+        CheckMinionUpgradeConditions(2, TierManager.Instance.unitTiers[MinionType.Sheild], upgradeSlivers[2], upgradeGolds[2], upgradePlatinums[2]);
+        
+        // Priest Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
+        CheckMinionUpgradeConditions(3, TierManager.Instance.unitTiers[MinionType.Priest], upgradeSlivers[3], upgradeGolds[3], upgradePlatinums[3]);
+        
+        // HorseMan Upgrade Conditions (Common -> Silver -> Gold -> Platinum)
+        CheckMinionUpgradeConditions(4, TierManager.Instance.unitTiers[MinionType.HorseMan], upgradeSlivers[4], upgradeGolds[4], upgradePlatinums[4]);
     }
 
     private void CheckMinionUpgradeConditions(int buttonIndex, UnitTier unitTier, int sliverCost, int goldCost, int platinumCost)
