@@ -107,7 +107,7 @@ MonoBehaviour:
   _hitRotationAngle: 10
   _hitRotationDuration: 0.2
   _bowRenderer: {fileID: 5331127877715125900}
-  _aimRotationAngle: 35
+  _aimRotationAngle: -60
   _rotationDuration: 0.3
   _isFacingRight: 0
 --- !u!210 &7314709805505850288
@@ -415,11 +415,13 @@ MonoBehaviour:
   rb: {fileID: 897097403902572957}
   characterCollider: {fileID: 663567818737083761}
   sprRndr: {fileID: 229204718126871422}
+  _characterTierNumber: 0
   _characterTier: 0
   _characterTierStat: []
   _moveSpeed: 1.05
   _deploymentCost: 10
   _isOnField: 0
+  _isDeployed: 0
   _targetDetector: {fileID: 2937529039760323502}
   _attackDamage: 16
   _defense: 7

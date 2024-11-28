@@ -81,45 +81,54 @@ public class Minion_Archer : CharacterEntity
                 target = _targetDetector.baseManagerInRange.transform;
             } 
             
-            GameObject arrow = Instantiate(arrowPrefab, gameObject.transform.position, Quaternion.identity);
-            Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
-            arrow.GetComponent<Bullet>().damage = _attackDamage;
+            _characterAnimator.OnAttack?.Invoke();
 
-            bool isThisBulletForAlly = (characterSide == CharacterSide.Enemy);
-            arrow.GetComponent<Bullet>().isThisBulletForAlly = isThisBulletForAlly;
+            Invoke("ConfirmAttack", 0.3f);
+            
+        }
+    }
 
-            float distance = Vector2.Distance(gameObject.transform.position, target.position);
-            float requiredSpeed = Mathf.Sqrt(distance * 9.8f);
+    private void ConfirmAttack()
+    {
+        
+        GameObject arrow = Instantiate(arrowPrefab, gameObject.transform.position, Quaternion.identity);
+        Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
+        arrow.GetComponent<Bullet>().damage = _attackDamage;
 
-            float angle = 0;
+        bool isThisBulletForAlly = (characterSide == CharacterSide.Enemy);
+        arrow.GetComponent<Bullet>().isThisBulletForAlly = isThisBulletForAlly;
 
-            if (characterSide == CharacterSide.Ally)
-            {
-                angle = 45f * Mathf.Deg2Rad; // Convert to radians
-            }
-            else if(characterSide == CharacterSide.Enemy)
-            {
-                angle = 135f * Mathf.Deg2Rad; // Convert to radians
-            }
+        float distance = Vector2.Distance(gameObject.transform.position, target.position);
+        float requiredSpeed = Mathf.Sqrt(distance * 9.8f);
+
+        float angle = 0;
+
+        if (characterSide == CharacterSide.Ally)
+        {
+            angle = 45f * Mathf.Deg2Rad; // Convert to radians
+        }
+        else if(characterSide == CharacterSide.Enemy)
+        {
+            angle = 135f * Mathf.Deg2Rad; // Convert to radians
+        }
            
 
 
-            Vector2 velocity = new Vector2(
-                requiredSpeed * Mathf.Cos(angle),  // X component
-                requiredSpeed * Mathf.Sin(angle)   // Y component
-            );
+        Vector2 velocity = new Vector2(
+            requiredSpeed * Mathf.Cos(angle),  // X component
+            requiredSpeed * Mathf.Sin(angle)   // Y component
+        );
 
-            // Apply the velocity to the arrow
-            rb.velocity = velocity;
+        // Apply the velocity to the arrow
+        rb.velocity = velocity;
 
-            // Rotate the arrow to face the direction it's moving
-            float rotationAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-            arrow.transform.rotation = Quaternion.Euler(0, 0, rotationAngle);
-            _characterAnimator.OnAttack?.Invoke();
-            if (_characterSFX != null)
-            {
-                _characterSFX.OnAttack?.Invoke();
-            }
+        // Rotate the arrow to face the direction it's moving
+        float rotationAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+        arrow.transform.rotation = Quaternion.Euler(0, 0, rotationAngle);
+
+        if (_characterSFX != null)
+        {
+            _characterSFX.OnAttack?.Invoke();
         }
     }
 }

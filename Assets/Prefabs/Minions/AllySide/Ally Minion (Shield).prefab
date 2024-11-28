@@ -244,7 +244,6 @@ MonoBehaviour:
   currentState: 0
   characterSide: 0
   unitType: 3
-  _characterType: 0
   _entityName: Shield
   _entityDescription: He's holding sword and attack in close range.
   baseManager: {fileID: 0}
@@ -265,7 +264,7 @@ MonoBehaviour:
   nextAttack: 0
   attackCooldownDuration: 1.5
   _characterAnimator: {fileID: 0}
-  _characterSFX: {fileID: 2580568593215076832}
+  _characterSFX: {fileID: 0}
   rebirthOrb: {fileID: 6286209386262093751, guid: 31b34be0cd03fd64aa73f0e343772fb7, type: 3}
 --- !u!212 &229204718126871422
 SpriteRenderer:
@@ -558,7 +557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6957539559146346635}
-  - component: {fileID: 2580568593215076832}
+  - component: {fileID: 6845624745916983699}
   - component: {fileID: 8587990818398936114}
   m_Layer: 9
   m_Name: SFX
@@ -582,7 +581,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3227810179278284260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2580568593215076832
+--- !u!114 &6845624745916983699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -591,15 +590,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4218676344559640978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ada54b9414213e479d56f24d25fa89e, type: 3}
+  m_Script: {fileID: 11500000, guid: 559b4578e4ad30248a816b60951a4c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 8587990818398936114}
   _attackSFX: {fileID: 8300000, guid: dd9a513aa28504d4ba02070d5b6a1c22, type: 3}
-  _damagedSFX: {fileID: 8300000, guid: 744161516db04b448a037f7b2d35a40d, type: 3}
+  _damagedSFX: {fileID: 8300000, guid: c65400392b7302c4399253d06fe0efed, type: 3}
   _deadSFX: {fileID: 8300000, guid: 744161516db04b448a037f7b2d35a40d, type: 3}
   _specialSFX:
   - {fileID: 8300000, guid: c65400392b7302c4399253d06fe0efed, type: 3}
+  _characterEntity: {fileID: 5710838961901692638}
 --- !u!82 &8587990818398936114
 AudioSource:
   m_ObjectHideFlags: 0
@@ -612,7 +612,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
