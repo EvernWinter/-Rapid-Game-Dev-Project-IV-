@@ -729,6 +729,7 @@ MonoBehaviour:
   - {fileID: 2599753478477571907, guid: 0d6497ff597c3294bb1c1ed02b731d99, type: 3}
   - {fileID: 2599753478477571907, guid: 40edc0ba60e82ae48ba8604ef88d1bf1, type: 3}
   - {fileID: 2599753478477571907, guid: ba4a87a8967a75d49af32cdea28225fa, type: 3}
+  - {fileID: 2599753478477571907, guid: 0c1c7204812fd994ba4662c42d8a9a92, type: 3}
   minionSpawn: {fileID: 2544288658044034657}
   manas: 
   enemiesRemainingInWave: 0
@@ -754,7 +755,6 @@ MonoBehaviour:
   costPanels: []
   cdPanels: []
   noPanels: []
-  notified: {fileID: 0}
   waves:
   - units:
     - unit: 0
@@ -771,7 +771,6 @@ MonoBehaviour:
   enemySpawnInterval: 2
   currentWaveIndex: 0
   isWaveActive: 0
-  rewardManager: {fileID: 0}
   waveText: {fileID: 0}
 --- !u!61 &4090944964800189887
 BoxCollider2D:
