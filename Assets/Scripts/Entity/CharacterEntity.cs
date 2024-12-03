@@ -17,7 +17,7 @@ public class CharacterEntity : MonoBehaviour
 
     [field:SerializeField] public UnitType unitType { get; private set; }
 
-
+    public bool isDead = false;
     //[SerializeField] protected CharacterType _characterType;
 
     [Header("Information")] 
@@ -368,6 +368,7 @@ public class CharacterEntity : MonoBehaviour
     {
         // Implement what happens when the character dies
         Debug.Log(gameObject.name + " died.");
+        isDead = true;
         if (characterSide == CharacterSide.Enemy)
         {
             baseManager.OnEnemyDeath();

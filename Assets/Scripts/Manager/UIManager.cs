@@ -33,12 +33,12 @@ public class UIManager : MonoBehaviour
         {
             Destroy(this);
         }
+        StartCoroutine(UpdateFarthestAllyCoroutine());
     }
 
     // Update is called once per frame
     void Update()
     {
-        //MoveMaskToFarthestAlly();
     }
     
     public void Pause()
@@ -154,6 +154,16 @@ public class UIManager : MonoBehaviour
             .SetEase(Ease.OutBack);
     }
     
+    private IEnumerator UpdateFarthestAllyCoroutine()
+    {
+        while (true)
+        {
+            MoveMaskToFarthestAlly();  // Call the method to move the mask
+            float randomInterval = Random.Range(0.5f, 1.5f);  // Randomize the interval between 1 and 2 seconds
+            yield return new WaitForSeconds(randomInterval);  // Wait for the next update
+        }
+    }
+    
     public void MoveMaskToFarthestAlly()
     {
         // Get all active CharacterEntity objects in the scene
@@ -169,7 +179,7 @@ public class UIManager : MonoBehaviour
         // Loop through all characters to find the farthest ally
         foreach (var character in allCharacters)
         {
-            if (character.characterSide == CharacterEntity.CharacterSide.Ally)
+            if (character.characterSide == CharacterEntity.CharacterSide.Ally && !character.isDead)  // Ensure the ally is alive
             {
                 float distance = character.transform.position.x;
 
@@ -182,15 +192,20 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        // Move the mask if a farthest ally was found
-        if (farthestAlly != null)
+        // If no farthest ally is found, skip the mask movement
+        if (farthestAlly == null)
         {
-            mask.transform.position = new Vector3(farthestAlly.transform.position.x - 35, mask.transform.position.y, mask.transform.position.z);
-            Debug.Log($"Mask moved to the farthest ally at position: {farthestAlly.transform.position}");
+            Debug.Log("No living allies found. Skipping mask movement.");
+            return;  // Skip the mask movement if no living ally is found
         }
-        else
-        {
-            Debug.LogWarning("No allies found to move the mask.");
-        }
+
+        // If we found a new farthest ally, move the mask smoothly to its position
+        Vector3 targetPosition = new Vector3(farthestAlly.transform.position.x - 35, mask.transform.position.y, mask.transform.position.z);
+
+        // Use DOTween to smoothly move the mask to the target position
+        mask.transform.DOKill();  // Kill any existing tweens to avoid conflicts
+        mask.transform.DOMove(targetPosition, 1f)  // Duration of the movement (slow speed)
+            .SetEase(Ease.InOutQuad);  // Smooth easing for the transition
+        Debug.Log($"Mask smoothly moved to the farthest ally at position: {farthestAlly.transform.position}");
     }
 }

@@ -16,7 +16,7 @@ public class GameData : MonoBehaviour
         {
             Instance = this;
             manaSystem = new ManaSystem(0, 1500, 5);  
-            moneySystem = new MoneySystem(100);
+            moneySystem = new MoneySystem(0);
         }
         else
         {
@@ -72,6 +72,12 @@ public class ManaSystem
         {
             Debug.Log("Not enough mana.");
         }
+    }
+    
+    public void AddMana(int amount)
+    {
+        _currentMana += amount;
+        Debug.Log("Mana Added: " + amount);
     }
 
     public void RegenerateMana(float deltaTime)

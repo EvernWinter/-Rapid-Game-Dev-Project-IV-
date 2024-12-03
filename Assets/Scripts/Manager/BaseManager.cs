@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Microlight.MicroBar;
+using Spine.Unity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,8 @@ public class BaseManager : MonoBehaviour
     [SerializeField] protected enum BaseState { Idle, Attack, Died }
     [SerializeField] protected BaseState currentState;
 
+    [SerializeField] public SpineAnimation playerAnimation; 
+    [SerializeField] public SkeletonAnimation skeletonAnimation;
     [Header("Base Settings")]
     [SerializeField] private float baseMaxHealth = 100f;
     [SerializeField] public float baseHealth;
@@ -56,8 +59,8 @@ public class BaseManager : MonoBehaviour
     
     [Header("Enemy Base Wave Settings")]
     [SerializeField] private List<Wave> waves; // Define waves in the inspector
-    [SerializeField] private float waveStartDelay = 15f; // Delay before starting the first wave
-    [SerializeField] private float enemySpawnInterval = 2f; // Interval between enemy spawns
+    [SerializeField] private float waveStartDelay = 3.5f; // Delay before starting the first wave
+    [SerializeField] private float enemySpawnInterval = 1.5f; // Interval between enemy spawns
     private Queue<WaveUnit> enemyQueue = new Queue<WaveUnit>();
     private bool isSpawningWave = false;
     [SerializeField] private int currentWaveIndex = 0;
@@ -75,10 +78,10 @@ public class BaseManager : MonoBehaviour
         enemyTypeToPrefab = new Dictionary<CharacterType, GameObject>
         {
             { CharacterType.Sword, enemyMinionPrefabs[0] },
-            { CharacterType.Priest, enemyMinionPrefabs[1] },
-            { CharacterType.HorseMan, enemyMinionPrefabs[2] },
-            { CharacterType.Archer, enemyMinionPrefabs[3] },
-            { CharacterType.Shield, enemyMinionPrefabs[4] }
+            { CharacterType.Archer, enemyMinionPrefabs[1] },
+            { CharacterType.Shield, enemyMinionPrefabs[2] },
+            { CharacterType.Priest, enemyMinionPrefabs[3] },
+            { CharacterType.HorseMan, enemyMinionPrefabs[4] }
         };
     }
 
@@ -145,6 +148,7 @@ public class BaseManager : MonoBehaviour
                 if (_targetDetector.enemiesInRange.Count > 0 || _targetDetector.baseManagerInRange != null)
                 {
                     Attack();
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Order", false);
                 }
                 else
                 {
@@ -206,7 +210,7 @@ public class BaseManager : MonoBehaviour
                     cdBar[i].fillAmount = normalizedCooldown;
                     costPanels[i].SetActive(false);
                     cdPanels[i].SetActive(true);
-                    Debug.Log($"Cooldown Timer[{i}]: {cooldownTimers[i]} | Normalized: {normalizedCooldown}");
+                    //Debug.Log($"Cooldown Timer[{i}]: {cooldownTimers[i]} | Normalized: {normalizedCooldown}");
                 }
                 else
                 {
@@ -239,6 +243,7 @@ public class BaseManager : MonoBehaviour
                     .SetEase(Ease.OutBounce).OnComplete(() =>
                         buttons[index].transform.DOScale(originalScale[index], 0.1f).SetEase(Ease.InOutQuad));
                 cooldownTimers[index] = spawnCooldowns[index];
+                skeletonAnimation.AnimationState.SetAnimation(0, "Order", false);
                 spawnedCharacter.OnDeploy();
             }
             else
@@ -263,7 +268,6 @@ public class BaseManager : MonoBehaviour
 
         if (baseHealth <= 0)
         {
-            OnBaseDestroyed();
             if (playerBase)
             {
                 UIManager.Instance.Lose();
@@ -272,6 +276,7 @@ public class BaseManager : MonoBehaviour
             {
                 UIManager.Instance.Win();
             }
+            OnBaseDestroyed();
         }
     }
     
@@ -292,7 +297,7 @@ public class BaseManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waveStartDelay);
 
-        while (baseHealth > 0 && enemiesRemainingInWave < 20)
+        while (baseHealth > 0 )
         {
             if (!isWaveActive)
             {
@@ -310,7 +315,6 @@ public class BaseManager : MonoBehaviour
                 
 
                 isWaveActive = false;
-                waveText.text = $"Wave: {currentWaveIndex+1}/{waves.Count}";
                 yield return new WaitForSeconds(waveStartDelay);
             }
         }
@@ -331,6 +335,7 @@ public class BaseManager : MonoBehaviour
     
     private void SpawnEnemy(WaveUnit unit)
     {
+        skeletonAnimation.AnimationState.SetAnimation(0, "Order", false);
         if (enemyTypeToPrefab.TryGetValue(unit.unit, out var prefab))
         {
             GameObject enemy = Instantiate(prefab, minionSpawn.position, Quaternion.identity);
@@ -349,7 +354,10 @@ public class BaseManager : MonoBehaviour
     public void OnEnemyDeath()
     {
         enemiesRemainingInWave--;
+        GameData.Instance.moneySystem.AddMoney(2);
+        GameData.Instance.manaSystem.AddMana(250);
     }
+    
     
     [System.Serializable]
     public class Wave
