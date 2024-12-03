@@ -122,4 +122,11 @@ public class UIManager : MonoBehaviour
                     .SetEase(Ease.OutSine);
             });
     }
+
+    public void DoSpawnButton(RectTransform transform, Vector3 originalScale, int index)
+    {
+        transform.localScale = Vector3.zero;
+        transform.DOScale(originalScale , 0.5f)
+            .SetEase(Ease.OutBack);
+    }
 }

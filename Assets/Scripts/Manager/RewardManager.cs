@@ -14,7 +14,7 @@ public class RewardManager : MonoBehaviour
     [SerializeField] private int[] upgradeGolds;
     [SerializeField] private int[] upgradePlatinums;
     [SerializeField] private Button[] upgradeButtons;
-    
+    private Vector3[] originalScale;
     
     private UnitTier selectedMinionTier; // The selected minion's current tier
     
@@ -23,11 +23,13 @@ public class RewardManager : MonoBehaviour
     void Start()
     {
         upgradeButtons = new Button[buttons.Length];
+        originalScale = new Vector3[buttons.Length];
         for (int i = 0; i < buttons.Length; i++)
         {
             int index = i;
             upgradeButtons[i] = buttons[i].GetComponent<Button>();
             upgradeButtons[i].onClick.AddListener(() => OnUpgradeButtonClick(index));
+            originalScale[i] = buttons[i].transform.localScale;
         }
     }
     // Update is called once per frame
@@ -63,12 +65,15 @@ public class RewardManager : MonoBehaviour
         {
             case UnitTier.Common:
                 upgradeButtons[buttonIndex].gameObject.SetActive(playerMoney >= sliverCost);
+                UIManager.Instance.DoSpawnButton( upgradeButtons[buttonIndex].GetComponent<RectTransform>(),originalScale[buttonIndex] ,buttonIndex);
                 break;
             case UnitTier.Silver:
                 upgradeButtons[buttonIndex].gameObject.SetActive(playerMoney >= goldCost);
+                UIManager.Instance.DoSpawnButton( upgradeButtons[buttonIndex].GetComponent<RectTransform>(),originalScale[buttonIndex] ,buttonIndex);
                 break;
             case UnitTier.Gold:
                 upgradeButtons[buttonIndex].gameObject.SetActive(playerMoney >= platinumCost);
+                UIManager.Instance.DoSpawnButton( upgradeButtons[buttonIndex].GetComponent<RectTransform>(),originalScale[buttonIndex] ,buttonIndex);
                 break;
             default:
                 upgradeButtons[buttonIndex].gameObject.SetActive(false);
