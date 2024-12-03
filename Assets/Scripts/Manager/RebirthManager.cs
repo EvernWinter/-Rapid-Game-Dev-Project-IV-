@@ -33,8 +33,8 @@ public class RebirthManager : MonoBehaviour
 
     void Start()
     {
-        rebirthButton.GetComponent<Button>().onClick.AddListener(() => Rebirth()); 
-        originalPos = rebirthImage.transform.position;
+        rebirthButton.GetComponent<Button>().onClick.AddListener(() => Rebirth());
+        originalPos = new Vector3(10, -70, 0);
         blackBorderImage.fillAmount = 0;
         rebirthImage.fillAmount = 0;
         originalScale = rebirthButton.transform.localScale;
