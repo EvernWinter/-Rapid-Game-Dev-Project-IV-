@@ -67,6 +67,7 @@ public class RebirthManager : MonoBehaviour
                 rebirthOrb.GetComponent<RebirthOrb>().Rebirth();
             }
 
+            SoundManager.Instance.PlayRebirthSound();
             rebirthOrbs.Clear();
         }
         else
