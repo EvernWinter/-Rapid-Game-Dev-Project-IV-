@@ -95,7 +95,7 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f); // Adjust based on your transition needs
 
         SceneManager.LoadScene(1);
-
+        BGMPlayer.Instance.PlayInGameBGM();
         isSceneTransitioning = false; // Reset the flag after the transition
     }
 }
