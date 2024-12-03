@@ -25,12 +25,19 @@ public class TierManager : MonoBehaviour
 
     public static TierManager Instance;
 
-    [field: Header("Current Tiers")]
-    [field: SerializeField] public int SwordManTier { get; private set; } = 0;
-    [field: SerializeField] public int PriestTier { get; private set; } = 0;
-    [field: SerializeField] public int HorsemanTier { get; private set; } = 0;
-    [field: SerializeField] public int ArcherTier { get; private set; } = 0;
-    [field: SerializeField] public int ShieldTier { get; private set; } = 0;
+    [field: Header("Current Black Tiers")]
+    [field: SerializeField] public int BlackSwordManTier { get; private set; } = 0;
+    [field: SerializeField] public int BlackPriestTier { get; private set; } = 0;
+    [field: SerializeField] public int BlackHorsemanTier { get; private set; } = 0;
+    [field: SerializeField] public int BlackArcherTier { get; private set; } = 0;
+    [field: SerializeField] public int BlackShieldTier { get; private set; } = 0;
+    
+    [field: Header("Current White Tiers")]
+    [field: SerializeField] public int WhiteSwordManTier { get; private set; } = 0;
+    [field: SerializeField] public int WhitePriestTier { get; private set; } = 0;
+    [field: SerializeField] public int WhiteHorsemanTier { get; private set; } = 0;
+    [field: SerializeField] public int WhiteArcherTier { get; private set; } = 0;
+    [field: SerializeField] public int WhiteShieldTier { get; private set; } = 0;
     
     public Dictionary<MinionType, UnitTier> unitTiers;
 
@@ -98,6 +105,53 @@ public class TierManager : MonoBehaviour
         throw new System.ArgumentOutOfRangeException($"Tier value {tierValue} is not valid.");
     }
     
+    public int GetWhiteTier(MinionType minion)
+    {
+        return minion switch
+        {
+            MinionType.SwordMan => WhiteSwordManTier,
+            MinionType.Priest => WhitePriestTier,
+            MinionType.HorseMan => WhiteHorsemanTier,
+            MinionType.Archer => WhiteArcherTier,
+            MinionType.Sheild => WhiteShieldTier,
+            _ => 0
+        };
+    }
+
+    public void UpgradeUnitTierWhite(MinionType minion)
+    {
+        int currentTier = GetWhiteTier(minion);
+        int maxTier = 4;
+
+        if (currentTier < maxTier)
+        {
+            switch (minion)
+            {
+                case MinionType.SwordMan:
+                    WhiteSwordManTier++;
+                    break;
+                case MinionType.Priest:
+                    WhitePriestTier++;
+                    break;
+                case MinionType.HorseMan:
+                    WhiteHorsemanTier++;
+                    break;
+                case MinionType.Archer:
+                    WhiteArcherTier++;
+                    break;
+                case MinionType.Sheild:
+                    WhiteShieldTier++;
+                    break;
+            }
+
+            Debug.Log($"{minion} upgraded to tier {currentTier + 1}");
+        }
+        else
+        {
+            Debug.Log($"{minion} is already at the maximum tier!");
+        }
+    }
+    
     public void UpgradeUnitTier(MinionType minion)
     {
         UnitTier currentTier = unitTiers[minion];
@@ -109,7 +163,7 @@ public class TierManager : MonoBehaviour
                 if (System.Enum.IsDefined(typeof(UnitTier), nextTierValue))
                 {
                     unitTiers[minion] = GetTierFromInt(nextTierValue);
-                    SwordManTier = nextTierValue;
+                    BlackSwordManTier = nextTierValue;
                     Debug.Log($"{minion} upgraded to tier {unitTiers[minion]}");
                 }
                 else
@@ -121,7 +175,7 @@ public class TierManager : MonoBehaviour
                 if (System.Enum.IsDefined(typeof(UnitTier), nextTierValue))
                 {
                     unitTiers[minion] = GetTierFromInt(nextTierValue);
-                    PriestTier = nextTierValue;
+                    BlackPriestTier = nextTierValue;
                     Debug.Log($"{minion} upgraded to tier {unitTiers[minion]}");
                 }
                 else
@@ -133,7 +187,7 @@ public class TierManager : MonoBehaviour
                 if (System.Enum.IsDefined(typeof(UnitTier), nextTierValue))
                 {
                     unitTiers[minion] = GetTierFromInt(nextTierValue);
-                    HorsemanTier = nextTierValue;
+                    BlackHorsemanTier = nextTierValue;
                     Debug.Log($"{minion} upgraded to tier {unitTiers[minion]}");
                 }
                 else
@@ -145,7 +199,7 @@ public class TierManager : MonoBehaviour
                 if (System.Enum.IsDefined(typeof(UnitTier), nextTierValue))
                 {
                     unitTiers[minion] = GetTierFromInt(nextTierValue);
-                    ArcherTier = nextTierValue;
+                    BlackArcherTier = nextTierValue;
                     Debug.Log($"{minion} upgraded to tier {unitTiers[minion]}");
                 }
                 else
@@ -157,7 +211,7 @@ public class TierManager : MonoBehaviour
                 if (System.Enum.IsDefined(typeof(UnitTier), nextTierValue))
                 {
                     unitTiers[minion] = GetTierFromInt(nextTierValue);
-                    ShieldTier = nextTierValue;
+                    BlackShieldTier = nextTierValue;
                     Debug.Log($"{minion} upgraded to tier {unitTiers[minion]}");
                 }
                 else

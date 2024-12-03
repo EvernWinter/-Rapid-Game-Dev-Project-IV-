@@ -103,7 +103,7 @@ public class CharacterEntity : MonoBehaviour
         switch (unitType)
         {
             case UnitType.Swordman:
-                _characterTierNumber = TierManager.Instance.SwordManTier;
+                _characterTierNumber = characterSide == CharacterSide.Ally ? TierManager.Instance.BlackSwordManTier : TierManager.Instance.WhiteSwordManTier;
                 
                 _moveSpeed = TierManager.Instance.SwordManTierStats[_characterTierNumber].Speed;
                 _attackDamage = TierManager.Instance.SwordManTierStats[_characterTierNumber].Attack;
@@ -112,7 +112,7 @@ public class CharacterEntity : MonoBehaviour
                 attackCooldownDuration = TierManager.Instance.SwordManTierStats[_characterTierNumber].AttackRate;
                 break;
             case UnitType.Archer:
-                _characterTierNumber = TierManager.Instance.ArcherTier;
+                _characterTierNumber = TierManager.Instance.BlackArcherTier;
                 
                 _moveSpeed = TierManager.Instance.ArcherTierStats[_characterTierNumber].Speed;
                 _attackDamage = TierManager.Instance.ArcherTierStats[_characterTierNumber].Attack;
@@ -121,7 +121,7 @@ public class CharacterEntity : MonoBehaviour
                 attackCooldownDuration = TierManager.Instance.ArcherTierStats[_characterTierNumber].AttackRate;
                 break;
             case UnitType.Priest:
-                _characterTierNumber = TierManager.Instance.PriestTier;
+                _characterTierNumber = TierManager.Instance.BlackPriestTier;
                 
                 _moveSpeed = TierManager.Instance.PriestTierStats[_characterTierNumber].Speed;
                 _attackDamage = TierManager.Instance.PriestTierStats[_characterTierNumber].Attack;
@@ -130,7 +130,7 @@ public class CharacterEntity : MonoBehaviour
                 attackCooldownDuration = TierManager.Instance.PriestTierStats[_characterTierNumber].AttackRate;
                 break;
             case UnitType.Shield:
-                _characterTierNumber = TierManager.Instance.ShieldTier;
+                _characterTierNumber = TierManager.Instance.BlackShieldTier;
                 
                 _moveSpeed = TierManager.Instance.ShieldTierStats[_characterTierNumber].Speed;
                 _attackDamage = TierManager.Instance.ShieldTierStats[_characterTierNumber].Attack;
@@ -139,7 +139,7 @@ public class CharacterEntity : MonoBehaviour
                 attackCooldownDuration = TierManager.Instance.ShieldTierStats[_characterTierNumber].AttackRate;
                 break;
             case UnitType.Horseman:
-                _characterTierNumber = TierManager.Instance.HorsemanTier;
+                _characterTierNumber = TierManager.Instance.BlackHorsemanTier;
                 
                 _moveSpeed = TierManager.Instance.HorseManTierStats[_characterTierNumber].Speed;
                 _attackDamage = TierManager.Instance.HorseManTierStats[_characterTierNumber].Attack;
@@ -151,6 +151,7 @@ public class CharacterEntity : MonoBehaviour
         CharacterHealthComponent.SetHP(CharacterHealthComponent.MaxHP);
         _characterAnimator.SetUpSpriteAccordingToTier(this);
         _isDeployed = true;
+        SoundManager.Instance.PlayMinionSpawnSound();
     }   
 
     protected virtual void HandleState()
@@ -377,7 +378,7 @@ public class CharacterEntity : MonoBehaviour
         }
         
         _characterSFX.OnDead?.Invoke();
-        
+        SoundManager.Instance.PlayMinionSpawnSound();
         Destroy(gameObject);
         
         //Destroy(gameObject, 4f);

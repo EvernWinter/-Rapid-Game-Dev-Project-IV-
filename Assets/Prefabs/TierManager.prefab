@@ -45,11 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 619672e4c1509704fa63e07129d3e24e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SwordManTier>k__BackingField: 0
-  <PriestTier>k__BackingField: 0
-  <HorsemanTier>k__BackingField: 0
-  <ArcherTier>k__BackingField: 0
-  <ShieldTier>k__BackingField: 0
+  <BlackSwordManTier>k__BackingField: 0
+  <BlackPriestTier>k__BackingField: 0
+  <BlackHorsemanTier>k__BackingField: 0
+  <BlackArcherTier>k__BackingField: 0
+  <BlackShieldTier>k__BackingField: 0
+  <WhiteSwordManTier>k__BackingField: 0
+  <WhitePriestTier>k__BackingField: 0
+  <WhiteHorsemanTier>k__BackingField: 0
+  <WhiteArcherTier>k__BackingField: 0
+  <WhiteShieldTier>k__BackingField: 0
   <SwordManTierStats>k__BackingField:
   - <Speed>k__BackingField: 1.2
     <MaxHP>k__BackingField: 90
@@ -76,17 +81,17 @@ MonoBehaviour:
     <MaxHP>k__BackingField: 60
     <Attack>k__BackingField: 10
     <Defense>k__BackingField: 3
-    <AttackRate>k__BackingField: 1.5
+    <AttackRate>k__BackingField: 1.8
   - <Speed>k__BackingField: 1
     <MaxHP>k__BackingField: 80
     <Attack>k__BackingField: 12
     <Defense>k__BackingField: 5
-    <AttackRate>k__BackingField: 1.48
+    <AttackRate>k__BackingField: 1.6
   - <Speed>k__BackingField: 1
     <MaxHP>k__BackingField: 90
     <Attack>k__BackingField: 14
     <Defense>k__BackingField: 8
-    <AttackRate>k__BackingField: 1.46
+    <AttackRate>k__BackingField: 1.5
   - <Speed>k__BackingField: 1
     <MaxHP>k__BackingField: 120
     <Attack>k__BackingField: 18
