@@ -68,21 +68,22 @@ public class UIManager : MonoBehaviour
 
     public void GoMainMenu()
     {
-        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
     }
     
     public void Win()
     {
-        PauseGame();
         resultPanel.SetActive(true);
         resultText.text = "You Win";
+        PauseGame();
     }
 
     public void Lose()
     {
-        PauseGame();
         resultPanel.SetActive(true);
         resultText.text = "You Lose";
+        PauseGame();
     }
 
     public void UnPauseGame()
