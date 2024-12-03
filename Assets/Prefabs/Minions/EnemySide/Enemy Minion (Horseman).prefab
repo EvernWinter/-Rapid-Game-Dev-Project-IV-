@@ -140,6 +140,7 @@ MonoBehaviour:
     _isInvulnerable: 0
   currentState: 0
   characterSide: 1
+  <unitType>k__BackingField: 2
   _entityName: Horseman
   _entityDescription: He's riding a horse and can attack bravery
   baseManager: {fileID: 0}
@@ -328,7 +329,8 @@ MonoBehaviour:
   _characterRenderer: {fileID: 6065990483001741634}
   _normalSprite: {fileID: 21300000, guid: 08c76790944c5fb4bad9d97f6da4355d, type: 3}
   _damagedSprite: {fileID: 21300000, guid: 3cb1cbbe4c952d44fa5db0f29414dba1, type: 3}
-  _weaponSprite: {fileID: 0}
+  _weaponRenderer: {fileID: 8317600006372825599}
+  _weaponSprite: {fileID: 21300000, guid: c3acec642c271cc43ad1bc8706865f13, type: 3}
   _damagedDuration: 1
   _hitRotationAngle: 10
   _hitRotationDuration: 0.2

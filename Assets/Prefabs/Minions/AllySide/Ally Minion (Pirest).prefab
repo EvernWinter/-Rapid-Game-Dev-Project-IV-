@@ -172,6 +172,7 @@ MonoBehaviour:
     _isInvulnerable: 0
   currentState: 0
   characterSide: 0
+  <unitType>k__BackingField: 1
   _entityName: Pirest
   _entityDescription: He's a wise man who can attack enemy from a far range.
   baseManager: {fileID: 0}
@@ -372,7 +373,8 @@ MonoBehaviour:
   _characterRenderer: {fileID: 7951129040026825272}
   _normalSprite: {fileID: 21300000, guid: b1e0a0888e4822c4fb721f1ec9b4f1eb, type: 3}
   _damagedSprite: {fileID: 21300000, guid: e3936fe4f3c10004c9926adba3a31a43, type: 3}
-  _weaponSprite: {fileID: 0}
+  _weaponRenderer: {fileID: 1352963799084237943}
+  _weaponSprite: {fileID: 21300000, guid: a5fd17da85ffe9b48abee8f7d53b5a99, type: 3}
   _damagedDuration: 1
   _hitRotationAngle: 10
   _hitRotationDuration: 0.2
@@ -455,7 +457,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a5fd17da85ffe9b48abee8f7d53b5a99, type: 3}
-  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -15,7 +15,7 @@ public class CharacterEntity : MonoBehaviour
 
     [SerializeField] public enum UnitType { Swordman, Priest, Horseman, Shield, Archer }
 
-    [SerializeField] public UnitType unitType { get; private set; }
+    [field:SerializeField] public UnitType unitType { get; private set; }
 
 
     //[SerializeField] protected CharacterType _characterType;
@@ -149,7 +149,7 @@ public class CharacterEntity : MonoBehaviour
                 break;
         }
         CharacterHealthComponent.SetHP(CharacterHealthComponent.MaxHP);
-
+        _characterAnimator.SetUpSpriteAccordingToTier(this);
         _isDeployed = true;
     }   
 

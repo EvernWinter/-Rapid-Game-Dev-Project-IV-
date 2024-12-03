@@ -9,7 +9,9 @@ public class CharacterAnimationBase : MonoBehaviour
     [SerializeField] private Sprite _normalSprite;
     [SerializeField] private Sprite _damagedSprite;
     
+    [SerializeField] protected SpriteRenderer _weaponRenderer;
     [SerializeField] protected Sprite _weaponSprite;
+
 
     public Action OnAttack;
     public Action OnDamaged;
@@ -24,6 +26,7 @@ public class CharacterAnimationBase : MonoBehaviour
     {
         OnDamaged += PlayDamagedAnimation;
         OnAttack += PlayAttackAnimation;
+      
     }
     
     // Start is called before the first frame update
@@ -129,14 +132,14 @@ public class CharacterAnimationBase : MonoBehaviour
                 {
                     _normalSprite = side == CharacterEntity.CharacterSide.Ally
                         ? spriteList.BlackSwordManSprites[tier]._normalCharacterSprite
-                        : spriteList.WhiteSwordManSprites[0]._normalCharacterSprite;
+                        : spriteList.WhiteSwordManSprites[tier]._normalCharacterSprite;
                     _damagedSprite = side == CharacterEntity.CharacterSide.Ally
                         ? spriteList.BlackSwordManSprites[tier]._damagedCharacterSprite
-                        : spriteList.WhiteSwordManSprites[0]._damagedCharacterSprite;
+                        : spriteList.WhiteSwordManSprites[tier]._damagedCharacterSprite;
                 }
                 _weaponSprite = side == CharacterEntity.CharacterSide.Ally
                     ? spriteList.BlackSwordManSprites[tier]._weaponSprite
-                    : spriteList.WhiteSwordManSprites[0]._weaponSprite;
+                    : spriteList.WhiteSwordManSprites[tier]._weaponSprite;
                 break;
 
             case CharacterEntity.UnitType.Archer:
@@ -144,14 +147,14 @@ public class CharacterAnimationBase : MonoBehaviour
                 {
                     _normalSprite = side == CharacterEntity.CharacterSide.Ally
                         ? spriteList.BlackArcherSprites[tier]._normalCharacterSprite
-                        : spriteList.WhiteArcherSprites[0]._normalCharacterSprite;
+                        : spriteList.WhiteArcherSprites[tier]._normalCharacterSprite;
                     _damagedSprite = side == CharacterEntity.CharacterSide.Ally
                         ? spriteList.BlackArcherSprites[tier]._damagedCharacterSprite
-                        : spriteList.WhiteArcherSprites[0]._damagedCharacterSprite;
+                        : spriteList.WhiteArcherSprites[tier]._damagedCharacterSprite;
                 }
                 _weaponSprite = side == CharacterEntity.CharacterSide.Ally
                     ? spriteList.BlackArcherSprites[tier]._weaponSprite
-                    : spriteList.WhiteArcherSprites[0]._weaponSprite;
+                    : spriteList.WhiteArcherSprites[tier]._weaponSprite;
                 break;
 
             case CharacterEntity.UnitType.Priest:
@@ -159,14 +162,14 @@ public class CharacterAnimationBase : MonoBehaviour
                 {
                     _normalSprite = side == CharacterEntity.CharacterSide.Ally
                         ? spriteList.BlackPriestSprites[tier]._normalCharacterSprite
-                        : spriteList.WhitePriestSprites[0]._normalCharacterSprite;
+                        : spriteList.WhitePriestSprites[tier]._normalCharacterSprite;
                     _damagedSprite = side == CharacterEntity.CharacterSide.Ally
                         ? spriteList.BlackPriestSprites[tier]._damagedCharacterSprite
-                        : spriteList.WhitePriestSprites[0]._damagedCharacterSprite;
+                        : spriteList.WhitePriestSprites[tier]._damagedCharacterSprite;
                 }
                 _weaponSprite = side == CharacterEntity.CharacterSide.Ally
                     ? spriteList.BlackPriestSprites[tier]._weaponSprite
-                    : spriteList.WhitePriestSprites[0]._weaponSprite;
+                    : spriteList.WhitePriestSprites[tier]._weaponSprite;
                 break;
 
             case CharacterEntity.UnitType.Shield:
@@ -174,14 +177,14 @@ public class CharacterAnimationBase : MonoBehaviour
                 {
                     _normalSprite = side == CharacterEntity.CharacterSide.Ally
                         ? spriteList.BlackShieldSprites[tier]._normalCharacterSprite
-                        : spriteList.WhiteShieldSprites[0]._normalCharacterSprite;
+                        : spriteList.WhiteShieldSprites[tier]._normalCharacterSprite;
                     _damagedSprite = side == CharacterEntity.CharacterSide.Ally
                         ? spriteList.BlackShieldSprites[tier]._damagedCharacterSprite
-                        : spriteList.WhiteShieldSprites[0]._damagedCharacterSprite;
+                        : spriteList.WhiteShieldSprites[tier]._damagedCharacterSprite;
                 }
                 _weaponSprite = side == CharacterEntity.CharacterSide.Ally
                     ? spriteList.BlackShieldSprites[tier]._weaponSprite
-                    : spriteList.WhiteShieldSprites[0]._weaponSprite;
+                    : spriteList.WhiteShieldSprites[tier]._weaponSprite;
                 break;
 
             case CharacterEntity.UnitType.Horseman:
@@ -189,20 +192,23 @@ public class CharacterAnimationBase : MonoBehaviour
                 {
                     _normalSprite = side == CharacterEntity.CharacterSide.Ally
                         ? spriteList.BlackHorseManSprites[tier]._normalCharacterSprite
-                        : spriteList.WhiteHorseManSprites[0]._normalCharacterSprite;
+                        : spriteList.WhiteHorseManSprites[tier]._normalCharacterSprite;
                     _damagedSprite = side == CharacterEntity.CharacterSide.Ally
                         ? spriteList.BlackHorseManSprites[tier]._damagedCharacterSprite
-                        : spriteList.WhiteHorseManSprites[0]._damagedCharacterSprite;
+                        : spriteList.WhiteHorseManSprites[tier]._damagedCharacterSprite;
                 }
                 _weaponSprite = side == CharacterEntity.CharacterSide.Ally
                     ? spriteList.BlackHorseManSprites[tier]._weaponSprite
-                    : spriteList.WhiteHorseManSprites[0]._weaponSprite;
+                    : spriteList.WhiteHorseManSprites[tier]._weaponSprite;
                 break;
 
             default:
                 Debug.LogWarning($"Unhandled UnitType: {type}");
                 break;
         }
+        
+        _weaponRenderer.sprite = _weaponSprite;
+        _characterRenderer.sprite = _normalSprite;
 
     }
 

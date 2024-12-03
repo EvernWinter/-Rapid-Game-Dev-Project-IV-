@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: cf41d3de5be00734a9649c695c3fca7e, type: 3}
-  m_Color: {r: 0.4566037, g: 0.4566037, b: 0.4566037, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
     _isInvulnerable: 0
   currentState: 0
   characterSide: 0
+  <unitType>k__BackingField: 2
   _entityName: Horseman
   _entityDescription: He's riding a horse and can attack bravery
   baseManager: {fileID: 0}
@@ -412,7 +413,8 @@ MonoBehaviour:
   _characterRenderer: {fileID: 4273033261860855748}
   _normalSprite: {fileID: 21300000, guid: 1e6be0e3108f6f94da7c63173fe40f98, type: 3}
   _damagedSprite: {fileID: 21300000, guid: 02602d04325b0844e9e96e7f8d1eb703, type: 3}
-  _weaponSprite: {fileID: 0}
+  _weaponRenderer: {fileID: 606862401312306896}
+  _weaponSprite: {fileID: 21300000, guid: c3acec642c271cc43ad1bc8706865f13, type: 3}
   _damagedDuration: 1
   _hitRotationAngle: 10
   _hitRotationDuration: 0.2

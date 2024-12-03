@@ -104,7 +104,8 @@ MonoBehaviour:
   _characterRenderer: {fileID: 63093744880471527}
   _normalSprite: {fileID: 21300000, guid: f2dfa69fc2098bd4db00b03459fa313e, type: 3}
   _damagedSprite: {fileID: 21300000, guid: 0c0d463e967ac2e46b44e8915b7e66e1, type: 3}
-  _weaponSprite: {fileID: 0}
+  _weaponRenderer: {fileID: 3934830281107598028}
+  _weaponSprite: {fileID: 21300000, guid: a367baa39b1bd774883fcd5e124bdf72, type: 3}
   _damagedDuration: 1
   _hitRotationAngle: 10
   _hitRotationDuration: 0.2
@@ -297,6 +298,7 @@ MonoBehaviour:
     _isInvulnerable: 0
   currentState: 0
   characterSide: 0
+  <unitType>k__BackingField: 0
   _entityName: Swordman
   _entityDescription: He's holding sword and attack in close range.
   baseManager: {fileID: 0}
@@ -591,7 +593,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a367baa39b1bd774883fcd5e124bdf72, type: 3}
-  m_Color: {r: 0.554717, g: 0.554717, b: 0.554717, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

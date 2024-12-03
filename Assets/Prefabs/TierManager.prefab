@@ -197,13 +197,133 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0e79e028084c84b91e68508e82b0eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <WhiteSwordManSprites>k__BackingField: []
-  <WhitePriestSprites>k__BackingField: []
-  <WhiteHorseManSprites>k__BackingField: []
-  <WhiteArcherSprites>k__BackingField: []
-  <WhiteShieldSprites>k__BackingField: []
-  <BlackSwordManSprites>k__BackingField: []
-  <BlackPriestSprites>k__BackingField: []
-  <BlackHorseManSprites>k__BackingField: []
-  <BlackArcherSprites>k__BackingField: []
-  <BlackShieldSprites>k__BackingField: []
+  <WhiteSwordManSprites>k__BackingField:
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: af3664660a6baaf4cba4282a1b3b05a2, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 67f770976c1c1484e94106edc9372602, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 173c0747158076e4aa15fbb320e264d9, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: af3664660a6baaf4cba4282a1b3b05a2, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 67f770976c1c1484e94106edc9372602, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: a367baa39b1bd774883fcd5e124bdf72, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: af3664660a6baaf4cba4282a1b3b05a2, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 67f770976c1c1484e94106edc9372602, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 6c237695ba79f3b4c8f3c91234ecad5b, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: af3664660a6baaf4cba4282a1b3b05a2, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 67f770976c1c1484e94106edc9372602, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: aa6115fd831b7294ab2adf77a59d9857, type: 3}
+  <WhitePriestSprites>k__BackingField:
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: 2302d58497a30e744804e2933fc7cdea, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 2ed75b7915c32b24c9a2d8ce4eb0431e, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: dc560af7a237bfd47898d44ba3dd65c7, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: 2302d58497a30e744804e2933fc7cdea, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 2ed75b7915c32b24c9a2d8ce4eb0431e, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: a5fd17da85ffe9b48abee8f7d53b5a99, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: a4b9edc9e7ae0154babb6c9ad8d94faa, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 07a6eea77973c1a47be1f4f29c31b825, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 78b9430c1d79a4244a4cfe18b1304d67, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: 1d03b1b759afcc14da34a6bac55f5f2a, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: cbb4e2e1a0202fa47bab26bd9498854f, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 8f4e0791177ddc54aa5e944b337cc804, type: 3}
+  <WhiteHorseManSprites>k__BackingField:
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: 852385add0d844b428207a33db001e6c, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 322d87cbd58165f4ba26558b6982bf08, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: c3acec642c271cc43ad1bc8706865f13, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: 852385add0d844b428207a33db001e6c, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 322d87cbd58165f4ba26558b6982bf08, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: cf41d3de5be00734a9649c695c3fca7e, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: 7ddea805931cc214e92c0b7e4e82e629, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: aad42f7520ac1504d99020c9caeacf07, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 69b7cfbe37299a048a79236b3fce106d, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: a0d85c7cabe6e8e47bf6cc56708b3d96, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: e1bc83a53e6ab56468ed615e6c43581e, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 0c42e01d52c0a4b41ad5f23e141e0fda, type: 3}
+  <WhiteArcherSprites>k__BackingField:
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: af3664660a6baaf4cba4282a1b3b05a2, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 67f770976c1c1484e94106edc9372602, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 63ad3922b35967f42b9a390d5c4cc49e, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: af3664660a6baaf4cba4282a1b3b05a2, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 67f770976c1c1484e94106edc9372602, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 92cc100426ec15d4cb6c9d96735e53b7, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: af3664660a6baaf4cba4282a1b3b05a2, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 67f770976c1c1484e94106edc9372602, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 92cc100426ec15d4cb6c9d96735e53b7, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: af3664660a6baaf4cba4282a1b3b05a2, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 67f770976c1c1484e94106edc9372602, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: d187d459a2e0c724cb7b99a7ff69a8ee, type: 3}
+  <WhiteShieldSprites>k__BackingField:
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: af3664660a6baaf4cba4282a1b3b05a2, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 67f770976c1c1484e94106edc9372602, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 73332df4acc95134cb63112c05c6c811, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: af3664660a6baaf4cba4282a1b3b05a2, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 67f770976c1c1484e94106edc9372602, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: a41df8e2ac6974e488f0299dd1d58652, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: af3664660a6baaf4cba4282a1b3b05a2, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 67f770976c1c1484e94106edc9372602, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: a41df8e2ac6974e488f0299dd1d58652, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: af3664660a6baaf4cba4282a1b3b05a2, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 67f770976c1c1484e94106edc9372602, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 44e360d994ab75f44b2f2c247bad93c5, type: 3}
+  <BlackSwordManSprites>k__BackingField:
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 173c0747158076e4aa15fbb320e264d9, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: a367baa39b1bd774883fcd5e124bdf72, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 6c237695ba79f3b4c8f3c91234ecad5b, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: aa6115fd831b7294ab2adf77a59d9857, type: 3}
+  <BlackPriestSprites>k__BackingField:
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fe4b0b16e4cca284098f18c1e6de8a9a, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: e2ed14f4b2c26c545bd08d1b0e6d956c, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: dc560af7a237bfd47898d44ba3dd65c7, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fe4b0b16e4cca284098f18c1e6de8a9a, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: e2ed14f4b2c26c545bd08d1b0e6d956c, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: a5fd17da85ffe9b48abee8f7d53b5a99, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: e68ed9d99fc41d6408898cab16cb11e4, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 2bde89360b241c54b8b78624683abc52, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 78b9430c1d79a4244a4cfe18b1304d67, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: e738e517415b488418b324519829e034, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: f188fa4416319dc498d979cab9fae439, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 8f4e0791177ddc54aa5e944b337cc804, type: 3}
+  <BlackHorseManSprites>k__BackingField:
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: c91f9a921ebe0894bbb8c519b21e019a, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 6602b704e5fd6e743be9cf14e5097d7f, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: c3acec642c271cc43ad1bc8706865f13, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: c91f9a921ebe0894bbb8c519b21e019a, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 6602b704e5fd6e743be9cf14e5097d7f, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: cf41d3de5be00734a9649c695c3fca7e, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: ffd9bd394736b444993e9c46e3ecb56f, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: a3aa6bd4cdd449c4280cea0f8c96b2ab, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 69b7cfbe37299a048a79236b3fce106d, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: 9befa8734b166c84ba46253e59a6cb27, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: f6314f20aef67074ab71ef5ef39c0d39, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 0c42e01d52c0a4b41ad5f23e141e0fda, type: 3}
+  <BlackArcherSprites>k__BackingField:
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: 9befa8734b166c84ba46253e59a6cb27, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: f6314f20aef67074ab71ef5ef39c0d39, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 63ad3922b35967f42b9a390d5c4cc49e, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 92cc100426ec15d4cb6c9d96735e53b7, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 92cc100426ec15d4cb6c9d96735e53b7, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: d187d459a2e0c724cb7b99a7ff69a8ee, type: 3}
+  <BlackShieldSprites>k__BackingField:
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 73332df4acc95134cb63112c05c6c811, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: a41df8e2ac6974e488f0299dd1d58652, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: a41df8e2ac6974e488f0299dd1d58652, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
+    <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 44e360d994ab75f44b2f2c247bad93c5, type: 3}
