@@ -114,7 +114,6 @@ public class BaseManager : MonoBehaviour
         }
         else
         {
-            waveText.text = $"Wave: {currentWaveIndex+1}/{waves.Count}";
             StartCoroutine(HandleEnemyWaves());
         }
         
@@ -265,6 +264,14 @@ public class BaseManager : MonoBehaviour
         if (baseHealth <= 0)
         {
             OnBaseDestroyed();
+            if (playerBase)
+            {
+                UIManager.Instance.Lose();
+            }
+            else
+            {
+                UIManager.Instance.Win();
+            }
         }
     }
     

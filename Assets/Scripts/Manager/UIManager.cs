@@ -6,11 +6,14 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject resultPanel;
+    [SerializeField] private TMP_Text resultText;
     [SerializeField] private Camera camera;
     [SerializeField] private RectTransform notified;
     private bool isNotified;
@@ -61,6 +64,25 @@ public class UIManager : MonoBehaviour
             BGMPlayer.Instance.PauseMusic();
             blur.enabled = true;
         }
+    }
+
+    public void GoMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    
+    public void Win()
+    {
+        PauseGame();
+        resultPanel.SetActive(true);
+        resultText.text = "You Win";
+    }
+
+    public void Lose()
+    {
+        PauseGame();
+        resultPanel.SetActive(true);
+        resultText.text = "You Lose";
     }
 
     public void UnPauseGame()
