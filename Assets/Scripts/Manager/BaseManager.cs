@@ -6,6 +6,10 @@ using Microlight.MicroBar;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Spine.Unity.Examples.BasicPlatformerController;
+using static UnityEditor.Rendering.ShadowCascadeGUI;
+
+
 
 public enum CharacterType
 {
@@ -18,6 +22,9 @@ public enum CharacterType
 
 public class BaseManager : MonoBehaviour
 {
+    [SerializeField] protected enum BaseState { Idle, Attack, Died }
+    [SerializeField] protected BaseState currentState;
+
     [Header("Base Settings")]
     [SerializeField] private float baseMaxHealth = 100f;
     [SerializeField] public float baseHealth;
@@ -56,6 +63,13 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private int currentWaveIndex = 0;
     [SerializeField] private bool isWaveActive = false;
     [SerializeField] private TMP_Text waveText;
+
+    [Header("Combat")]
+    [SerializeField] protected TargetDetector _targetDetector;
+    [SerializeField] protected int _attackDamage = 10;
+    [SerializeField] protected float nextAttack;
+    [SerializeField] protected float attackCooldownDuration = 1.5f;
+
     private void Awake()
     {
         enemyTypeToPrefab = new Dictionary<CharacterType, GameObject>
@@ -109,7 +123,70 @@ public class BaseManager : MonoBehaviour
     void Update()
     {
         // Update cooldown timers and button states
+        HandleState();
         UpdateUI();
+    }
+
+    private void HandleState()
+    {
+
+        switch (currentState)
+        {
+            case BaseState.Idle:
+
+                if (_targetDetector.enemiesInRange.Count > 0 || _targetDetector.baseManagerInRange != null)
+                {
+                    currentState = BaseState.Attack;
+                }
+
+                break;
+
+            case BaseState.Attack:
+
+                if (_targetDetector.enemiesInRange.Count > 0 || _targetDetector.baseManagerInRange != null)
+                {
+                    Attack();
+                }
+                else
+                {
+                    currentState = BaseState.Idle;
+                }
+                break;
+
+            case BaseState.Died:
+                //characterCollider.enabled = false;
+
+                break;
+        }
+    }
+
+    private void Attack()
+    {
+        if (Time.time > nextAttack)
+        {
+            nextAttack = Time.time + attackCooldownDuration;
+
+            if (_targetDetector.baseManagerInRange != null && _targetDetector.baseManagerInRange.GetComponent<BaseManager>().baseHealth > 0)
+            {
+                _targetDetector.baseManagerInRange.TakeDamage(this._attackDamage);
+                /*_characterAnimator.OnAttack?.Invoke();
+                if (_characterSFX != null)
+                {
+                    _characterSFX.OnAttack?.Invoke();
+                }*/
+            }
+            else if (_targetDetector.enemiesInRange.Count > 0)
+            {
+                _targetDetector.enemiesInRange[0].CharacterHealthComponent.TakeDamage(this._attackDamage, _targetDetector.enemiesInRange[0].Defense);
+                /*_characterAnimator.OnAttack?.Invoke();
+                if (_characterSFX != null)
+                {
+                    _characterSFX.OnAttack?.Invoke();
+                }*/
+            }
+        }
+
+
     }
 
     private void UpdateUI()
