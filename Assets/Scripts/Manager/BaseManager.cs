@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Spine.Unity.Examples.BasicPlatformerController;
 using static UnityEditor.Rendering.ShadowCascadeGUI;
-
+using Random = UnityEngine.Random;
 
 
 public enum CharacterType
@@ -56,7 +56,7 @@ public class BaseManager : MonoBehaviour
     
     [Header("Enemy Base Wave Settings")]
     [SerializeField] private List<Wave> waves; // Define waves in the inspector
-    [SerializeField] private float waveStartDelay = 5f; // Delay before starting the first wave
+    [SerializeField] private float waveStartDelay = 15f; // Delay before starting the first wave
     [SerializeField] private float enemySpawnInterval = 2f; // Interval between enemy spawns
     private Queue<WaveUnit> enemyQueue = new Queue<WaveUnit>();
     private bool isSpawningWave = false;
@@ -285,13 +285,13 @@ public class BaseManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waveStartDelay);
 
-        while (currentWaveIndex < waves.Count)
+        while (baseHealth > 0 && enemiesRemainingInWave < 20)
         {
-            if (!isWaveActive && enemiesRemainingInWave == 0)
+            if (!isWaveActive)
             {
                 isWaveActive = true;
-
-                var currentWave = waves[currentWaveIndex];
+                
+                var currentWave = waves[Random.Range(0, waves.Count)];
                 EnqueueWave(currentWave);
 
                 while (enemyQueue.Count > 0)
@@ -300,13 +300,9 @@ public class BaseManager : MonoBehaviour
                     yield return new WaitForSeconds(enemySpawnInterval);
                 }
 
-                while (enemiesRemainingInWave > 0)
-                {
-                    yield return null;
-                }
+                
 
                 isWaveActive = false;
-                currentWaveIndex++;
                 waveText.text = $"Wave: {currentWaveIndex+1}/{waves.Count}";
                 yield return new WaitForSeconds(waveStartDelay);
             }
