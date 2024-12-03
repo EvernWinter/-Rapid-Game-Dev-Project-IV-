@@ -58,7 +58,6 @@ public class RebirthOrb : MonoBehaviour
                 minion_Archer.transform.position = gameObject.transform.position;
                 break;
         }
-
         Destroy(gameObject);
     }
 }

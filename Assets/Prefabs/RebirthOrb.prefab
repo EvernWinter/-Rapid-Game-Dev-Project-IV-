@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitType: 0
-  rebirthOrb_LifeTime: 10
+  rebirthOrb_LifeTime: 20
   rebirthOrb_DestroyTime: 0
   minionPrefabs:
   - {fileID: 2599753478477571907, guid: 8cb571ab90e65624f9573a28a92348d8, type: 3}

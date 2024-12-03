@@ -66,6 +66,8 @@ public class RebirthManager : MonoBehaviour
             {
                 rebirthOrb.GetComponent<RebirthOrb>().Rebirth();
             }
+
+            rebirthOrbs.Clear();
         }
         else
         {
