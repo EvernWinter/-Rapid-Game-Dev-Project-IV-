@@ -11,6 +11,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private RectTransform howToPlayButton;
     [SerializeField] private RectTransform quitButton;
 
+    [SerializeField] private CanvasGroup canvasGroup_HowToPlay;
+
     [SerializeField] private float target;
     [SerializeField] private float tweenDuration;
 
@@ -60,6 +62,26 @@ public class MenuManager : MonoBehaviour
         if (!isSceneTransitioning) // Prevent overlapping coroutines
         {
             StartCoroutine(StartGameSceneCoroutine());
+        }
+    }
+
+    public void OpenHowToPlay()
+    {
+        if (!isSceneTransitioning) // Prevent overlapping coroutines
+        {
+            canvasGroup_HowToPlay.DOFade(1f, 0.5f);
+            canvasGroup_HowToPlay.interactable = true;
+            canvasGroup_HowToPlay.blocksRaycasts = true;
+        }
+    }
+
+    public void CloseHowToPlay()
+    {
+        if (!isSceneTransitioning) // Prevent overlapping coroutines
+        {
+            canvasGroup_HowToPlay.DOFade(0f, 0.5f);
+            canvasGroup_HowToPlay.interactable = false;
+            canvasGroup_HowToPlay.blocksRaycasts = false;
         }
     }
 
