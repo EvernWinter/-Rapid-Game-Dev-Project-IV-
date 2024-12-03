@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7045429974238320757}
   - component: {fileID: 2820569669536019047}
+  - component: {fileID: 3036833329788331225}
   m_Layer: 0
   m_Name: TierManager
   m_TagString: Untagged
@@ -184,3 +185,25 @@ MonoBehaviour:
     <Attack>k__BackingField: 0
     <Defense>k__BackingField: 0
     <AttackRate>k__BackingField: 1.5
+--- !u!114 &3036833329788331225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4288707025425493823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce0e79e028084c84b91e68508e82b0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <WhiteSwordManSprites>k__BackingField: []
+  <WhitePriestSprites>k__BackingField: []
+  <WhiteHorseManSprites>k__BackingField: []
+  <WhiteArcherSprites>k__BackingField: []
+  <WhiteShieldSprites>k__BackingField: []
+  <BlackSwordManSprites>k__BackingField: []
+  <BlackPriestSprites>k__BackingField: []
+  <BlackHorseManSprites>k__BackingField: []
+  <BlackArcherSprites>k__BackingField: []
+  <BlackShieldSprites>k__BackingField: []

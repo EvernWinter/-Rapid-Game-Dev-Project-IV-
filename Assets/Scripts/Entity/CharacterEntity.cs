@@ -13,10 +13,11 @@ public class CharacterEntity : MonoBehaviour
     [SerializeField] public enum CharacterSide { Ally, Enemy }
     [SerializeField] public CharacterSide characterSide;
 
-    [SerializeField] protected enum UnitType { Swordman, Priest, Horseman, Shield, Archer }
-    [SerializeField] protected UnitType unitType;
+    [SerializeField] public enum UnitType { Swordman, Priest, Horseman, Shield, Archer }
 
-    
+    [SerializeField] public UnitType unitType { get; private set; }
+
+
     //[SerializeField] protected CharacterType _characterType;
 
     [Header("Information")] 
@@ -34,6 +35,7 @@ public class CharacterEntity : MonoBehaviour
     [SerializeField] protected CharacterTier _characterTier;
     [SerializeField] protected List<CharacterStat> _characterTierStat;
     public CharacterTier CharacterCurrentTier => _characterTier;
+    [SerializeField] public int CharacterTierNumber => _characterTierNumber;
     
     [Header("Movement")]
     [SerializeField] protected float _moveSpeed = 10f;

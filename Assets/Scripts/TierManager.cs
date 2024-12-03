@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,7 +49,7 @@ public class TierManager : MonoBehaviour
     [field: SerializeField] public CharacterStat HorsemanModifier { get; private set; }
     [field: SerializeField] public CharacterStat ArcherModifier { get; private set; }
     [field: SerializeField] public CharacterStat ShieldModifier { get; private set; }
-
+    
     void Awake()
     {
         if (Instance == null)
@@ -167,3 +168,4 @@ public class TierManager : MonoBehaviour
         }
     }
 }
+

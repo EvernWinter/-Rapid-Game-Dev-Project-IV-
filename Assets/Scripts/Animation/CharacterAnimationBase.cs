@@ -8,6 +8,8 @@ public class CharacterAnimationBase : MonoBehaviour
 
     [SerializeField] private Sprite _normalSprite;
     [SerializeField] private Sprite _damagedSprite;
+    
+    [SerializeField] protected Sprite _weaponSprite;
 
     public Action OnAttack;
     public Action OnDamaged;
@@ -109,5 +111,122 @@ public class CharacterAnimationBase : MonoBehaviour
     public void TriggerDamagedAnimation()
     {
         PlayDamagedAnimation();
+    }
+        
+    [SerializeField] private bool _ignoreCharacterSpriteByTier; // If true, character sprites will not be updated by tier
+
+    public virtual void SetUpSpriteAccordingToTier(CharacterEntity characterEntity)
+    {
+        CharacterEntity.CharacterSide side = characterEntity.characterSide;
+        CharacterEntity.UnitType type = characterEntity.unitType;
+        int tier = characterEntity.CharacterTierNumber;
+        TierSpritesManager spriteList = TierSpritesManager.Instance;
+
+        switch (type)
+        {
+            case CharacterEntity.UnitType.Swordman:
+                if (!_ignoreCharacterSpriteByTier)
+                {
+                    _normalSprite = side == CharacterEntity.CharacterSide.Ally
+                        ? spriteList.BlackSwordManSprites[tier]._normalCharacterSprite
+                        : spriteList.WhiteSwordManSprites[0]._normalCharacterSprite;
+                    _damagedSprite = side == CharacterEntity.CharacterSide.Ally
+                        ? spriteList.BlackSwordManSprites[tier]._damagedCharacterSprite
+                        : spriteList.WhiteSwordManSprites[0]._damagedCharacterSprite;
+                }
+                _weaponSprite = side == CharacterEntity.CharacterSide.Ally
+                    ? spriteList.BlackSwordManSprites[tier]._weaponSprite
+                    : spriteList.WhiteSwordManSprites[0]._weaponSprite;
+                break;
+
+            case CharacterEntity.UnitType.Archer:
+                if (!_ignoreCharacterSpriteByTier)
+                {
+                    _normalSprite = side == CharacterEntity.CharacterSide.Ally
+                        ? spriteList.BlackArcherSprites[tier]._normalCharacterSprite
+                        : spriteList.WhiteArcherSprites[0]._normalCharacterSprite;
+                    _damagedSprite = side == CharacterEntity.CharacterSide.Ally
+                        ? spriteList.BlackArcherSprites[tier]._damagedCharacterSprite
+                        : spriteList.WhiteArcherSprites[0]._damagedCharacterSprite;
+                }
+                _weaponSprite = side == CharacterEntity.CharacterSide.Ally
+                    ? spriteList.BlackArcherSprites[tier]._weaponSprite
+                    : spriteList.WhiteArcherSprites[0]._weaponSprite;
+                break;
+
+            case CharacterEntity.UnitType.Priest:
+                if (!_ignoreCharacterSpriteByTier)
+                {
+                    _normalSprite = side == CharacterEntity.CharacterSide.Ally
+                        ? spriteList.BlackPriestSprites[tier]._normalCharacterSprite
+                        : spriteList.WhitePriestSprites[0]._normalCharacterSprite;
+                    _damagedSprite = side == CharacterEntity.CharacterSide.Ally
+                        ? spriteList.BlackPriestSprites[tier]._damagedCharacterSprite
+                        : spriteList.WhitePriestSprites[0]._damagedCharacterSprite;
+                }
+                _weaponSprite = side == CharacterEntity.CharacterSide.Ally
+                    ? spriteList.BlackPriestSprites[tier]._weaponSprite
+                    : spriteList.WhitePriestSprites[0]._weaponSprite;
+                break;
+
+            case CharacterEntity.UnitType.Shield:
+                if (!_ignoreCharacterSpriteByTier)
+                {
+                    _normalSprite = side == CharacterEntity.CharacterSide.Ally
+                        ? spriteList.BlackShieldSprites[tier]._normalCharacterSprite
+                        : spriteList.WhiteShieldSprites[0]._normalCharacterSprite;
+                    _damagedSprite = side == CharacterEntity.CharacterSide.Ally
+                        ? spriteList.BlackShieldSprites[tier]._damagedCharacterSprite
+                        : spriteList.WhiteShieldSprites[0]._damagedCharacterSprite;
+                }
+                _weaponSprite = side == CharacterEntity.CharacterSide.Ally
+                    ? spriteList.BlackShieldSprites[tier]._weaponSprite
+                    : spriteList.WhiteShieldSprites[0]._weaponSprite;
+                break;
+
+            case CharacterEntity.UnitType.Horseman:
+                if (!_ignoreCharacterSpriteByTier)
+                {
+                    _normalSprite = side == CharacterEntity.CharacterSide.Ally
+                        ? spriteList.BlackHorseManSprites[tier]._normalCharacterSprite
+                        : spriteList.WhiteHorseManSprites[0]._normalCharacterSprite;
+                    _damagedSprite = side == CharacterEntity.CharacterSide.Ally
+                        ? spriteList.BlackHorseManSprites[tier]._damagedCharacterSprite
+                        : spriteList.WhiteHorseManSprites[0]._damagedCharacterSprite;
+                }
+                _weaponSprite = side == CharacterEntity.CharacterSide.Ally
+                    ? spriteList.BlackHorseManSprites[tier]._weaponSprite
+                    : spriteList.WhiteHorseManSprites[0]._weaponSprite;
+                break;
+
+            default:
+                Debug.LogWarning($"Unhandled UnitType: {type}");
+                break;
+        }
+
+    }
+
+    // New: Set the normal sprite
+    public void SetNormalSprite(Sprite normalSprite)
+    {
+        _normalSprite = normalSprite;
+
+        // Immediately update the renderer if this is the current state
+        if (_characterRenderer.sprite == _normalSprite || _damagedCoroutine == null)
+        {
+            _characterRenderer.sprite = _normalSprite;
+        }
+    }
+
+    // New: Set the damaged sprite
+    public void SetDamagedSprite(Sprite damagedSprite)
+    {
+        _damagedSprite = damagedSprite;
+
+        // If the damaged animation is currently running, update the sprite
+        if (_damagedCoroutine != null)
+        {
+            _characterRenderer.sprite = _damagedSprite;
+        }
     }
 }
