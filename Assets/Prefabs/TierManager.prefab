@@ -302,8 +302,8 @@ MonoBehaviour:
     <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: f6314f20aef67074ab71ef5ef39c0d39, type: 3}
     <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 0c42e01d52c0a4b41ad5f23e141e0fda, type: 3}
   <BlackArcherSprites>k__BackingField:
-  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: 9befa8734b166c84ba46253e59a6cb27, type: 3}
-    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: f6314f20aef67074ab71ef5ef39c0d39, type: 3}
+  - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
+    <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
     <_weaponSprite>k__BackingField: {fileID: 21300000, guid: 63ad3922b35967f42b9a390d5c4cc49e, type: 3}
   - <_normalCharacterSprite>k__BackingField: {fileID: 21300000, guid: fa1e47e2db3573a48b9214db11731197, type: 3}
     <_damagedCharacterSprite>k__BackingField: {fileID: 21300000, guid: 27ab58278d7370d4ba673b37f4808d42, type: 3}
