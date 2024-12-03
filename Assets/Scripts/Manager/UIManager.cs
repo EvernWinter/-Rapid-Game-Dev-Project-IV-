@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text resultText;
     [SerializeField] private Camera camera;
     [SerializeField] private RectTransform notified;
+    [SerializeField] private GameObject mask;
     private bool isNotified;
     private bool isPaused = false;
     private Volume blur;
@@ -37,7 +38,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //MoveMaskToFarthestAlly();
     }
     
     public void Pause()
@@ -151,5 +152,45 @@ public class UIManager : MonoBehaviour
         transform.localScale = Vector3.zero;
         transform.DOScale(originalScale , 0.5f)
             .SetEase(Ease.OutBack);
+    }
+    
+    public void MoveMaskToFarthestAlly()
+    {
+        // Get all active CharacterEntity objects in the scene
+        CharacterEntity[] allCharacters = FindObjectsOfType<CharacterEntity>();
+
+        // Ensure there are allies to evaluate
+        if (allCharacters.Length == 0)
+            return;
+
+        CharacterEntity farthestAlly = null;
+        float maxDistance = float.MinValue;
+
+        // Loop through all characters to find the farthest ally
+        foreach (var character in allCharacters)
+        {
+            if (character.characterSide == CharacterEntity.CharacterSide.Ally)
+            {
+                float distance = character.transform.position.x;
+
+                // Update the farthest ally if this one is farther
+                if (distance > maxDistance)
+                {
+                    maxDistance = distance;
+                    farthestAlly = character;
+                }
+            }
+        }
+
+        // Move the mask if a farthest ally was found
+        if (farthestAlly != null)
+        {
+            mask.transform.position = new Vector3(farthestAlly.transform.position.x - 35, mask.transform.position.y, mask.transform.position.z);
+            Debug.Log($"Mask moved to the farthest ally at position: {farthestAlly.transform.position}");
+        }
+        else
+        {
+            Debug.LogWarning("No allies found to move the mask.");
+        }
     }
 }
