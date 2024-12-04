@@ -363,26 +363,56 @@ public class BaseManager : MonoBehaviour
         Destroy(gameObject);
     }
     
+    // private IEnumerator HandleEnemyWaves()
+    // {
+    //     yield return new WaitForSeconds(waveStartDelay);
+    //
+    //     while (baseHealth > 0 )
+    //     {
+    //         if (!isWaveActive)
+    //         {
+    //             isWaveActive = true;
+    //             
+    //             var currentWave = waves[Random.Range(0, waves.Count)];
+    //             EnqueueWave(currentWave);
+    //
+    //             while (enemyQueue.Count > 0)
+    //             {
+    //                 SpawnEnemy(enemyQueue.Dequeue());
+    //                 yield return new WaitForSeconds(enemySpawnInterval);
+    //             }
+    //
+    //             
+    //
+    //             isWaveActive = false;
+    //             yield return new WaitForSeconds(waveStartDelay);
+    //         }
+    //     }
+    //
+    //     Debug.Log("All waves completed!");
+    // }
+    
     private IEnumerator HandleEnemyWaves()
     {
         yield return new WaitForSeconds(waveStartDelay);
 
-        while (baseHealth > 0 )
+        while (baseHealth > 0)
         {
             if (!isWaveActive)
             {
                 isWaveActive = true;
-                
+
                 var currentWave = waves[Random.Range(0, waves.Count)];
                 EnqueueWave(currentWave);
 
                 while (enemyQueue.Count > 0)
                 {
                     SpawnEnemy(enemyQueue.Dequeue());
-                    yield return new WaitForSeconds(enemySpawnInterval);
-                }
 
-                
+                    // Randomize spawn interval between 1.5 and 5 seconds
+                    float randomSpawnInterval = Random.Range(1.5f, 5f);
+                    yield return new WaitForSeconds(randomSpawnInterval);
+                }
 
                 isWaveActive = false;
                 yield return new WaitForSeconds(waveStartDelay);

@@ -441,6 +441,22 @@ PrefabInstance:
     m_TransformParent: {fileID: 3957900220426325680}
     m_Modifications:
     - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <ArcherTierStats>k__BackingField.Array.data[0].<Attack>k__BackingField
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <PriestTierStats>k__BackingField.Array.data[0].<Attack>k__BackingField
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <PriestTierStats>k__BackingField.Array.data[1].<Attack>k__BackingField
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <PriestTierStats>k__BackingField.Array.data[3].<Attack>k__BackingField
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
       propertyPath: <ArcherTierStats>k__BackingField.Array.data[0].<Defense>k__BackingField
       value: 3
       objectReference: {fileID: 0}
@@ -458,7 +474,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
       propertyPath: <HorseManTierStats>k__BackingField.Array.data[0].<MaxHP>k__BackingField
-      value: 180
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <HorseManTierStats>k__BackingField.Array.data[1].<MaxHP>k__BackingField
+      value: 175
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <HorseManTierStats>k__BackingField.Array.data[2].<MaxHP>k__BackingField
+      value: 190
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <HorseManTierStats>k__BackingField.Array.data[3].<MaxHP>k__BackingField
+      value: 210
       objectReference: {fileID: 0}
     - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
       propertyPath: <PriestTierStats>k__BackingField.Array.data[0].<Defense>k__BackingField
@@ -491,6 +519,30 @@ PrefabInstance:
     - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
       propertyPath: <ShieldTierStats>k__BackingField.Array.data[3].<Defense>k__BackingField
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <HorseManTierStats>k__BackingField.Array.data[0].<Attack>k__BackingField
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <HorseManTierStats>k__BackingField.Array.data[1].<Attack>k__BackingField
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <HorseManTierStats>k__BackingField.Array.data[2].<Attack>k__BackingField
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <HorseManTierStats>k__BackingField.Array.data[3].<Attack>k__BackingField
+      value: 54
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <SwordManTierStats>k__BackingField.Array.data[0].<Attack>k__BackingField
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
+      propertyPath: <SwordManTierStats>k__BackingField.Array.data[1].<Attack>k__BackingField
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 2820569669536019047, guid: da2907f42ca2a9543810b3bbf3e3b019, type: 3}
       propertyPath: <HorseManTierStats>k__BackingField.Array.data[0].<Defense>k__BackingField
