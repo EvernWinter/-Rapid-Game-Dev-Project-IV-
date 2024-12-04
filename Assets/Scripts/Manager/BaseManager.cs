@@ -66,6 +66,11 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private int currentWaveIndex = 0;
     [SerializeField] private bool isWaveActive = false;
     [SerializeField] private TMP_Text waveText;
+    
+    private float startTime;
+    
+    private Dictionary<CharacterType, float> enemyUnlockTimes;
+    private Dictionary<CharacterType, float> enemySpawnWeights;
 
     [Header("Combat")]
     [SerializeField] protected TargetDetector _targetDetector;
@@ -74,7 +79,27 @@ public class BaseManager : MonoBehaviour
     [SerializeField] protected float attackCooldownDuration = 1.5f;
 
     private void Awake()
-    {
+    {    
+        // Define the spawn weights
+        enemySpawnWeights = new Dictionary<CharacterType, float>
+        {
+            { CharacterType.Sword, 0.35f },
+            { CharacterType.Archer, 0.225f },
+            { CharacterType.Shield, 0.175f },
+            { CharacterType.Priest, 0.15f },
+            { CharacterType.HorseMan, 0.1f }
+        };
+
+        // Define when each enemy type becomes available
+        enemyUnlockTimes = new Dictionary<CharacterType, float>
+        {
+            { CharacterType.Sword, 0f },    // Available from the beginning
+            { CharacterType.Archer, 15f }, // Available after 15 seconds
+            { CharacterType.Shield, 30f }, // Available after 30 seconds
+            { CharacterType.Priest, 45f }, // Available after 45 seconds
+            { CharacterType.HorseMan, 60f } // Available after 60 seconds
+        };
+
         enemyTypeToPrefab = new Dictionary<CharacterType, GameObject>
         {
             { CharacterType.Sword, enemyMinionPrefabs[0] },
@@ -84,6 +109,8 @@ public class BaseManager : MonoBehaviour
             { CharacterType.HorseMan, enemyMinionPrefabs[4] }
         };
     }
+    
+    
 
     void Start()
     {
@@ -120,6 +147,7 @@ public class BaseManager : MonoBehaviour
             StartCoroutine(HandleEnemyWaves());
         }
         
+        startTime = Time.time;
     }
 
     void Update()
@@ -260,6 +288,48 @@ public class BaseManager : MonoBehaviour
             }
         }
     }
+    private CharacterType GetRandomEnemyType(float elapsedTime)
+    {
+        // Filter available enemy types based on elapsed time
+        var availableEnemies = new List<CharacterType>();
+        foreach (var kvp in enemyUnlockTimes)
+        {
+            if (elapsedTime >= kvp.Value)
+            {
+                availableEnemies.Add(kvp.Key);
+            }
+        }
+
+        if (availableEnemies.Count == 0)
+        {
+            Debug.LogError("No enemies available to spawn!");
+            return CharacterType.Sword; // Default fallback
+        }
+
+        // Calculate total weight for available enemies
+        float totalWeight = 0f;
+        foreach (var enemy in availableEnemies)
+        {
+            totalWeight += enemySpawnWeights[enemy];
+        }
+
+        // Perform weighted random selection
+        float randomValue = Random.Range(0f, totalWeight);
+        float cumulativeWeight = 0f;
+
+        foreach (var enemy in availableEnemies)
+        {
+            cumulativeWeight += enemySpawnWeights[enemy];
+            if (randomValue <= cumulativeWeight)
+            {
+                return enemy;
+            }
+        }
+
+        // Fallback (shouldn't occur if weights are set correctly)
+        return CharacterType.Sword;
+    }
+    
     
     public void TakeDamage(float damage)
     {
@@ -335,18 +405,35 @@ public class BaseManager : MonoBehaviour
     
     private void SpawnEnemy(WaveUnit unit)
     {
+        // skeletonAnimation.AnimationState.SetAnimation(0, "Order", false);
+        // if (enemyTypeToPrefab.TryGetValue(unit.unit, out var prefab))
+        // {
+        //     GameObject enemy = Instantiate(prefab, minionSpawn.position, Quaternion.identity);
+        //     enemiesRemainingInWave++; // Increase the count when spawning an enemy
+        //     enemy.GetComponent<CharacterEntity>().baseManager = this;
+        //     // Assuming enemies have a script that calls this method when they die
+        // }
+        // else
+        // {
+        //     Debug.LogError($"Prefab for {unit.unit} not found in dictionary!");
+        // }
+        
         skeletonAnimation.AnimationState.SetAnimation(0, "Order", false);
-        if (enemyTypeToPrefab.TryGetValue(unit.unit, out var prefab))
+
+        float elapsedTime = Time.time - startTime; // Calculate elapsed time
+
+        // Get a random enemy type based on weights and time-based unlocks
+        CharacterType randomEnemyType = GetRandomEnemyType(elapsedTime);
+
+        if (enemyTypeToPrefab.TryGetValue(randomEnemyType, out var prefab))
         {
             GameObject enemy = Instantiate(prefab, minionSpawn.position, Quaternion.identity);
             enemiesRemainingInWave++; // Increase the count when spawning an enemy
             enemy.GetComponent<CharacterEntity>().baseManager = this;
-            // Assuming enemies have a script that calls this method when they die
-
         }
         else
         {
-            Debug.LogError($"Prefab for {unit.unit} not found in dictionary!");
+            Debug.LogError($"Prefab for {randomEnemyType} not found in dictionary!");
         }
     }
     
