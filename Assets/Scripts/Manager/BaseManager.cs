@@ -7,8 +7,6 @@ using Spine.Unity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static Spine.Unity.Examples.BasicPlatformerController;
-using static UnityEditor.Rendering.ShadowCascadeGUI;
 using Random = UnityEngine.Random;
 
 

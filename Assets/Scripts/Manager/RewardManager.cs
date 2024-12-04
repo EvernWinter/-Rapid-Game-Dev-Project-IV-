@@ -65,15 +65,15 @@ public class RewardManager : MonoBehaviour
         {
             case UnitTier.Common:
                 upgradeButtons[buttonIndex].gameObject.SetActive(playerMoney >= sliverCost);
-                UIManager.Instance.DoSpawnButton( upgradeButtons[buttonIndex].GetComponent<RectTransform>(),originalScale[buttonIndex] ,buttonIndex);
+                //UIManager.Instance.DoSpawnButton( upgradeButtons[buttonIndex].GetComponent<RectTransform>(),originalScale[buttonIndex] ,buttonIndex);
                 break;
             case UnitTier.Silver:
                 upgradeButtons[buttonIndex].gameObject.SetActive(playerMoney >= goldCost);
-                UIManager.Instance.DoSpawnButton( upgradeButtons[buttonIndex].GetComponent<RectTransform>(),originalScale[buttonIndex] ,buttonIndex);
+                //UIManager.Instance.DoSpawnButton( upgradeButtons[buttonIndex].GetComponent<RectTransform>(),originalScale[buttonIndex] ,buttonIndex);
                 break;
             case UnitTier.Gold:
                 upgradeButtons[buttonIndex].gameObject.SetActive(playerMoney >= platinumCost);
-                UIManager.Instance.DoSpawnButton( upgradeButtons[buttonIndex].GetComponent<RectTransform>(),originalScale[buttonIndex] ,buttonIndex);
+                //UIManager.Instance.DoSpawnButton( upgradeButtons[buttonIndex].GetComponent<RectTransform>(),originalScale[buttonIndex] ,buttonIndex);
                 break;
             default:
                 upgradeButtons[buttonIndex].gameObject.SetActive(false);
